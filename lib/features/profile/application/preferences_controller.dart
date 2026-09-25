@@ -33,6 +33,8 @@ class PreferencesController extends Notifier<UserPreferences> {
 
   void setTravelStyle(TravelStyle style) => _save(state.copyWith(travelStyle: style));
 
+  void setNotifications(bool on) => _save(state.copyWith(notifications: on));
+
   void _save(UserPreferences prefs) {
     state = prefs;
     ref.read(keyValueStoreProvider).setString(_key, jsonEncode(prefs.toJson()));

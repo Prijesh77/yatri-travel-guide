@@ -1,0 +1,222 @@
+{
+  "version": 1,
+  "updated": "2026-09-25",
+  "priceBands": {
+    "budget": [
+      800,
+      2500
+    ],
+    "mid": [
+      2500,
+      6000
+    ],
+    "upscale": [
+      6000,
+      15000
+    ],
+    "luxury": [
+      15000,
+      40000
+    ]
+  },
+  "stays": [
+    {
+      "id": "hotel-shanker",
+      "name": "Hotel Shanker",
+      "type": "heritage",
+      "city": "kathmandu",
+      "area": "Lazimpat",
+      "lat": 27.7208,
+      "lng": 85.3195,
+      "priceBand": "upscale",
+      "description": "Converted 19th-century Rana palace with gardens and a pool, a short walk from Thamel and Narayanhiti."
+    },
+    {
+      "id": "kathmandu-guest-house",
+      "name": "Kathmandu Guest House",
+      "type": "boutique",
+      "city": "kathmandu",
+      "area": "Thamel",
+      "lat": 27.7157,
+      "lng": 85.3107,
+      "priceBand": "mid",
+      "description": "Long-running Thamel landmark set around quiet courtyards and a garden, in the middle of the tourist district."
+    },
+    {
+      "id": "dwarikas-hotel",
+      "name": "Dwarika's Hotel",
+      "type": "heritage",
+      "city": "kathmandu",
+      "area": "Battisputali",
+      "lat": 27.707,
+      "lng": 85.34,
+      "priceBand": "luxury",
+      "description": "Heritage hotel built with restored Newar woodcarvings and brickwork, close to Pashupatinath."
+    },
+    {
+      "id": "hotel-yak-and-yeti",
+      "name": "Hotel Yak & Yeti",
+      "type": "hotel",
+      "city": "kathmandu",
+      "area": "Durbar Marg",
+      "lat": 27.711,
+      "lng": 85.319,
+      "priceBand": "luxury",
+      "description": "Large hotel on Durbar Marg with part of a Rana palace, gardens and pools; walking distance to Thamel."
+    },
+    {
+      "id": "hyatt-regency-kathmandu",
+      "name": "Hyatt Regency Kathmandu",
+      "type": "resort",
+      "city": "kathmandu",
+      "area": "Boudha",
+      "lat": 27.7163,
+      "lng": 85.3565,
+      "priceBand": "luxury",
+      "description": "Resort-style hotel in extensive grounds a short walk from the Boudhanath stupa."
+    },
+    {
+      "id": "kantipur-temple-house",
+      "name": "Kantipur Temple House",
+      "type": "heritage",
+      "city": "kathmandu",
+      "area": "Jyatha",
+      "lat": 27.709,
+      "lng": 85.3125,
+      "priceBand": "mid",
+      "description": "Newar-style boutique hotel near Thamel built with traditional brick and carved wood."
+    },
+    {
+      "id": "dalai-la-boutique-hotel",
+      "name": "Dalai-La Boutique Hotel",
+      "type": "boutique",
+      "city": "kathmandu",
+      "area": "Thamel",
+      "lat": 27.7168,
+      "lng": 85.3098,
+      "priceBand": "mid",
+      "description": "Tibetan-themed boutique hotel with a garden courtyard on the quieter edge of Thamel."
+    },
+    {
+      "id": "hotel-tibet",
+      "name": "Hotel Tibet",
+      "type": "hotel",
+      "city": "kathmandu",
+      "area": "Lazimpat",
+      "lat": 27.7225,
+      "lng": 85.32,
+      "priceBand": "mid",
+      "description": "Tibetan-style hotel in the embassy area of Lazimpat with a rooftop terrace."
+    },
+    {
+      "id": "alobar1000",
+      "name": "Alobar1000",
+      "type": "hostel",
+      "city": "kathmandu",
+      "area": "Thamel",
+      "lat": 27.7175,
+      "lng": 85.311,
+      "priceBand": "budget",
+      "description": "Social backpacker hostel with dorms, private rooms and a rooftop in Thamel."
+    },
+    {
+      "id": "shechen-guest-house",
+      "name": "Shechen Guest House",
+      "type": "guesthouse",
+      "city": "kathmandu",
+      "area": "Boudha",
+      "lat": 27.7225,
+      "lng": 85.3605,
+      "priceBand": "budget",
+      "description": "Simple, peaceful guesthouse run with Shechen Monastery, steps from the Boudha stupa."
+    },
+    {
+      "id": "summit-hotel",
+      "name": "Summit Hotel",
+      "type": "hotel",
+      "city": "lalitpur",
+      "area": "Kupondole",
+      "lat": 27.686,
+      "lng": 85.316,
+      "priceBand": "upscale",
+      "description": "Terraced hillside hotel with gardens and views over Kathmandu, between Thamel and Patan."
+    },
+    {
+      "id": "hotel-himalaya",
+      "name": "Hotel Himalaya",
+      "type": "hotel",
+      "city": "lalitpur",
+      "area": "Kupondole",
+      "lat": 27.684,
+      "lng": 85.318,
+      "priceBand": "upscale",
+      "description": "Established hotel with a pool and mountain views on clear days, close to Patan and Jhamsikhel."
+    },
+    {
+      "id": "traditional-homes-swotha",
+      "name": "Traditional Homes Swotha",
+      "type": "heritage",
+      "city": "lalitpur",
+      "area": "Swotha, Patan",
+      "lat": 27.674,
+      "lng": 85.3255,
+      "priceBand": "mid",
+      "description": "Restored Newar townhouse with a handful of rooms, a minute from Patan Durbar Square."
+    },
+    {
+      "id": "newa-chen",
+      "name": "Newa Chen",
+      "type": "heritage",
+      "city": "lalitpur",
+      "area": "Kulimha, Patan",
+      "lat": 27.672,
+      "lng": 85.324,
+      "priceBand": "mid",
+      "description": "Award-winning restored Newar family house run as a small heritage homestay in old Patan."
+    },
+    {
+      "id": "hotel-heritage-bhaktapur",
+      "name": "Hotel Heritage",
+      "type": "heritage",
+      "city": "bhaktapur",
+      "area": "Bhaktapur",
+      "lat": 27.6718,
+      "lng": 85.425,
+      "priceBand": "upscale",
+      "description": "Boutique hotel built with salvaged traditional materials on the edge of old Bhaktapur."
+    },
+    {
+      "id": "peacock-guest-house",
+      "name": "Peacock Guest House",
+      "type": "guesthouse",
+      "city": "bhaktapur",
+      "area": "Tachupal, Bhaktapur",
+      "lat": 27.6735,
+      "lng": 85.4345,
+      "priceBand": "budget",
+      "description": "Simple rooms in a traditional building on Dattatreya Square, next to the Peacock Window."
+    },
+    {
+      "id": "shiva-guest-house",
+      "name": "Shiva Guest House",
+      "type": "guesthouse",
+      "city": "bhaktapur",
+      "area": "Durbar Square, Bhaktapur",
+      "lat": 27.6725,
+      "lng": 85.4285,
+      "priceBand": "budget",
+      "description": "Family guesthouse overlooking Bhaktapur Durbar Square; good for early mornings in the old town."
+    },
+    {
+      "id": "club-himalaya-nagarkot",
+      "name": "Club Himalaya",
+      "type": "resort",
+      "city": "bhaktapur",
+      "area": "Nagarkot",
+      "lat": 27.712,
+      "lng": 85.518,
+      "priceBand": "upscale",
+      "description": "Ridge-top resort in Nagarkot with Himalayan views at sunrise on clear days."
+    }
+  ]
+}

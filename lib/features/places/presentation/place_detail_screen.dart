@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../app/navigation.dart';
+import '../../location/presentation/location_picker.dart';
+import '../../map/presentation/map_screen.dart';
+import '../../profile/application/saved_controller.dart';
+import '../../transport/presentation/transit_screen.dart';
 import '../../../core/geo/geo_point.dart';
 import '../../../core/presentation/formatters.dart';
 import '../../../core/presentation/l10n.dart';
@@ -38,11 +42,21 @@ class PlaceDetailScreen extends ConsumerWidget {
       return Scaffold(appBar: AppBar(), body: Center(child: Text(l10n.errorLoading)));
     }
 
+    final savedItem = SavedItem(SavedKind.place, place.id);
+    final saved = ref.watch(savedProvider).contains(savedItem);
+
     return Scaffold(
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
             pinned: true,
+            actions: [
+              IconButton(
+                tooltip: saved ? l10n.unsave : l10n.save,
+                icon: Icon(saved ? Icons.bookmark : Icons.bookmark_border),
+                onPressed: () => ref.read(savedProvider.notifier).toggle(savedItem),
+              ),
+            ],
             expandedHeight: 220,
             // Category colour when collapsed too, so the white title and
             // back button stay readable.
@@ -97,11 +111,20 @@ class PlaceDetailScreen extends ConsumerWidget {
           padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
           child: Row(
             children: [
-              OutlinedButton.icon(
+              IconButton.outlined(
+                tooltip: l10n.showOnMap,
                 icon: const Icon(Icons.map_outlined),
-                label: Text(l10n.showOnMap),
+                onPressed: () => MapScreen.open(context, focus: [place.location]),
+              ),
+              const SizedBox(width: 8),
+              OutlinedButton.icon(
+                icon: const Icon(Icons.route),
+                label: Text(l10n.routeHere),
                 onPressed: () {
-                  ref.read(mapFocusProvider.notifier).focus(MapFocusRequest([place.location]));
+                  ref
+                      .read(transitDestinationProvider.notifier)
+                      .set(LocationChoice(place.name, place.location, LocationKind.place));
+                  ref.read(rootTabProvider.notifier).select(RootTab.transit);
                   Navigator.of(context).popUntil((r) => r.isFirst);
                 },
               ),

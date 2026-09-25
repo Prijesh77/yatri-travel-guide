@@ -37,7 +37,7 @@ class ScoringWeights {
     this.distancePerKm = 0.9,
     this.primaryInterest = 12,
     this.secondaryInterest = 6,
-    this.festival = -6,
+    this.festival = 4,
     this.roadClosure = -10,
     this.bandhWalkable = 8,
     this.bandhMaxPenalty = -25,
@@ -264,13 +264,15 @@ class RecommendationEngine {
     final w = weights;
     switch (alert.type) {
       case AlertType.closure:
-        if (alert.placeIds.contains(place.id)) {
+        if (alert.placeIds.contains(place.id) || alert.isNear(place.location)) {
           add(ScoreReason(ReasonKind.closureAlert, w.blocked, alertTitle: alert.title));
         }
       case AlertType.festival:
         add(ScoreReason(ReasonKind.festival, w.festival, alertTitle: alert.title));
       case AlertType.roadClosure:
         add(ScoreReason(ReasonKind.roadClosure, w.roadClosure, alertTitle: alert.title));
+      case AlertType.traffic:
+        add(ScoreReason(ReasonKind.roadClosure, w.roadClosure / 2, alertTitle: alert.title));
       case AlertType.bandh:
         final d = here?.distanceKmTo(place.location);
         if (d != null && d <= bandhWalkKm) {

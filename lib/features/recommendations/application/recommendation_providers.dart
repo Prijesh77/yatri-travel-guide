@@ -21,7 +21,7 @@ final currentContextProvider = Provider<RecommendationContext>((ref) {
     weather: ref.watch(weatherOrNullProvider)?.at(now),
     userLocation: ref.watch(userLocationProvider),
     interests: ref.watch(preferencesProvider.select((p) => p.interests)),
-    alerts: ref.watch(alertsProvider).value ?? const [],
+    alerts: ref.watch(alertsProvider),
   );
 });
 

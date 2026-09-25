@@ -6,8 +6,19 @@ import '../../features/transport/domain/transport_option.dart';
 import '../../features/weather/domain/weather.dart';
 
 class AppTheme {
-  /// Newar brick red.
-  static const seed = Color(0xFFB23A2E);
+  /// Wireframe navy blue.
+  static const seed = Color(0xFF1D4E89);
+
+  // Accent pairs from the wireframes (icon colour, pale background).
+  static const aiColor = Color(0xFF4B3FB0);
+  static const aiBackground = Color(0xFFEDEBFC);
+  static const alertColor = Color(0xFF8A4B08);
+  static const alertBackground = Color(0xFFFCEBD6);
+  static const eventColor = Color(0xFF2E6B1F);
+  static const eventBackground = Color(0xFFE3F1DC);
+  static const transitBackground = Color(0xFFE3EEFA);
+  static const plannedBackground = Color(0xFFF0EEE8);
+  static const plannedColor = Color(0xFF8A877F);
 
   static ThemeData light() => _build(Brightness.light);
   static ThemeData dark() => _build(Brightness.dark);
@@ -24,6 +35,10 @@ class AppTheme {
         margin: EdgeInsets.zero,
       ),
       chipTheme: const ChipThemeData(showCheckmark: false),
+      inputDecorationTheme: InputDecorationTheme(
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+        isDense: true,
+      ),
       listTileTheme: const ListTileThemeData(contentPadding: EdgeInsets.symmetric(horizontal: 16)),
     );
   }

@@ -6,6 +6,7 @@ import '../../places/domain/place_category.dart';
 import '../../recommendations/domain/recommendation_context.dart';
 import '../../recommendations/domain/recommendation_engine.dart';
 import '../../transport/domain/fare_estimator.dart';
+import '../../transport/domain/transport_option.dart';
 import '../../weather/domain/weather.dart';
 import 'itinerary.dart';
 
@@ -63,8 +64,7 @@ class ItineraryPlanner {
 
       for (final place in places) {
         if (chosen.contains(place)) continue;
-        final options = estimator.optionsFor(position, place.location, time, alerts: alerts);
-        final leg = estimator.recommend(options, request.travelStyle);
+        final leg = legFor(request, position, place.location, time, alerts).chosen;
         if (leg == null || !leg.available) continue;
 
         final arrival = time.add(Duration(minutes: leg.durationMinutes));
@@ -111,15 +111,16 @@ class ItineraryPlanner {
     List<Place> ordered, {
     WeatherReport? weather,
     List<ConditionAlert> alerts = const [],
+    Map<String, String> notes = const {},
+    PlanSource source = PlanSource.local,
+    String? summary,
   }) {
     final stops = <ItineraryStop>[];
     var position = request.start.location;
     var time = request.startTime;
 
     for (final place in ordered) {
-      final options = estimator.optionsFor(position, place.location, time, alerts: alerts);
-      final chosen = estimator.recommend(options, request.travelStyle);
-      final leg = ItineraryLeg(from: position, to: place.location, options: options, chosen: chosen);
+      final leg = legFor(request, position, place.location, time, alerts);
       final arrival = time.add(Duration(minutes: leg.minutes));
       final visitStart = _visitStart(place, arrival) ?? arrival;
       final departure = visitStart.add(Duration(minutes: place.visitMinutes));
@@ -140,12 +141,60 @@ class ItineraryPlanner {
         departure: departure,
         scored: engine.score(place, _context(request, visitStart, weather, alerts)),
         warnings: warnings,
+        nearbyEvents: [
+          for (final a in alerts)
+            if (a.isEvent &&
+                a.start.isBefore(departure) &&
+                a.end.isAfter(visitStart) &&
+                a.isNear(place.location, extraKm: eventDetourKm))
+              a,
+        ],
+        note: notes[place.id],
       ));
       position = place.location;
       time = departure;
     }
-    return Itinerary(request: request, stops: List.unmodifiable(stops));
+    return Itinerary(request: request, stops: List.unmodifiable(stops), source: source, summary: summary);
   }
+
+  /// Travel options for one leg. When a reported road disruption lies on the
+  /// way, the chosen road option is slowed down and flagged as rerouted.
+  ItineraryLeg legFor(
+    ItineraryRequest request,
+    GeoPoint from,
+    GeoPoint to,
+    DateTime departure,
+    List<ConditionAlert> alerts,
+  ) {
+    final options = estimator.optionsFor(from, to, departure, alerts: alerts);
+    var chosen = estimator.recommend(options, request.travelStyle);
+    ConditionAlert? avoiding;
+    if (chosen != null && chosen.mode != TransportMode.walk) {
+      for (final a in alerts) {
+        if (a.type.affectsRoads && a.location != null && a.isActiveAt(departure) && a.liesOnPath(from, to)) {
+          avoiding = a;
+          break;
+        }
+      }
+      if (avoiding != null) {
+        chosen = chosen.copyWith(
+          durationMinutes: chosen.durationMinutes + detourMinutes(avoiding.type),
+          notes: [...chosen.notes, TransportNote.rerouted],
+        );
+      }
+    }
+    return ItineraryLeg(from: from, to: to, options: options, chosen: chosen, avoiding: avoiding);
+  }
+
+  /// Extra minutes to go around a disruption.
+  static int detourMinutes(AlertType type) => switch (type) {
+        AlertType.traffic => 15,
+        AlertType.roadClosure => 10,
+        _ => 10,
+      };
+
+  /// Events this far outside a stop's area still count as "nearby".
+  static const eventDetourKm = 0.5;
 
   /// Reorders [places] to shorten total travel from [start]: nearest
   /// neighbour, then 2-opt improvement on the open path.

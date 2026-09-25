@@ -81,6 +81,8 @@ extension Formatters on AppLocalizations {
         TransportNote.noBusService => noteNoBusService,
         TransportNote.estimatedRoute => busEstimated,
         TransportNote.bandh => noteBandh,
+        TransportNote.unverifiedRoute => noteUnverifiedRoute,
+        TransportNote.rerouted => noteRerouted,
       };
 
   String stopWarning(StopWarning w) => switch (w) {
@@ -103,6 +105,26 @@ extension Formatters on AppLocalizations {
     final preset = StartPreset.values.asNameMap()[start.label];
     return preset != null ? this.preset(preset) : start.label;
   }
+
+  /// "20 min ago", "3 h ago".
+  String ago(DateTime then, DateTime now) {
+    final m = now.difference(then).inMinutes;
+    if (m < 1) return justNow;
+    if (m < 60) return minutesAgo(m);
+    return hoursAgo(m ~/ 60);
+  }
+
+  /// "Today", "Tomorrow" or a short date.
+  String relativeDay(DateTime t, DateTime now) {
+    final days = dateOnly(t).difference(dateOnly(now)).inDays;
+    if (days == 0) return today;
+    if (days == 1) return tomorrow;
+    return DateFormat.MMMEd(localeName).format(t);
+  }
+
+  String priceRangeShort((int, int) range) => nprRange(amount(range.$1), amount(range.$2));
+
+  String pricePerNight((int, int) range) => perNight(priceRangeShort(range));
 
   String weekdays(Iterable<int> days) {
     final format = DateFormat.EEEE(localeName);

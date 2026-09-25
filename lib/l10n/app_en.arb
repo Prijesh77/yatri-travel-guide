@@ -176,7 +176,7 @@
     }
   },
   "reasonHighlight": "A valley highlight",
-  "reasonFestival": "{title}: expect crowds",
+  "reasonFestival": "{title} nearby – lively, expect crowds",
   "@reasonFestival": {
     "placeholders": {
       "title": {
@@ -545,5 +545,496 @@
   "presetPatan": "Patan Durbar Square",
   "presetBhaktapur": "Bhaktapur Durbar Square",
   "presetBoudha": "Boudha",
-  "presetAirport": "Tribhuvan Airport"
+  "presetAirport": "Tribhuvan Airport",
+  "noteUnverifiedRoute": "Route not verified for 2026 – confirm locally",
+  "noteRerouted": "Adjusted to avoid a reported disruption",
+  "tabHome": "Home",
+  "tabTransit": "Transit",
+  "tabAlerts": "Alerts",
+  "tabProfile": "Profile",
+  "search": "Search",
+  "searchHint": "Search transport, stays, and more",
+  "planTripWithAi": "Plan a trip with AI",
+  "budgetConditionAware": "Budget-aware, condition-aware",
+  "categories": "Categories",
+  "catTransport": "Transport",
+  "catStays": "Stays",
+  "plannedCategory": "{category, select, education{Education} fitness{Fitness} adventure{Adventure} health{Health} other{More}}",
+  "@plannedCategory": {
+    "placeholders": {
+      "category": {
+        "type": "String"
+      }
+    }
+  },
+  "disruptionsCount": "{count, plural, =0{No disruptions} =1{1 disruption} other{{count} disruptions}}",
+  "@disruptionsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "eventsToday": "{count, plural, =0{No events today} =1{1 event today} other{{count} events today}}",
+  "@eventsToday": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "findYourRoute": "Find your route",
+  "fromHint": "From",
+  "whereTo": "Where to?",
+  "swap": "Swap",
+  "bestOption": "Best option",
+  "otherWays": "Other ways to go",
+  "noBusRoute": "No bus route found between these points in our data. Try a taxi or bike taxi, or ask locally.",
+  "everyMinutes": "Every ~{minutes} min",
+  "@everyMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "boardAt": "Board at {stop} · {minutes} min walk",
+  "@boardAt": {
+    "placeholders": {
+      "stop": {
+        "type": "String"
+      },
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "totalTime": "~{duration} total",
+  "@totalTime": {
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "changes": "{count, plural, =1{1 change} other{{count} changes}}",
+  "@changes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "roughStop": "Stop position approximate",
+  "routeStatus": "{status, select, verified{Verified 2026} announced{Announced – verify} osm{OSM-mapped – verify} reported{Reported – verify} local{Local listing – verify} historical{Historical – may not run} other{Unverified}}",
+  "@routeStatus": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "walkTo": "Walk to {stop}",
+  "@walkTo": {
+    "placeholders": {
+      "stop": {
+        "type": "String"
+      }
+    }
+  },
+  "walkBetween": "Walk from {from} to {to}",
+  "@walkBetween": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
+  },
+  "walkToDestination": "Walk to your destination",
+  "rideFromTo": "{route}: {board} → {alight}",
+  "@rideFromTo": {
+    "placeholders": {
+      "route": {
+        "type": "String"
+      },
+      "board": {
+        "type": "String"
+      },
+      "alight": {
+        "type": "String"
+      }
+    }
+  },
+  "stopsCount": "{count, plural, =1{1 stop} other{{count} stops}}",
+  "@stopsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "waitAbout": "wait ~{minutes} min",
+  "@waitAbout": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "disruptionOnRoute": "Reported on this route: {title}. Road travel may take longer.",
+  "@disruptionOnRoute": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "transitDisclaimer": "Routes come from the Yatri transport data pack (Sajha Yatayat 2026 routes are verified; others need checking). Frequencies are only shown where published.",
+  "popularHubs": "Popular hubs",
+  "rideHailing": "Taxis & ride-hailing",
+  "networkSource": "{routes} bus routes · {stops} stops in the data pack",
+  "@networkSource": {
+    "placeholders": {
+      "routes": {
+        "type": "int"
+      },
+      "stops": {
+        "type": "int"
+      }
+    }
+  },
+  "busJourney": "{routes}: board at {board}, get off at {alight}",
+  "@busJourney": {
+    "placeholders": {
+      "routes": {
+        "type": "String"
+      },
+      "board": {
+        "type": "String"
+      },
+      "alight": {
+        "type": "String"
+      }
+    }
+  },
+  "routeHere": "Route here",
+  "pickerHubs": "Hubs",
+  "pickerPlaces": "Places",
+  "pickerStops": "Bus stops",
+  "noResults": "No results",
+  "fareCheck": "Fare check",
+  "fareFromHint": "From (stop or place)",
+  "fareToHint": "To (stop or place)",
+  "fareMode": "{mode, select, bus{Bus} microbus{Microbus} tempo{Tempo} taxi{Taxi} bikeTaxi{Bike taxi} other{Other}}",
+  "@fareMode": {
+    "placeholders": {
+      "mode": {
+        "type": "String"
+      }
+    }
+  },
+  "fareCheckIntro": "Pick where you are going to see the official fare and what other travellers reported paying.",
+  "basedOnReports": "{count, plural, =1{Based on 1 crowdsourced report} other{Based on {count} crowdsourced reports}}",
+  "@basedOnReports": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "includesSamples": "includes sample data",
+  "noFareReports": "No fare reports for this trip yet – be the first to add one.",
+  "officialFare": "Official fare: {fare} ({distance}, April 2026 slab)",
+  "@officialFare": {
+    "placeholders": {
+      "fare": {
+        "type": "String"
+      },
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "meterFare": "Meter: {fare} ({distance}; Rs 58 + Rs 12 per 200 m)",
+  "@meterFare": {
+    "placeholders": {
+      "fare": {
+        "type": "String"
+      },
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "appEstimate": "App estimate: {fare} ({distance})",
+  "@appEstimate": {
+    "placeholders": {
+      "fare": {
+        "type": "String"
+      },
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "fareLow": "Low",
+  "fareTypical": "Typical",
+  "fareHigh": "High",
+  "submitFareReport": "Submit a fare report",
+  "farePaid": "Fare you paid",
+  "submit": "Submit",
+  "fareReportThanks": "Thanks! Your fare report was added.",
+  "loadSampleFares": "Load sample fare reports",
+  "reportsOnDevice": "Reports are saved on this device for now; sharing them with other travellers comes with the Yatri backend.",
+  "liveConditions": "Live conditions",
+  "report": "Report",
+  "disruptions": "Disruptions",
+  "events": "Events",
+  "noDisruptions": "No disruptions reported.",
+  "noEvents": "No events today.",
+  "allClear": "All clear",
+  "allClearBody": "No disruptions or events reported for today. Seen a road closure, bandh or jatra? Report it to help others.",
+  "loadSampleReports": "Load sample reports",
+  "alertType": "{type, select, roadClosure{Road closed} traffic{Heavy traffic} bandh{Bandh} closure{Place closed} festival{Event / jatra} other{Alert}}",
+  "@alertType": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "alertSource": "{source, select, official{Official} community{Community} sample{Sample} other{}}",
+  "@alertSource": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  },
+  "confirms": "{count, plural, =0{no confirms yet} =1{1 confirm} other{{count} confirms}}",
+  "@confirms": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "stillThere": "Still there",
+  "confirmed": "Confirmed",
+  "removeReport": "Remove report",
+  "eventWhen": "{day} {time}",
+  "@eventWhen": {
+    "placeholders": {
+      "day": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "justNow": "just now",
+  "minutesAgo": "{minutes} min ago",
+  "@minutesAgo": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "hoursAgo": "{hours} h ago",
+  "@hoursAgo": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "today": "Today",
+  "tomorrow": "Tomorrow",
+  "reportTitle": "Report a condition",
+  "whatsHappening": "What's happening?",
+  "where": "Where",
+  "reportHint": "{type, select, roadClosure{e.g. Road closed near Maitighar} traffic{e.g. Standstill at Koteshwor} bandh{e.g. Valley-wide bandh until 6 pm} closure{e.g. Garden of Dreams closed today} festival{e.g. Jatra procession at Basantapur} other{Describe it}}",
+  "@reportHint": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "reportThanks": "Thanks! Your report is live on this device.",
+  "planWithAi": "Plan with AI",
+  "budget": "Budget",
+  "budgetLevel": "{style, select, budget{Budget} balanced{Mid-range} comfort{Comfort} other{}}",
+  "@budgetLevel": {
+    "placeholders": {
+      "style": {
+        "type": "String"
+      }
+    }
+  },
+  "interestChoice": "{choice, select, culture{Culture} food{Food} nature{Nature} views{Views} shopping{Shopping} other{}}",
+  "@interestChoice": {
+    "placeholders": {
+      "choice": {
+        "type": "String"
+      }
+    }
+  },
+  "planOptionsSummary": "{date} · from {time} · {hours}",
+  "@planOptionsSummary": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      },
+      "hours": {
+        "type": "String"
+      }
+    }
+  },
+  "generateItinerary": "Generate itinerary",
+  "planning": "Planning…",
+  "aiOff": "AI is off (no Gemini API key in this build), so the built-in condition-aware planner is used.",
+  "planIntro": "Choose a budget and interests, then generate a plan that fits today’s weather, air quality, opening hours and reported disruptions.",
+  "suggestedItinerary": "Suggested itinerary",
+  "plannedWithAi": "Planned with Gemini AI, checked against live conditions",
+  "plannedOnDevice": "Planned on this device (condition-aware)",
+  "aiUnavailableFallback": "AI unavailable right now – used the built-in planner",
+  "departVia": "Depart via {routes}",
+  "@departVia": {
+    "placeholders": {
+      "routes": {
+        "type": "String"
+      }
+    }
+  },
+  "walkFor": "Walk {duration}",
+  "@walkFor": {
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "avoids": "Avoids {title}",
+  "@avoids": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "tagRerouted": "rerouted",
+  "tagEvent": "event",
+  "optionalEventNearby": "Optional: {title} nearby",
+  "@optionalEventNearby": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "fromPlaceTo": "To {place}",
+  "@fromPlaceTo": {
+    "placeholders": {
+      "place": {
+        "type": "String"
+      }
+    }
+  },
+  "staysSearchHint": "Search hotels, guesthouses",
+  "stayType": "{type, select, heritage{Heritage} boutique{Boutique} hotel{Hotel} resort{Resort} guesthouse{Guesthouse} hostel{Hostel} other{Stay}}",
+  "@stayType": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "priceBand": "{band, select, budget{Budget} mid{Mid-range} upscale{Upscale} luxury{Luxury} other{}}",
+  "@priceBand": {
+    "placeholders": {
+      "band": {
+        "type": "String"
+      }
+    }
+  },
+  "perNight": "{range}/night",
+  "@perNight": {
+    "placeholders": {
+      "range": {
+        "type": "String"
+      }
+    }
+  },
+  "staysDisclaimer": "Price ranges are approximate for the price band and change by season; check with the property. No ratings are shown until we have real reviews.",
+  "save": "Save",
+  "unsave": "Remove from saved",
+  "plannedSearchHint": "{category, select, education{Search schools, training centres} fitness{Search gyms, studios} adventure{Search trekking, rafting operators} health{Search clinics, pharmacies} other{Search}}",
+  "@plannedSearchHint": {
+    "placeholders": {
+      "category": {
+        "type": "String"
+      }
+    }
+  },
+  "plannedItemA": "{category, select, education{Language institute} fitness{Full gym} adventure{Guided trekking} health{General clinic} other{}}",
+  "@plannedItemA": {
+    "placeholders": {
+      "category": {
+        "type": "String"
+      }
+    }
+  },
+  "plannedItemB": "{category, select, education{Vocational training} fitness{Yoga studio} adventure{White-water rafting} health{Pharmacy} other{}}",
+  "@plannedItemB": {
+    "placeholders": {
+      "category": {
+        "type": "String"
+      }
+    }
+  },
+  "detailsComingSoon": "Details coming soon",
+  "plannedNote": "This category is planned for a later phase of Yatri.",
+  "guestUser": "Guest user",
+  "signInToSync": "Sign in to sync",
+  "accountsComingSoon": "Accounts and sync are coming soon.",
+  "savedLocations": "Saved locations",
+  "noSaved": "Nothing saved yet. Tap the bookmark on a place or stay.",
+  "settings": "Settings",
+  "language": "Language",
+  "languageEnglish": "English",
+  "languageNepaliSoon": "नेपाली (Nepali) – coming soon",
+  "notifications": "Notifications",
+  "notificationsHint": "Disruptions near your saved places",
+  "preferencesSummary": "{visitor} · {budget}",
+  "@preferencesSummary": {
+    "placeholders": {
+      "visitor": {
+        "type": "String"
+      },
+      "budget": {
+        "type": "String"
+      }
+    }
+  },
+  "aboutData": "About the data",
+  "aboutPlaces": "Places: 63 attractions with approximate hours and entry fees – verify locally.",
+  "aboutWeather": "Weather and air quality: Open-Meteo. Maps: © OpenStreetMap contributors.",
+  "aboutAiOn": "AI planning: Google Gemini ({model}, free tier). Only your preferences and the day’s conditions are sent – never your exact location.",
+  "@aboutAiOn": {
+    "placeholders": {
+      "model": {
+        "type": "String"
+      }
+    }
+  },
+  "aboutAiOff": "AI planning is off in this build (no API key); plans are made on the device."
 }

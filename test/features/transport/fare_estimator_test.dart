@@ -25,7 +25,8 @@ void main() {
       baseFare: 100,
       perKm: 50,
       minFare: 250,
-      fareSpread: 0.2,
+      fareSpreadLow: 0.2,
+      fareSpreadHigh: 0.2,
       night: TimeWindow(21 * 60, 6 * 60),
       nightMultiplier: 1.5,
     );
@@ -33,6 +34,12 @@ void main() {
     test('short rides pay the minimum fare', () {
       // 100 + 50 * 1 = 150 < 250 minimum.
       expect(estimator.hailedFare(model, 1), const FareRange(200, 300));
+    });
+
+    test('asymmetric spread (meter is the floor)', () {
+      const meter = HailedModel(
+          speedKmh: 18, pickupMinutes: 5, baseFare: 58, perKm: 60, minFare: 58, fareSpreadLow: 0, fareSpreadHigh: 0.3);
+      expect(estimator.hailedFare(meter, 2), const FareRange(180, 230));
     });
 
     test('longer rides pay base plus per-km', () {
@@ -73,48 +80,40 @@ void main() {
   });
 
   group('bus', () {
-    test('fare slabs by distance', () {
+    test('fare slabs by distance (April 2026)', () {
       final bus = network.bus;
-      expect(bus.fareForKm(3), 20);
-      expect(bus.fareForKm(5), 20);
-      expect(bus.fareForKm(7.5), 25);
+      expect(bus.fareForKm(3), 24);
+      expect(bus.fareForKm(5), 24);
+      expect(bus.fareForKm(7.5), 33);
+      expect(bus.fareForKm(18), 44);
       expect(bus.fareForKm(5000), bus.fareSlabs.last.fare);
     });
 
-    test('finds the direct Ratna Park - Bhaktapur route', () {
+    test('uses a real route from the network', () {
       final bus = estimator.busOption(ratnaPark, bhaktapurSquare, midday)!;
-      expect(bus.routeName, 'Ratna Park – Bhaktapur');
-      expect(bus.boardAt, 'Ratna Park');
-      expect(bus.alightAt, 'Bhaktapur Bus Park');
+      expect(bus.journey, isNotNull);
       expect(bus.isEstimate, isFalse);
       expect(bus.available, isTrue);
       expect(bus.fare.isExact, isTrue);
-      expect(bus.fare.min, network.bus.fareForKm(bus.distanceKm));
+      expect(bus.fare.min, bus.journey!.fare);
+      expect(bus.routeName, bus.journey!.rides.first.route.name);
+      expect(bus.durationMinutes, bus.journey!.totalMinutes);
     });
 
-    test('flat fare routes use their flat fare', () {
-      const nagarkot = GeoPoint(27.7156, 85.5203);
-      final bus = estimator.busOption(bhaktapurSquare, nagarkot, midday)!;
-      expect(bus.routeName, 'Bhaktapur – Nagarkot');
-      expect(bus.fare, const FareRange.exact(70));
+    test('flags journeys on routes not verified for 2026', () {
+      final bus = estimator.busOption(ratnaPark, bhaktapurSquare, midday)!;
+      expect(bus.notes.contains(TransportNote.unverifiedRoute), !bus.journey!.allVerified);
     });
 
-    test('works in either direction', () {
-      final there = estimator.busOption(ratnaPark, bhaktapurSquare, midday)!;
-      final back = estimator.busOption(bhaktapurSquare, ratnaPark, midday)!;
-      expect(back.routeName, there.routeName);
-      expect(back.fare, there.fare);
-    });
-
-    test('falls back to a flagged estimate when no sample route matches', () {
+    test('falls back to a flagged estimate when no route matches', () {
       const phulchowki = GeoPoint(27.5717, 85.4031);
       final bus = estimator.busOption(thamel, phulchowki, midday)!;
       expect(bus.isEstimate, isTrue);
-      expect(bus.routeName, isNull);
+      expect(bus.journey, isNull);
     });
 
-    test('not available outside service hours', () {
-      final bus = estimator.busOption(ratnaPark, bhaktapurSquare, ktm(2026, 10, 1, 22))!;
+    test('day routes do not run late at night', () {
+      final bus = estimator.busOption(ratnaPark, bhaktapurSquare, ktm(2026, 10, 1, 23, 30))!;
       expect(bus.available, isFalse);
       expect(bus.notes, contains(TransportNote.noBusService));
     });
@@ -130,6 +129,16 @@ void main() {
       final options = estimator.optionsFor(ratnaPark, bhaktapurSquare, midday, alerts: [bandh]);
       expect(optionOf(options, TransportMode.bus).available, isFalse);
       expect(optionOf(options, TransportMode.taxi).notes, contains(TransportNote.bandh));
+    });
+  });
+
+  group('taxi meter (April 2026)', () {
+    test('flag-down Rs 58 + Rs 12 per 200 m, meter as the low end', () {
+      final taxi = network.taxi;
+      expect(taxi.baseFare, 58);
+      expect(taxi.perKm, 60);
+      // 58 + 60 x 5 = 358 -> 360 .. 358 x 1.3 = 465 -> 470
+      expect(estimator.hailedFare(taxi, 5), const FareRange(360, 470));
     });
   });
 

@@ -23,6 +23,20 @@ class GeoPoint {
     return 2 * _earthRadiusKm * math.asin(math.sqrt(a));
   }
 
+  /// Distance in km from this point to the segment [a]-[b]. Uses a local
+  /// flat projection, which is accurate at valley scale.
+  double distanceKmToSegment(GeoPoint a, GeoPoint b) {
+    final kx = 111.32 * math.cos(_rad(lat));
+    const ky = 110.57;
+    final ax = (a.lng - lng) * kx, ay = (a.lat - lat) * ky;
+    final bx = (b.lng - lng) * kx, by = (b.lat - lat) * ky;
+    final dx = bx - ax, dy = by - ay;
+    final len2 = dx * dx + dy * dy;
+    final t = len2 == 0 ? 0.0 : (-(ax * dx + ay * dy) / len2).clamp(0.0, 1.0);
+    final px = ax + t * dx, py = ay + t * dy;
+    return math.sqrt(px * px + py * py);
+  }
+
   static double _rad(double deg) => deg * math.pi / 180;
 
   factory GeoPoint.fromJson(Map<String, dynamic> json) =>
