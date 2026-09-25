@@ -1,0 +1,196 @@
+{
+  "version": 1,
+  "updated": "2026-09-25",
+  "currency": "NPR",
+  "disclaimer": "Sample fares and routes for planning only. Fares change often; confirm with the driver or conductor.",
+  "network": {
+    "roadDistanceFactor": 1.35,
+    "maxWalkToStopKm": 1.2,
+    "rushHours": [
+      { "start": "08:00", "end": "10:30" },
+      { "start": "17:00", "end": "19:00" }
+    ],
+    "rushHourSpeedFactor": 0.7
+  },
+  "modes": {
+    "walk": {
+      "speedKmh": 4.5,
+      "maxKm": 3.0
+    },
+    "bikeTaxi": {
+      "label": "Bike taxi (Pathao / inDrive)",
+      "speedKmh": 22,
+      "pickupMinutes": 6,
+      "baseFare": 40,
+      "perKm": 22,
+      "minFare": 80,
+      "fareSpread": 0.15
+    },
+    "taxi": {
+      "label": "Taxi",
+      "speedKmh": 18,
+      "pickupMinutes": 5,
+      "baseFare": 100,
+      "perKm": 55,
+      "minFare": 250,
+      "fareSpread": 0.2,
+      "night": { "start": "21:00", "end": "06:00", "multiplier": 1.5 }
+    },
+    "bus": {
+      "label": "Local bus / microbus",
+      "speedKmh": 13,
+      "waitMinutes": 10,
+      "serviceHours": { "start": "06:00", "end": "20:00" },
+      "fareSlabs": [
+        { "upToKm": 5, "fare": 20 },
+        { "upToKm": 10, "fare": 25 },
+        { "upToKm": 15, "fare": 30 },
+        { "upToKm": 20, "fare": 35 },
+        { "upToKm": 30, "fare": 45 },
+        { "upToKm": 999, "fare": 70 }
+      ]
+    }
+  },
+  "stops": [
+    { "id": "ratnapark", "name": "Ratna Park", "lat": 27.70600, "lng": 85.31500 },
+    { "id": "jamal", "name": "Jamal", "lat": 27.70950, "lng": 85.31520 },
+    { "id": "lainchaur", "name": "Lainchaur", "lat": 27.71700, "lng": 85.31450 },
+    { "id": "tripureshwor", "name": "Tripureshwor", "lat": 27.69400, "lng": 85.31400 },
+    { "id": "sundhara", "name": "Sundhara", "lat": 27.70050, "lng": 85.31250 },
+    { "id": "chhetrapati", "name": "Chhetrapati", "lat": 27.71250, "lng": 85.30750 },
+    { "id": "swayambhu", "name": "Swayambhu (Bhuikhel)", "lat": 27.71250, "lng": 85.29350 },
+    { "id": "chhauni", "name": "Chhauni", "lat": 27.70600, "lng": 85.28950 },
+    { "id": "kalanki", "name": "Kalanki", "lat": 27.69350, "lng": 85.28100 },
+    { "id": "balkhu", "name": "Balkhu", "lat": 27.68350, "lng": 85.29800 },
+    { "id": "kirtipur", "name": "Kirtipur (Naya Bazar)", "lat": 27.67900, "lng": 85.28000 },
+    { "id": "chobhar", "name": "Chobhar", "lat": 27.66300, "lng": 85.29600 },
+    { "id": "taudaha", "name": "Taudaha", "lat": 27.64850, "lng": 85.28250 },
+    { "id": "dakshinkali", "name": "Dakshinkali", "lat": 27.60400, "lng": 85.26400 },
+    { "id": "gaushala", "name": "Gaushala (Pashupati)", "lat": 27.70700, "lng": 85.34400 },
+    { "id": "chabahil", "name": "Chabahil", "lat": 27.71750, "lng": 85.34600 },
+    { "id": "boudha", "name": "Boudha", "lat": 27.72060, "lng": 85.35900 },
+    { "id": "jorpati", "name": "Jorpati", "lat": 27.72300, "lng": 85.37500 },
+    { "id": "gongabu", "name": "Gongabu (New Bus Park)", "lat": 27.73550, "lng": 85.31300 },
+    { "id": "maharajgunj", "name": "Maharajgunj", "lat": 27.73800, "lng": 85.33100 },
+    { "id": "budhanilkantha", "name": "Budhanilkantha", "lat": 27.76400, "lng": 85.36200 },
+    { "id": "sundarijal", "name": "Sundarijal", "lat": 27.76900, "lng": 85.42700 },
+    { "id": "koteshwor", "name": "Koteshwor", "lat": 27.67800, "lng": 85.34900 },
+    { "id": "thimi", "name": "Thimi", "lat": 27.68100, "lng": 85.38600 },
+    { "id": "bhaktapur", "name": "Bhaktapur Bus Park", "lat": 27.67150, "lng": 85.42050 },
+    { "id": "kamalbinayak", "name": "Kamal Binayak", "lat": 27.67800, "lng": 85.43900 },
+    { "id": "changunarayan", "name": "Changu Narayan", "lat": 27.71600, "lng": 85.42700 },
+    { "id": "nagarkot", "name": "Nagarkot Bazaar", "lat": 27.71600, "lng": 85.51900 },
+    { "id": "thapathali", "name": "Thapathali", "lat": 27.69000, "lng": 85.31900 },
+    { "id": "kupondole", "name": "Kupondole", "lat": 27.68600, "lng": 85.31600 },
+    { "id": "pulchowk", "name": "Pulchowk", "lat": 27.67800, "lng": 85.31700 },
+    { "id": "jawalakhel", "name": "Jawalakhel", "lat": 27.67290, "lng": 85.31360 },
+    { "id": "patandhoka", "name": "Patan Dhoka", "lat": 27.67800, "lng": 85.32200 },
+    { "id": "lagankhel", "name": "Lagankhel", "lat": 27.66670, "lng": 85.32300 },
+    { "id": "satdobato", "name": "Satdobato", "lat": 27.65900, "lng": 85.32500 },
+    { "id": "godawari", "name": "Godawari", "lat": 27.59600, "lng": 85.37800 },
+    { "id": "nakhu", "name": "Nakhu", "lat": 27.66200, "lng": 85.30500 },
+    { "id": "bungamati", "name": "Bungamati", "lat": 27.62950, "lng": 85.30100 }
+  ],
+  "routes": [
+    {
+      "id": "ratnapark-bhaktapur",
+      "name": "Ratna Park – Bhaktapur",
+      "vehicle": "Bus / microbus",
+      "stops": ["ratnapark", "tripureshwor", "thapathali", "koteshwor", "thimi", "bhaktapur", "kamalbinayak"],
+      "frequencyMinutes": 10
+    },
+    {
+      "id": "ratnapark-lagankhel",
+      "name": "Ratna Park – Lagankhel",
+      "vehicle": "Microbus / tempo",
+      "stops": ["ratnapark", "tripureshwor", "thapathali", "kupondole", "pulchowk", "jawalakhel", "lagankhel"],
+      "frequencyMinutes": 5
+    },
+    {
+      "id": "ratnapark-patandhoka",
+      "name": "Ratna Park – Patan Dhoka",
+      "vehicle": "Safa tempo / microbus",
+      "stops": ["ratnapark", "sundhara", "tripureshwor", "thapathali", "kupondole", "patandhoka"],
+      "frequencyMinutes": 8
+    },
+    {
+      "id": "ring-road",
+      "name": "Ring Road (Sajha Yatayat)",
+      "vehicle": "Sajha bus",
+      "stops": ["kalanki", "balkhu", "nakhu", "satdobato", "koteshwor", "gaushala", "chabahil", "maharajgunj", "gongabu", "swayambhu", "kalanki"],
+      "frequencyMinutes": 12
+    },
+    {
+      "id": "ratnapark-boudha",
+      "name": "Ratna Park – Boudha – Jorpati",
+      "vehicle": "Microbus",
+      "stops": ["ratnapark", "jamal", "gaushala", "chabahil", "boudha", "jorpati"],
+      "frequencyMinutes": 6
+    },
+    {
+      "id": "ratnapark-budhanilkantha",
+      "name": "Ratna Park – Budhanilkantha",
+      "vehicle": "Microbus",
+      "stops": ["ratnapark", "jamal", "lainchaur", "maharajgunj", "budhanilkantha"],
+      "frequencyMinutes": 12
+    },
+    {
+      "id": "ratnapark-swayambhu",
+      "name": "Ratna Park – Swayambhu – Chhauni",
+      "vehicle": "Microbus",
+      "stops": ["ratnapark", "jamal", "chhetrapati", "swayambhu", "chhauni", "kalanki"],
+      "frequencyMinutes": 10
+    },
+    {
+      "id": "ratnapark-kirtipur",
+      "name": "Ratna Park – Kirtipur",
+      "vehicle": "Bus / microbus",
+      "stops": ["ratnapark", "sundhara", "tripureshwor", "balkhu", "kirtipur"],
+      "frequencyMinutes": 10
+    },
+    {
+      "id": "ratnapark-dakshinkali",
+      "name": "Ratna Park – Pharping – Dakshinkali",
+      "vehicle": "Bus",
+      "stops": ["ratnapark", "sundhara", "tripureshwor", "balkhu", "chobhar", "taudaha", "dakshinkali"],
+      "frequencyMinutes": 30,
+      "flatFare": 60
+    },
+    {
+      "id": "ratnapark-sundarijal",
+      "name": "Ratna Park – Sundarijal",
+      "vehicle": "Bus / microbus",
+      "stops": ["ratnapark", "jamal", "gaushala", "chabahil", "jorpati", "sundarijal"],
+      "frequencyMinutes": 20
+    },
+    {
+      "id": "bhaktapur-nagarkot",
+      "name": "Bhaktapur – Nagarkot",
+      "vehicle": "Bus",
+      "stops": ["bhaktapur", "kamalbinayak", "nagarkot"],
+      "frequencyMinutes": 30,
+      "flatFare": 70
+    },
+    {
+      "id": "bhaktapur-changunarayan",
+      "name": "Bhaktapur – Changu Narayan",
+      "vehicle": "Bus",
+      "stops": ["bhaktapur", "changunarayan"],
+      "frequencyMinutes": 30
+    },
+    {
+      "id": "lagankhel-godawari",
+      "name": "Lagankhel – Godawari",
+      "vehicle": "Bus / microbus",
+      "stops": ["lagankhel", "satdobato", "godawari"],
+      "frequencyMinutes": 15
+    },
+    {
+      "id": "lagankhel-bungamati",
+      "name": "Lagankhel – Bungamati",
+      "vehicle": "Bus",
+      "stops": ["lagankhel", "nakhu", "bungamati"],
+      "frequencyMinutes": 20
+    }
+  ]
+}

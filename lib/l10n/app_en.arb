@@ -1,0 +1,549 @@
+{
+  "@@locale": "en",
+  "appTitle": "Yatri",
+  "tabExplore": "Explore",
+  "tabPlan": "Plan",
+  "tabMap": "Map",
+  "goodForToday": "Good for today",
+  "allCategories": "All",
+  "categoryName": "{category, select, heritage{Heritage} temple{Temples} nature{Nature} food{Food} shopping{Shopping} viewpoint{Viewpoints} other{Other}}",
+  "@categoryName": {
+    "placeholders": {
+      "category": {
+        "type": "String"
+      }
+    }
+  },
+  "cityName": "{city, select, kathmandu{Kathmandu} lalitpur{Lalitpur} bhaktapur{Bhaktapur} other{Kathmandu Valley}}",
+  "@cityName": {
+    "placeholders": {
+      "city": {
+        "type": "String"
+      }
+    }
+  },
+  "settingName": "{setting, select, indoor{Indoor} outdoor{Outdoor} mixed{Indoor & outdoor} other{}}",
+  "@settingName": {
+    "placeholders": {
+      "setting": {
+        "type": "String"
+      }
+    }
+  },
+  "dayPartName": "{part, select, earlyMorning{early morning} morning{morning} afternoon{afternoon} evening{evening} night{night} other{day}}",
+  "@dayPartName": {
+    "placeholders": {
+      "part": {
+        "type": "String"
+      }
+    }
+  },
+  "weatherCondition": "{condition, select, clear{Clear} partlyCloudy{Partly cloudy} cloudy{Cloudy} fog{Foggy} drizzle{Drizzle} rain{Rain} heavyRain{Heavy rain} thunderstorm{Thunderstorms} snow{Snow} other{Unknown}}",
+  "@weatherCondition": {
+    "placeholders": {
+      "condition": {
+        "type": "String"
+      }
+    }
+  },
+  "airQuality": "{level, select, good{Good air} moderate{Moderate air} sensitive{Unhealthy for sensitive groups} unhealthy{Unhealthy air} veryUnhealthy{Very unhealthy air} other{}}",
+  "@airQuality": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "aqiValue": "AQI {aqi}",
+  "@aqiValue": {
+    "placeholders": {
+      "aqi": {
+        "type": "int"
+      }
+    }
+  },
+  "weatherValley": "Kathmandu Valley",
+  "weatherUpdated": "Updated {time}",
+  "@weatherUpdated": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "weatherOffline": "Offline · saved {time}",
+  "@weatherOffline": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "weatherUnavailable": "Weather unavailable – suggestions ignore weather for now.",
+  "weatherToday": "Today {min}°–{max}°",
+  "@weatherToday": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "rainChance": "{percent}% chance of rain",
+  "@rainChance": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "retry": "Retry",
+  "reasonIndoorInRain": "Indoor, good for a rainy {dayPart}",
+  "@reasonIndoorInRain": {
+    "placeholders": {
+      "dayPart": {
+        "type": "String"
+      }
+    }
+  },
+  "reasonCoveredInRain": "Partly covered, OK in the rain",
+  "reasonOutdoorInRain": "Outdoors – expect rain",
+  "reasonNoViews": "Clouds may hide the views",
+  "reasonClearViews": "Clear skies for the views",
+  "reasonPleasantOutdoors": "Pleasant weather for being outside",
+  "reasonPoorAirOutdoor": "Outdoors while air quality is poor (AQI {aqi})",
+  "@reasonPoorAirOutdoor": {
+    "placeholders": {
+      "aqi": {
+        "type": "int"
+      }
+    }
+  },
+  "reasonIndoorPoorAir": "Indoor, away from the poor air",
+  "reasonHotMidday": "Hot and exposed at midday",
+  "reasonBestTimeNow": "{dayPart, select, earlyMorning{Best around sunrise} morning{Best in the morning} afternoon{Good in the afternoon} evening{Lovely in the evening light} other{Good time to visit}}",
+  "@reasonBestTimeNow": {
+    "placeholders": {
+      "dayPart": {
+        "type": "String"
+      }
+    }
+  },
+  "reasonMealTime": "Good time for a meal",
+  "reasonAfterDark": "Better in daylight",
+  "reasonClosedToday": "Closed today",
+  "reasonClosedNow": "Closed for the day",
+  "reasonOpensLater": "Opens at {time}",
+  "@reasonOpensLater": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "reasonClosesSoon": "Closes in {minutes} min",
+  "@reasonClosesSoon": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "reasonNearby": "{distance} away",
+  "@reasonNearby": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "reasonFar": "{distance} away – allow travel time",
+  "@reasonFar": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "reasonMatchesInterest": "Matches your interest: {category}",
+  "@reasonMatchesInterest": {
+    "placeholders": {
+      "category": {
+        "type": "String"
+      }
+    }
+  },
+  "reasonHighlight": "A valley highlight",
+  "reasonFestival": "{title}: expect crowds",
+  "@reasonFestival": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "reasonClosureAlert": "Closed: {title}",
+  "@reasonClosureAlert": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "reasonRoadClosure": "{title}: slower access",
+  "@reasonRoadClosure": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "reasonBandhWalkable": "Walkable during the bandh",
+  "reasonBandhTransport": "Bandh: little transport running",
+  "suitability": "{level, select, excellent{Great right now} good{Good right now} fair{OK right now} notIdeal{Not ideal right now} unavailable{Closed right now} other{}}",
+  "@suitability": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "suitabilityAtVisit": "{level, select, excellent{Great at this time} good{Good at this time} fair{OK at this time} notIdeal{Not ideal at this time} unavailable{Closed at this time} other{}}",
+  "@suitabilityAtVisit": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "distanceKm": "{km} km",
+  "@distanceKm": {
+    "placeholders": {
+      "km": {
+        "type": "String"
+      }
+    }
+  },
+  "distanceM": "{meters} m",
+  "@distanceM": {
+    "placeholders": {
+      "meters": {
+        "type": "int"
+      }
+    }
+  },
+  "durationMinutes": "{minutes} min",
+  "@durationMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "durationHours": "{hours} h",
+  "@durationHours": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "durationHoursMinutes": "{hours} h {minutes} min",
+  "@durationHoursMinutes": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      },
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "npr": "NPR {amount}",
+  "@npr": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "nprRange": "NPR {min}–{max}",
+  "@nprRange": {
+    "placeholders": {
+      "min": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "free": "Free",
+  "aboutSection": "About",
+  "openingHoursLabel": "Opening hours",
+  "openAllDay": "Open all day",
+  "hoursRange": "{open}–{close}",
+  "@hoursRange": {
+    "placeholders": {
+      "open": {
+        "type": "String"
+      },
+      "close": {
+        "type": "String"
+      }
+    }
+  },
+  "closedOnDays": "Closed on {days}",
+  "@closedOnDays": {
+    "placeholders": {
+      "days": {
+        "type": "String"
+      }
+    }
+  },
+  "openNowClosesAt": "Open now · closes {time}",
+  "@openNowClosesAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "opensAtToday": "Opens today at {time}",
+  "@opensAtToday": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "closedNowStatus": "Closed now",
+  "closedTodayStatus": "Closed today",
+  "openNow": "Open now",
+  "typicalVisit": "Typical visit",
+  "entryFee": "Entry fee",
+  "visitorFee": "{visitor, select, foreigner{Foreigners} saarc{SAARC} nepali{Nepali} other{}}",
+  "@visitorFee": {
+    "placeholders": {
+      "visitor": {
+        "type": "String"
+      }
+    }
+  },
+  "feesApproximate": "Fees are approximate and change often.",
+  "settingLabel": "Setting",
+  "rightNow": "Right now",
+  "gettingThere": "Getting there",
+  "fromYourLocation": "From your location",
+  "fromPlace": "From {place}",
+  "@fromPlace": {
+    "placeholders": {
+      "place": {
+        "type": "String"
+      }
+    }
+  },
+  "addToItinerary": "Add to itinerary",
+  "addedToItinerary": "Added to your plan",
+  "alreadyInItinerary": "Already in your plan",
+  "viewPlan": "View plan",
+  "photosComingSoon": "Photos coming soon",
+  "showOnMap": "Show on map",
+  "details": "Details",
+  "transportMode": "{mode, select, walk{Walk} bikeTaxi{Bike taxi} taxi{Taxi} bus{Local bus} other{}}",
+  "@transportMode": {
+    "placeholders": {
+      "mode": {
+        "type": "String"
+      }
+    }
+  },
+  "perVehicle": "per vehicle",
+  "perPerson": "per person",
+  "busRoute": "{route}: board at {board}, get off at {alight}",
+  "@busRoute": {
+    "placeholders": {
+      "route": {
+        "type": "String"
+      },
+      "board": {
+        "type": "String"
+      },
+      "alight": {
+        "type": "String"
+      }
+    }
+  },
+  "busEstimated": "No sample route – ask locally which bus to take",
+  "noteNightFare": "Night fare",
+  "noteRushHour": "Rush-hour traffic",
+  "noteNoBusService": "Buses not running now",
+  "noteBandh": "Bandh: vehicles may not run",
+  "transportDisclaimer": "Times and fares are estimates. Agree taxi fares before you ride.",
+  "suggested": "Suggested",
+  "notAvailable": "Not available",
+  "travelTime": "{duration} travel",
+  "@travelTime": {
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "planYourDay": "Plan your day",
+  "planDate": "Date",
+  "planStartTime": "Start time",
+  "planTimeAvailable": "Time available",
+  "hoursValue": "{hours, plural, =1{1 hour} other{{hours} hours}}",
+  "@hoursValue": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "planStartFrom": "Start from",
+  "myLocation": "My location",
+  "planInterests": "Interests",
+  "planInterestsHint": "Leave empty for a mix of everything",
+  "planTravelStyle": "Getting around",
+  "travelStyle": "{style, select, budget{Budget} balanced{Balanced} comfort{Comfort} other{}}",
+  "@travelStyle": {
+    "placeholders": {
+      "style": {
+        "type": "String"
+      }
+    }
+  },
+  "travelStyleHint": "{style, select, budget{Local buses and walking where possible} balanced{Bus when it's not much slower, otherwise taxi} comfort{Taxis, walking only short hops} other{}}",
+  "@travelStyleHint": {
+    "placeholders": {
+      "style": {
+        "type": "String"
+      }
+    }
+  },
+  "planButton": "Plan my day",
+  "itineraryTitle": "Your day",
+  "itinerarySummary": "{stops, plural, =1{1 stop} other{{stops} stops}} · {start}–{end}",
+  "@itinerarySummary": {
+    "placeholders": {
+      "stops": {
+        "type": "int"
+      },
+      "start": {
+        "type": "String"
+      },
+      "end": {
+        "type": "String"
+      }
+    }
+  },
+  "itineraryCosts": "Transport {transport} · Entry {entry}",
+  "@itineraryCosts": {
+    "placeholders": {
+      "transport": {
+        "type": "String"
+      },
+      "entry": {
+        "type": "String"
+      }
+    }
+  },
+  "newPlan": "New plan",
+  "optimizeOrder": "Optimise order",
+  "orderOptimized": "Stops reordered for less travel",
+  "clearPlan": "Clear plan",
+  "removeStop": "Remove stop",
+  "stopRemoved": "Removed {place}",
+  "@stopRemoved": {
+    "placeholders": {
+      "place": {
+        "type": "String"
+      }
+    }
+  },
+  "undo": "Undo",
+  "emptyItinerary": "No stops fit this time window. Try more time, another start time or different interests.",
+  "visitWindow": "{arrive}–{depart}",
+  "@visitWindow": {
+    "placeholders": {
+      "arrive": {
+        "type": "String"
+      },
+      "depart": {
+        "type": "String"
+      }
+    }
+  },
+  "waitForOpening": "Wait {minutes} min for opening",
+  "@waitForOpening": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "warningClosed": "Closed at this time",
+  "warningClosesDuringVisit": "Closes before your visit ends",
+  "warningPastEnd": "Runs past your end time",
+  "dayForecast": "Forecast: {condition}, {min}°–{max}°",
+  "@dayForecast": {
+    "placeholders": {
+      "condition": {
+        "type": "String"
+      },
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "reorderHint": "Drag the handle to reorder stops",
+  "startPoint": "Start: {place}",
+  "@startPoint": {
+    "placeholders": {
+      "place": {
+        "type": "String"
+      }
+    }
+  },
+  "showRouteOnMap": "Show on map",
+  "mapShowPlan": "Plan route",
+  "youAreHere": "You are here",
+  "preferencesTitle": "Your preferences",
+  "visitorTypeLabel": "Visitor type (for entry fees)",
+  "visitorType": "{visitor, select, foreigner{Foreign visitor} saarc{SAARC national} nepali{Nepali citizen} other{}}",
+  "@visitorType": {
+    "placeholders": {
+      "visitor": {
+        "type": "String"
+      }
+    }
+  },
+  "interestsHint": "Suggestions favour these",
+  "done": "Done",
+  "preferences": "Preferences",
+  "locationOff": "Turn on location for distance-aware suggestions",
+  "locationOutside": "You seem to be outside the valley, so distances are hidden",
+  "errorLoading": "Couldn't load data",
+  "showAll": "Show all ({count})",
+  "@showAll": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "showFewer": "Show fewer",
+  "noPlacesMatch": "Nothing open matches this filter right now.",
+  "presetThamel": "Thamel",
+  "presetPatan": "Patan Durbar Square",
+  "presetBhaktapur": "Bhaktapur Durbar Square",
+  "presetBoudha": "Boudha",
+  "presetAirport": "Tribhuvan Airport"
+}

@@ -1,0 +1,29 @@
+{
+  "latitude": 27.7,
+  "longitude": 85.34,
+  "timezone": "Asia/Kathmandu",
+  "current": {
+    "time": "2026-10-01T14:15",
+    "interval": 900,
+    "temperature_2m": 22.4,
+    "precipitation": 1.2,
+    "weather_code": 61,
+    "is_day": 1
+  },
+  "hourly": {
+    "time": ["2026-10-01T13:00", "2026-10-01T14:00", "2026-10-01T15:00", "2026-10-01T16:00"],
+    "temperature_2m": [23.0, 22.5, 21.9, null],
+    "precipitation": [0.0, 1.1, 2.4, 0.2],
+    "precipitation_probability": [30, 80, 90, 40],
+    "weather_code": [3, 61, 63, 2],
+    "is_day": [1, 1, 1, 1]
+  },
+  "daily": {
+    "time": ["2026-10-01", "2026-10-02"],
+    "weather_code": [63, 1],
+    "temperature_2m_max": [25.1, 27.3],
+    "temperature_2m_min": [16.2, 15.8],
+    "precipitation_sum": [12.5, 0.0],
+    "precipitation_probability_max": [95, 10]
+  }
+}

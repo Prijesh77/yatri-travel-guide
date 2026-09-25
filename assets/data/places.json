@@ -1,0 +1,1953 @@
+{
+  "version": 1,
+  "updated": "2026-09-25",
+  "places": [
+    {
+      "id": "swayambhunath",
+      "name": "Swayambhunath Stupa",
+      "city": "kathmandu",
+      "category": "temple",
+      "secondaryCategories": [
+        "heritage",
+        "viewpoint"
+      ],
+      "lat": 27.71492,
+      "lng": 85.29043,
+      "visitMinutes": 90,
+      "entryFeeNpr": {
+        "foreigner": 200,
+        "saarc": 50,
+        "nepali": 0
+      },
+      "openingHours": {
+        "alwaysOpen": true
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "earlyMorning",
+        "morning",
+        "evening"
+      ],
+      "popularity": 5,
+      "description": "Hilltop stupa, often called the Monkey Temple, with sweeping views over Kathmandu. Climb the 365 eastern steps early to join pilgrims walking the kora.",
+      "imageUrl": null,
+      "i18n": {
+        "ne": {
+          "name": "स्वयम्भूनाथ"
+        }
+      }
+    },
+    {
+      "id": "boudhanath",
+      "name": "Boudhanath Stupa",
+      "city": "kathmandu",
+      "category": "temple",
+      "secondaryCategories": [
+        "heritage"
+      ],
+      "lat": 27.72148,
+      "lng": 85.362,
+      "visitMinutes": 90,
+      "entryFeeNpr": {
+        "foreigner": 400,
+        "saarc": 100,
+        "nepali": 0
+      },
+      "openingHours": {
+        "alwaysOpen": true
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "earlyMorning",
+        "evening"
+      ],
+      "popularity": 5,
+      "description": "One of the largest stupas in the world and the heart of Tibetan Buddhist life in the valley. Walk the clockwise kora at dusk when butter lamps are lit.",
+      "imageUrl": null,
+      "i18n": {
+        "ne": {
+          "name": "बौद्धनाथ"
+        }
+      }
+    },
+    {
+      "id": "pashupatinath",
+      "name": "Pashupatinath Temple",
+      "city": "kathmandu",
+      "category": "temple",
+      "secondaryCategories": [
+        "heritage"
+      ],
+      "lat": 27.71046,
+      "lng": 85.34875,
+      "visitMinutes": 120,
+      "entryFeeNpr": {
+        "foreigner": 1000,
+        "saarc": 1000,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "04:00",
+        "close": "21:00",
+        "closedOn": []
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "earlyMorning",
+        "evening"
+      ],
+      "popularity": 5,
+      "description": "Nepal's holiest Hindu temple on the banks of the Bagmati. Non-Hindus view the main shrine from across the river; the evening aarati is a highlight.",
+      "imageUrl": null,
+      "i18n": {
+        "ne": {
+          "name": "पशुपतिनाथ"
+        }
+      }
+    },
+    {
+      "id": "kathmandu-durbar-square",
+      "name": "Kathmandu Durbar Square",
+      "city": "kathmandu",
+      "category": "heritage",
+      "secondaryCategories": [
+        "temple"
+      ],
+      "lat": 27.70421,
+      "lng": 85.30672,
+      "visitMinutes": 120,
+      "entryFeeNpr": {
+        "foreigner": 1000,
+        "saarc": 150,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "07:00",
+        "close": "19:00",
+        "closedOn": []
+      },
+      "setting": "mixed",
+      "bestTimes": [
+        "morning"
+      ],
+      "popularity": 5,
+      "description": "The old royal square of Kathmandu (Basantapur/Hanuman Dhoka) with palaces, pagoda temples and courtyards, several restored after the 2015 earthquake.",
+      "imageUrl": null,
+      "i18n": {
+        "ne": {
+          "name": "काठमाडौं दरबार क्षेत्र"
+        }
+      }
+    },
+    {
+      "id": "kumari-ghar",
+      "name": "Kumari Ghar",
+      "city": "kathmandu",
+      "category": "heritage",
+      "secondaryCategories": [
+        "temple"
+      ],
+      "lat": 27.70371,
+      "lng": 85.30701,
+      "visitMinutes": 30,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "09:00",
+        "close": "17:00",
+        "closedOn": []
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "morning"
+      ],
+      "popularity": 3,
+      "description": "Richly carved 18th-century home of the Kumari, the living goddess. Visitors wait in the courtyard; photographing the Kumari is not allowed.",
+      "imageUrl": null
+    },
+    {
+      "id": "garden-of-dreams",
+      "name": "Garden of Dreams",
+      "city": "kathmandu",
+      "category": "nature",
+      "secondaryCategories": [],
+      "lat": 27.71425,
+      "lng": 85.31525,
+      "visitMinutes": 75,
+      "entryFeeNpr": {
+        "foreigner": 400,
+        "saarc": 400,
+        "nepali": 200
+      },
+      "openingHours": {
+        "open": "09:00",
+        "close": "22:00",
+        "closedOn": []
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "afternoon",
+        "evening"
+      ],
+      "popularity": 4,
+      "description": "Restored neoclassical garden next to Thamel with pavilions, fountains and lawns. A calm escape from the traffic, with a café inside.",
+      "imageUrl": null,
+      "i18n": {
+        "ne": {
+          "name": "स्वप्न बगैंचा"
+        }
+      }
+    },
+    {
+      "id": "narayanhiti-palace-museum",
+      "name": "Narayanhiti Palace Museum",
+      "city": "kathmandu",
+      "category": "heritage",
+      "secondaryCategories": [],
+      "lat": 27.71527,
+      "lng": 85.318,
+      "visitMinutes": 90,
+      "entryFeeNpr": {
+        "foreigner": 500,
+        "saarc": 250,
+        "nepali": 100
+      },
+      "openingHours": {
+        "open": "11:00",
+        "close": "16:00",
+        "closedOn": [
+          "tue",
+          "wed"
+        ]
+      },
+      "setting": "indoor",
+      "bestTimes": [
+        "afternoon"
+      ],
+      "popularity": 4,
+      "description": "Former royal palace turned museum, including the site of the 2001 royal massacre. Bags and phones are left at the entrance.",
+      "imageUrl": null,
+      "i18n": {
+        "ne": {
+          "name": "नारायणहिटी दरबार संग्रहालय"
+        }
+      }
+    },
+    {
+      "id": "thamel",
+      "name": "Thamel",
+      "city": "kathmandu",
+      "category": "shopping",
+      "secondaryCategories": [
+        "food"
+      ],
+      "lat": 27.7154,
+      "lng": 85.3123,
+      "visitMinutes": 120,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "08:00",
+        "close": "22:00",
+        "closedOn": []
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "evening"
+      ],
+      "popularity": 4,
+      "description": "Busy tourist district of narrow lanes packed with trekking shops, bookshops, cafés and restaurants.",
+      "imageUrl": null,
+      "i18n": {
+        "ne": {
+          "name": "ठमेल"
+        }
+      }
+    },
+    {
+      "id": "asan-tole",
+      "name": "Asan Tole Bazaar",
+      "city": "kathmandu",
+      "category": "shopping",
+      "secondaryCategories": [
+        "heritage",
+        "food"
+      ],
+      "lat": 27.708,
+      "lng": 85.3107,
+      "visitMinutes": 60,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "06:00",
+        "close": "20:00",
+        "closedOn": []
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "morning"
+      ],
+      "popularity": 4,
+      "description": "Centuries-old market crossroads where locals buy spices, grains and brass pots around the Annapurna Ajima temple.",
+      "imageUrl": null,
+      "i18n": {
+        "ne": {
+          "name": "असन"
+        }
+      }
+    },
+    {
+      "id": "indra-chowk",
+      "name": "Indra Chowk",
+      "city": "kathmandu",
+      "category": "shopping",
+      "secondaryCategories": [
+        "heritage"
+      ],
+      "lat": 27.7058,
+      "lng": 85.309,
+      "visitMinutes": 45,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "08:00",
+        "close": "20:00",
+        "closedOn": []
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "morning"
+      ],
+      "popularity": 3,
+      "description": "Old trading square known for bead and pashmina sellers, with the Akash Bhairab temple overlooking the lanes.",
+      "imageUrl": null
+    },
+    {
+      "id": "freak-street",
+      "name": "Freak Street (Jhochhen)",
+      "city": "kathmandu",
+      "category": "food",
+      "secondaryCategories": [
+        "shopping"
+      ],
+      "lat": 27.702,
+      "lng": 85.3075,
+      "visitMinutes": 60,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "08:00",
+        "close": "21:00",
+        "closedOn": []
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "afternoon"
+      ],
+      "popularity": 3,
+      "description": "The 1970s hippie-trail street beside Basantapur, now a quieter strip of budget cafés and small shops.",
+      "imageUrl": null
+    },
+    {
+      "id": "seto-machhindranath",
+      "name": "Seto Machhindranath (Jana Bahal)",
+      "city": "kathmandu",
+      "category": "temple",
+      "secondaryCategories": [
+        "heritage"
+      ],
+      "lat": 27.7065,
+      "lng": 85.31,
+      "visitMinutes": 30,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "06:00",
+        "close": "20:00",
+        "closedOn": []
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "morning"
+      ],
+      "popularity": 3,
+      "description": "Busy courtyard temple between Asan and Indra Chowk dedicated to the compassionate White Machhindranath, with gilded roofs and prayer wheels.",
+      "imageUrl": null
+    },
+    {
+      "id": "rani-pokhari",
+      "name": "Rani Pokhari",
+      "city": "kathmandu",
+      "category": "heritage",
+      "secondaryCategories": [
+        "nature"
+      ],
+      "lat": 27.7075,
+      "lng": 85.3155,
+      "visitMinutes": 30,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "06:00",
+        "close": "18:00",
+        "closedOn": []
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "morning",
+        "evening"
+      ],
+      "popularity": 3,
+      "description": "17th-century royal pond with a white temple on its island, rebuilt after the 2015 earthquake. Pleasant for a short walk around the water.",
+      "imageUrl": null,
+      "i18n": {
+        "ne": {
+          "name": "रानीपोखरी"
+        }
+      }
+    },
+    {
+      "id": "dharahara",
+      "name": "Dharahara Tower",
+      "city": "kathmandu",
+      "category": "viewpoint",
+      "secondaryCategories": [
+        "heritage"
+      ],
+      "lat": 27.7004,
+      "lng": 85.3122,
+      "visitMinutes": 60,
+      "entryFeeNpr": {
+        "foreigner": 500,
+        "saarc": 300,
+        "nepali": 100
+      },
+      "openingHours": {
+        "open": "08:00",
+        "close": "20:00",
+        "closedOn": []
+      },
+      "setting": "mixed",
+      "bestTimes": [
+        "afternoon",
+        "evening"
+      ],
+      "popularity": 4,
+      "description": "The rebuilt Dharahara tower with a lift and an observation deck over central Kathmandu, beside the stump of the original 1832 tower.",
+      "imageUrl": null,
+      "i18n": {
+        "ne": {
+          "name": "धरहरा"
+        }
+      }
+    },
+    {
+      "id": "national-museum",
+      "name": "National Museum of Nepal",
+      "city": "kathmandu",
+      "category": "heritage",
+      "secondaryCategories": [],
+      "lat": 27.7063,
+      "lng": 85.2885,
+      "visitMinutes": 90,
+      "entryFeeNpr": {
+        "foreigner": 500,
+        "saarc": 150,
+        "nepali": 50
+      },
+      "openingHours": {
+        "open": "10:30",
+        "close": "16:30",
+        "closedOn": [
+          "tue"
+        ]
+      },
+      "setting": "indoor",
+      "bestTimes": [
+        "morning",
+        "afternoon"
+      ],
+      "popularity": 3,
+      "description": "Nepal's largest museum at Chhauni, with galleries of stone and metal sculpture, Buddhist art and a natural history wing.",
+      "imageUrl": null
+    },
+    {
+      "id": "taragaon-museum",
+      "name": "Taragaon Museum",
+      "city": "kathmandu",
+      "category": "heritage",
+      "secondaryCategories": [],
+      "lat": 27.7185,
+      "lng": 85.3562,
+      "visitMinutes": 60,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "10:00",
+        "close": "17:00",
+        "closedOn": []
+      },
+      "setting": "indoor",
+      "bestTimes": [
+        "afternoon"
+      ],
+      "popularity": 3,
+      "description": "Small museum near Boudha documenting half a century of research on Kathmandu Valley architecture, in a building designed by Carl Pruscha.",
+      "imageUrl": null
+    },
+    {
+      "id": "nepal-art-council",
+      "name": "Nepal Art Council Gallery",
+      "city": "kathmandu",
+      "category": "heritage",
+      "secondaryCategories": [],
+      "lat": 27.6955,
+      "lng": 85.323,
+      "visitMinutes": 60,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "11:00",
+        "close": "17:00",
+        "closedOn": [
+          "sat"
+        ]
+      },
+      "setting": "indoor",
+      "bestTimes": [
+        "afternoon"
+      ],
+      "popularity": 2,
+      "description": "Contemporary art gallery at Babarmahal hosting rotating exhibitions by Nepali painters, sculptors and photographers.",
+      "imageUrl": null
+    },
+    {
+      "id": "kopan-monastery",
+      "name": "Kopan Monastery",
+      "city": "kathmandu",
+      "category": "temple",
+      "secondaryCategories": [
+        "viewpoint"
+      ],
+      "lat": 27.7424,
+      "lng": 85.3627,
+      "visitMinutes": 90,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "09:00",
+        "close": "16:00",
+        "closedOn": []
+      },
+      "setting": "mixed",
+      "bestTimes": [
+        "morning"
+      ],
+      "popularity": 3,
+      "description": "Tibetan Buddhist monastery on a hill north of Boudha, known for meditation courses and quiet gardens with valley views.",
+      "imageUrl": null
+    },
+    {
+      "id": "budhanilkantha",
+      "name": "Budhanilkantha Temple",
+      "city": "kathmandu",
+      "category": "temple",
+      "secondaryCategories": [
+        "heritage"
+      ],
+      "lat": 27.7651,
+      "lng": 85.3627,
+      "visitMinutes": 45,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "05:00",
+        "close": "19:00",
+        "closedOn": []
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "earlyMorning",
+        "morning"
+      ],
+      "popularity": 4,
+      "description": "Open-air shrine with a 5-metre stone Vishnu reclining on a bed of serpents in a sacred pond, carved in the 7th century.",
+      "imageUrl": null,
+      "i18n": {
+        "ne": {
+          "name": "बुढानिलकण्ठ"
+        }
+      }
+    },
+    {
+      "id": "shivapuri-nagarjun",
+      "name": "Shivapuri Nagarjun National Park",
+      "city": "kathmandu",
+      "category": "nature",
+      "secondaryCategories": [
+        "viewpoint"
+      ],
+      "lat": 27.773,
+      "lng": 85.365,
+      "visitMinutes": 300,
+      "entryFeeNpr": {
+        "foreigner": 1000,
+        "saarc": 600,
+        "nepali": 100
+      },
+      "openingHours": {
+        "open": "07:00",
+        "close": "17:00",
+        "closedOn": []
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "earlyMorning",
+        "morning"
+      ],
+      "popularity": 4,
+      "description": "Forested national park on the valley's northern rim with hiking trails to Shivapuri Peak, Nagi Gumba and Himalayan views on clear days.",
+      "imageUrl": null,
+      "i18n": {
+        "ne": {
+          "name": "शिवपुरी नागार्जुन राष्ट्रिय निकुञ्ज"
+        }
+      }
+    },
+    {
+      "id": "sundarijal",
+      "name": "Sundarijal Waterfalls",
+      "city": "kathmandu",
+      "category": "nature",
+      "secondaryCategories": [],
+      "lat": 27.77,
+      "lng": 85.427,
+      "visitMinutes": 150,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "07:00",
+        "close": "17:00",
+        "closedOn": []
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "morning"
+      ],
+      "popularity": 3,
+      "description": "Stone-stepped trail through forest past small waterfalls and the old reservoir at the start of the Shivapuri trek. Best after the monsoon.",
+      "imageUrl": null
+    },
+    {
+      "id": "chandragiri-hills",
+      "name": "Chandragiri Hills Cable Car",
+      "city": "kathmandu",
+      "category": "viewpoint",
+      "secondaryCategories": [
+        "nature",
+        "temple"
+      ],
+      "lat": 27.667,
+      "lng": 85.208,
+      "visitMinutes": 180,
+      "entryFeeNpr": {
+        "foreigner": 2900,
+        "saarc": 1800,
+        "nepali": 1000
+      },
+      "openingHours": {
+        "open": "09:00",
+        "close": "17:00",
+        "closedOn": []
+      },
+      "setting": "mixed",
+      "bestTimes": [
+        "morning"
+      ],
+      "popularity": 4,
+      "description": "Cable car ride to a 2,500 m hilltop with the Bhaleshwor Mahadev temple and panoramic Himalayan views on clear days.",
+      "imageUrl": null,
+      "i18n": {
+        "ne": {
+          "name": "चन्द्रागिरि"
+        }
+      }
+    },
+    {
+      "id": "taudaha-lake",
+      "name": "Taudaha Lake",
+      "city": "kathmandu",
+      "category": "nature",
+      "secondaryCategories": [],
+      "lat": 27.648,
+      "lng": 85.283,
+      "visitMinutes": 45,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "06:00",
+        "close": "18:00",
+        "closedOn": []
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "morning",
+        "afternoon"
+      ],
+      "popularity": 2,
+      "description": "Small lake on the road to Pharping linked to the legend of the valley's draining; a winter stop for migratory birds.",
+      "imageUrl": null
+    },
+    {
+      "id": "kirtipur-old-town",
+      "name": "Kirtipur Old Town",
+      "city": "kathmandu",
+      "category": "heritage",
+      "secondaryCategories": [
+        "temple",
+        "viewpoint"
+      ],
+      "lat": 27.6785,
+      "lng": 85.2783,
+      "visitMinutes": 120,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "alwaysOpen": true
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "morning",
+        "afternoon"
+      ],
+      "popularity": 3,
+      "description": "Hilltop Newar town with the Bagh Bhairab and Uma Maheshwar temples, brick lanes and views back over Kathmandu.",
+      "imageUrl": null,
+      "i18n": {
+        "ne": {
+          "name": "कीर्तिपुर"
+        }
+      }
+    },
+    {
+      "id": "chobhar-gorge",
+      "name": "Chobhar Gorge & Jal Binayak",
+      "city": "kathmandu",
+      "category": "nature",
+      "secondaryCategories": [
+        "temple"
+      ],
+      "lat": 27.6625,
+      "lng": 85.296,
+      "visitMinutes": 60,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "06:00",
+        "close": "18:00",
+        "closedOn": []
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "morning"
+      ],
+      "popularity": 2,
+      "description": "The narrow gorge where legend says Manjushree cut the rock to drain the valley lake, with a suspension bridge and the Jal Binayak temple.",
+      "imageUrl": null
+    },
+    {
+      "id": "dakshinkali",
+      "name": "Dakshinkali Temple",
+      "city": "kathmandu",
+      "category": "temple",
+      "secondaryCategories": [
+        "nature"
+      ],
+      "lat": 27.6015,
+      "lng": 85.26,
+      "visitMinutes": 90,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "05:00",
+        "close": "18:00",
+        "closedOn": []
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "morning"
+      ],
+      "popularity": 3,
+      "description": "Forest temple to the goddess Kali in a gorge south of Pharping. Busiest on Tuesday and Saturday mornings when animal sacrifices take place.",
+      "imageUrl": null,
+      "i18n": {
+        "ne": {
+          "name": "दक्षिणकाली"
+        }
+      }
+    },
+    {
+      "id": "guhyeshwari",
+      "name": "Guhyeshwari Temple",
+      "city": "kathmandu",
+      "category": "temple",
+      "secondaryCategories": [],
+      "lat": 27.7118,
+      "lng": 85.353,
+      "visitMinutes": 30,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "05:00",
+        "close": "20:00",
+        "closedOn": []
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "morning"
+      ],
+      "popularity": 2,
+      "description": "Important Shakti temple a short riverside walk from Pashupatinath; entry to the inner courtyard is for Hindus only.",
+      "imageUrl": null
+    },
+    {
+      "id": "white-monastery",
+      "name": "Amitabha (White) Monastery",
+      "city": "kathmandu",
+      "category": "temple",
+      "secondaryCategories": [
+        "viewpoint"
+      ],
+      "lat": 27.7185,
+      "lng": 85.283,
+      "visitMinutes": 60,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "08:00",
+        "close": "17:00",
+        "closedOn": []
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "morning",
+        "afternoon"
+      ],
+      "popularity": 3,
+      "description": "Whitewashed Drukpa monastery on the ridge above Swayambhu with a large Amitabha Buddha and wide views of the city.",
+      "imageUrl": null
+    },
+    {
+      "id": "boudha-rooftop-cafes",
+      "name": "Boudha Rooftop Cafés",
+      "city": "kathmandu",
+      "category": "food",
+      "secondaryCategories": [],
+      "lat": 27.7212,
+      "lng": 85.3616,
+      "visitMinutes": 75,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "08:00",
+        "close": "21:00",
+        "closedOn": []
+      },
+      "setting": "indoor",
+      "bestTimes": [
+        "morning",
+        "evening"
+      ],
+      "popularity": 3,
+      "description": "Cafés around the Boudha stupa circuit serving momos, thukpa and butter tea with views over the dome and prayer flags.",
+      "imageUrl": null
+    },
+    {
+      "id": "bhojan-griha",
+      "name": "Bhojan Griha",
+      "city": "kathmandu",
+      "category": "food",
+      "secondaryCategories": [
+        "heritage"
+      ],
+      "lat": 27.705,
+      "lng": 85.328,
+      "visitMinutes": 120,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "11:00",
+        "close": "22:00",
+        "closedOn": []
+      },
+      "setting": "indoor",
+      "bestTimes": [
+        "evening"
+      ],
+      "popularity": 3,
+      "description": "Restaurant in a restored 150-year-old mansion in Dillibazar serving multi-course Nepali set dinners with cultural dance shows.",
+      "imageUrl": null
+    },
+    {
+      "id": "thamel-momo-street",
+      "name": "Thamel Food Lanes",
+      "city": "kathmandu",
+      "category": "food",
+      "secondaryCategories": [],
+      "lat": 27.7148,
+      "lng": 85.3114,
+      "visitMinutes": 60,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "08:00",
+        "close": "22:30",
+        "closedOn": []
+      },
+      "setting": "indoor",
+      "bestTimes": [
+        "evening"
+      ],
+      "popularity": 3,
+      "description": "Dozens of small eateries around Thamel Chowk: momos, dal bhat, Tibetan noodles and international cafés for every budget.",
+      "imageUrl": null
+    },
+    {
+      "id": "newa-lahana",
+      "name": "Newa Lahana, Kirtipur",
+      "city": "kathmandu",
+      "category": "food",
+      "secondaryCategories": [
+        "heritage"
+      ],
+      "lat": 27.678,
+      "lng": 85.2775,
+      "visitMinutes": 75,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "10:00",
+        "close": "20:00",
+        "closedOn": []
+      },
+      "setting": "indoor",
+      "bestTimes": [
+        "afternoon",
+        "evening"
+      ],
+      "popularity": 3,
+      "description": "Community-run Newari eatery in Kirtipur known for samay baji sets, bara and choila, served with a view from the upper floor.",
+      "imageUrl": null
+    },
+    {
+      "id": "durbar-marg",
+      "name": "Durbar Marg",
+      "city": "kathmandu",
+      "category": "shopping",
+      "secondaryCategories": [
+        "food"
+      ],
+      "lat": 27.712,
+      "lng": 85.3178,
+      "visitMinutes": 60,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "10:00",
+        "close": "21:00",
+        "closedOn": []
+      },
+      "setting": "mixed",
+      "bestTimes": [
+        "afternoon",
+        "evening"
+      ],
+      "popularity": 2,
+      "description": "Wide boulevard leading to the Narayanhiti palace, lined with boutiques, airline offices and upscale restaurants.",
+      "imageUrl": null
+    },
+    {
+      "id": "patan-durbar-square",
+      "name": "Patan Durbar Square",
+      "city": "lalitpur",
+      "category": "heritage",
+      "secondaryCategories": [
+        "temple"
+      ],
+      "lat": 27.67275,
+      "lng": 85.3253,
+      "visitMinutes": 120,
+      "entryFeeNpr": {
+        "foreigner": 1000,
+        "saarc": 250,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "07:00",
+        "close": "19:00",
+        "closedOn": []
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "morning",
+        "evening"
+      ],
+      "popularity": 5,
+      "description": "Dense square of Newar temples and palace courtyards facing the old royal palace, among the finest examples of Newar architecture.",
+      "imageUrl": null,
+      "i18n": {
+        "ne": {
+          "name": "पाटन दरबार क्षेत्र"
+        }
+      }
+    },
+    {
+      "id": "patan-museum",
+      "name": "Patan Museum",
+      "city": "lalitpur",
+      "category": "heritage",
+      "secondaryCategories": [],
+      "lat": 27.6733,
+      "lng": 85.3252,
+      "visitMinutes": 90,
+      "entryFeeNpr": {
+        "foreigner": 1000,
+        "saarc": 250,
+        "nepali": 100
+      },
+      "openingHours": {
+        "open": "10:30",
+        "close": "17:30",
+        "closedOn": []
+      },
+      "setting": "indoor",
+      "bestTimes": [
+        "afternoon"
+      ],
+      "popularity": 5,
+      "description": "Beautifully presented collection of Hindu and Buddhist bronzes inside the Keshav Narayan Chowk of the Patan palace, with a garden café.",
+      "imageUrl": null,
+      "i18n": {
+        "ne": {
+          "name": "पाटन संग्रहालय"
+        }
+      }
+    },
+    {
+      "id": "golden-temple",
+      "name": "Golden Temple (Hiranya Varna Mahavihar)",
+      "city": "lalitpur",
+      "category": "temple",
+      "secondaryCategories": [
+        "heritage"
+      ],
+      "lat": 27.675,
+      "lng": 85.3243,
+      "visitMinutes": 40,
+      "entryFeeNpr": {
+        "foreigner": 50,
+        "saarc": 50,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "07:00",
+        "close": "18:00",
+        "closedOn": []
+      },
+      "setting": "mixed",
+      "bestTimes": [
+        "morning"
+      ],
+      "popularity": 4,
+      "description": "12th-century Buddhist monastery with a gilded facade, prayer wheels and a courtyard shrine; remove leather items before entering.",
+      "imageUrl": null,
+      "i18n": {
+        "ne": {
+          "name": "हिरण्यवर्ण महाविहार"
+        }
+      }
+    },
+    {
+      "id": "mahabouddha",
+      "name": "Mahabouddha Temple",
+      "city": "lalitpur",
+      "category": "temple",
+      "secondaryCategories": [
+        "heritage"
+      ],
+      "lat": 27.671,
+      "lng": 85.328,
+      "visitMinutes": 30,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "07:00",
+        "close": "18:00",
+        "closedOn": []
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "morning"
+      ],
+      "popularity": 3,
+      "description": "Shikhara-style temple covered in thousands of terracotta Buddha tiles, tucked into a courtyard surrounded by metal workshops.",
+      "imageUrl": null
+    },
+    {
+      "id": "kumbheshwar",
+      "name": "Kumbheshwar Temple",
+      "city": "lalitpur",
+      "category": "temple",
+      "secondaryCategories": [
+        "heritage"
+      ],
+      "lat": 27.6763,
+      "lng": 85.3238,
+      "visitMinutes": 30,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "05:00",
+        "close": "20:00",
+        "closedOn": []
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "morning"
+      ],
+      "popularity": 3,
+      "description": "Five-tiered pagoda to Shiva, one of only two in the valley, with ponds said to be fed by the holy lake at Gosainkunda.",
+      "imageUrl": null
+    },
+    {
+      "id": "pim-bahal-pokhari",
+      "name": "Pim Bahal Pokhari",
+      "city": "lalitpur",
+      "category": "nature",
+      "secondaryCategories": [
+        "heritage"
+      ],
+      "lat": 27.6765,
+      "lng": 85.321,
+      "visitMinutes": 30,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "alwaysOpen": true
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "morning",
+        "evening"
+      ],
+      "popularity": 2,
+      "description": "Quiet pond in the old town of Patan with a white stupa and a small pagoda, loved by locals for evening walks.",
+      "imageUrl": null
+    },
+    {
+      "id": "central-zoo",
+      "name": "Central Zoo",
+      "city": "lalitpur",
+      "category": "nature",
+      "secondaryCategories": [],
+      "lat": 27.673,
+      "lng": 85.312,
+      "visitMinutes": 120,
+      "entryFeeNpr": {
+        "foreigner": 1000,
+        "saarc": 500,
+        "nepali": 150
+      },
+      "openingHours": {
+        "open": "10:00",
+        "close": "17:00",
+        "closedOn": [
+          "mon"
+        ]
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "morning"
+      ],
+      "popularity": 3,
+      "description": "Nepal's only zoo at Jawalakhel with rhinos, tigers and red pandas around a historic pond. Very busy on Saturdays.",
+      "imageUrl": null,
+      "i18n": {
+        "ne": {
+          "name": "केन्द्रीय चिडियाखाना"
+        }
+      }
+    },
+    {
+      "id": "godawari-botanical-garden",
+      "name": "Godawari Botanical Garden",
+      "city": "lalitpur",
+      "category": "nature",
+      "secondaryCategories": [],
+      "lat": 27.596,
+      "lng": 85.379,
+      "visitMinutes": 120,
+      "entryFeeNpr": {
+        "foreigner": 100,
+        "saarc": 100,
+        "nepali": 30
+      },
+      "openingHours": {
+        "open": "09:00",
+        "close": "17:00",
+        "closedOn": []
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "morning",
+        "afternoon"
+      ],
+      "popularity": 3,
+      "description": "National botanical garden at the foot of Phulchowki with orchid houses, streams and picnic lawns.",
+      "imageUrl": null
+    },
+    {
+      "id": "phulchowki",
+      "name": "Phulchowki Hill",
+      "city": "lalitpur",
+      "category": "viewpoint",
+      "secondaryCategories": [
+        "nature"
+      ],
+      "lat": 27.5717,
+      "lng": 85.4031,
+      "visitMinutes": 300,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "06:00",
+        "close": "17:00",
+        "closedOn": []
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "earlyMorning",
+        "morning"
+      ],
+      "popularity": 3,
+      "description": "The valley's highest rim at 2,782 m, known for rhododendron forests, birdwatching and Himalayan views after a long hike or rough drive.",
+      "imageUrl": null,
+      "i18n": {
+        "ne": {
+          "name": "फूलचोकी"
+        }
+      }
+    },
+    {
+      "id": "bungamati",
+      "name": "Bungamati Village",
+      "city": "lalitpur",
+      "category": "heritage",
+      "secondaryCategories": [
+        "temple"
+      ],
+      "lat": 27.629,
+      "lng": 85.3,
+      "visitMinutes": 120,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "alwaysOpen": true
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "morning",
+        "afternoon"
+      ],
+      "popularity": 3,
+      "description": "Traditional Newar village famous for woodcarving, and home of the Rato Machhindranath temple at its centre.",
+      "imageUrl": null,
+      "i18n": {
+        "ne": {
+          "name": "बुङ्गमती"
+        }
+      }
+    },
+    {
+      "id": "khokana",
+      "name": "Khokana Village",
+      "city": "lalitpur",
+      "category": "heritage",
+      "secondaryCategories": [],
+      "lat": 27.639,
+      "lng": 85.294,
+      "visitMinutes": 90,
+      "entryFeeNpr": {
+        "foreigner": 100,
+        "saarc": 100,
+        "nepali": 0
+      },
+      "openingHours": {
+        "alwaysOpen": true
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "morning",
+        "afternoon"
+      ],
+      "popularity": 2,
+      "description": "Newar village near Bungamati known for its mustard-oil presses and the Shikali temple.",
+      "imageUrl": null
+    },
+    {
+      "id": "jhamsikhel-cafes",
+      "name": "Jhamsikhel Cafés",
+      "city": "lalitpur",
+      "category": "food",
+      "secondaryCategories": [],
+      "lat": 27.678,
+      "lng": 85.3095,
+      "visitMinutes": 75,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "08:00",
+        "close": "22:00",
+        "closedOn": []
+      },
+      "setting": "indoor",
+      "bestTimes": [
+        "afternoon",
+        "evening"
+      ],
+      "popularity": 3,
+      "description": "Leafy neighbourhood (\"Jhamel\") full of cafés, bakeries and restaurants popular with locals and expats.",
+      "imageUrl": null
+    },
+    {
+      "id": "honacha",
+      "name": "Honacha",
+      "city": "lalitpur",
+      "category": "food",
+      "secondaryCategories": [
+        "heritage"
+      ],
+      "lat": 27.6725,
+      "lng": 85.3248,
+      "visitMinutes": 45,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "10:00",
+        "close": "19:00",
+        "closedOn": []
+      },
+      "setting": "indoor",
+      "bestTimes": [
+        "afternoon"
+      ],
+      "popularity": 3,
+      "description": "Tiny, much-loved Newari eatery just off Patan Durbar Square serving wo (lentil pancakes), choila and aila.",
+      "imageUrl": null
+    },
+    {
+      "id": "mangal-bazaar",
+      "name": "Mangal Bazaar",
+      "city": "lalitpur",
+      "category": "shopping",
+      "secondaryCategories": [
+        "heritage"
+      ],
+      "lat": 27.6724,
+      "lng": 85.326,
+      "visitMinutes": 45,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "09:00",
+        "close": "20:00",
+        "closedOn": []
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "afternoon"
+      ],
+      "popularity": 3,
+      "description": "Shopping street along Patan Durbar Square selling metal statues, singing bowls and handicrafts made in Patan workshops.",
+      "imageUrl": null
+    },
+    {
+      "id": "jawalakhel-handicraft-centre",
+      "name": "Jawalakhel Handicraft Centre",
+      "city": "lalitpur",
+      "category": "shopping",
+      "secondaryCategories": [],
+      "lat": 27.668,
+      "lng": 85.308,
+      "visitMinutes": 60,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "09:00",
+        "close": "18:00",
+        "closedOn": [
+          "sat"
+        ]
+      },
+      "setting": "indoor",
+      "bestTimes": [
+        "morning",
+        "afternoon"
+      ],
+      "popularity": 3,
+      "description": "Tibetan refugee carpet centre where you can watch wool being spun, dyed and hand-knotted, with a fixed-price showroom.",
+      "imageUrl": null
+    },
+    {
+      "id": "labim-mall",
+      "name": "Labim Mall",
+      "city": "lalitpur",
+      "category": "shopping",
+      "secondaryCategories": [
+        "food"
+      ],
+      "lat": 27.677,
+      "lng": 85.316,
+      "visitMinutes": 90,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "10:00",
+        "close": "21:00",
+        "closedOn": []
+      },
+      "setting": "indoor",
+      "bestTimes": [
+        "afternoon",
+        "evening"
+      ],
+      "popularity": 2,
+      "description": "Modern mall at Pulchowk with a supermarket, food court, cinema and outdoor-gear shops. A dry option on rainy days.",
+      "imageUrl": null
+    },
+    {
+      "id": "rudravarna-mahavihar",
+      "name": "Rudravarna Mahavihar (Uku Bahal)",
+      "city": "lalitpur",
+      "category": "temple",
+      "secondaryCategories": [
+        "heritage"
+      ],
+      "lat": 27.6695,
+      "lng": 85.3243,
+      "visitMinutes": 30,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "07:00",
+        "close": "18:00",
+        "closedOn": []
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "morning"
+      ],
+      "popularity": 2,
+      "description": "Buddhist monastery courtyard crowded with bronze animals, dorjes and statues, south of Patan Durbar Square.",
+      "imageUrl": null
+    },
+    {
+      "id": "bhaktapur-durbar-square",
+      "name": "Bhaktapur Durbar Square",
+      "city": "bhaktapur",
+      "category": "heritage",
+      "secondaryCategories": [
+        "temple"
+      ],
+      "lat": 27.6722,
+      "lng": 85.4281,
+      "visitMinutes": 150,
+      "entryFeeNpr": {
+        "foreigner": 1800,
+        "saarc": 500,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "07:00",
+        "close": "19:00",
+        "closedOn": []
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "morning",
+        "afternoon"
+      ],
+      "popularity": 5,
+      "description": "The best-preserved of the valley's royal cities, with the Golden Gate, 55-Window Palace and car-free brick squares. The ticket covers the whole old town.",
+      "imageUrl": null,
+      "i18n": {
+        "ne": {
+          "name": "भक्तपुर दरबार क्षेत्र"
+        }
+      }
+    },
+    {
+      "id": "nyatapola-taumadhi",
+      "name": "Nyatapola Temple & Taumadhi Square",
+      "city": "bhaktapur",
+      "category": "temple",
+      "secondaryCategories": [
+        "heritage"
+      ],
+      "lat": 27.6713,
+      "lng": 85.4295,
+      "visitMinutes": 45,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "alwaysOpen": true
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "morning",
+        "evening"
+      ],
+      "popularity": 5,
+      "description": "Nepal's tallest pagoda, five tiers on a stepped plinth guarded by stone wrestlers, elephants and griffins. Covered by the Bhaktapur ticket.",
+      "imageUrl": null,
+      "i18n": {
+        "ne": {
+          "name": "न्यातपोल"
+        }
+      }
+    },
+    {
+      "id": "dattatreya-square",
+      "name": "Dattatreya Square (Tachupal)",
+      "city": "bhaktapur",
+      "category": "heritage",
+      "secondaryCategories": [
+        "temple"
+      ],
+      "lat": 27.6737,
+      "lng": 85.4345,
+      "visitMinutes": 60,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "alwaysOpen": true
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "morning",
+        "afternoon"
+      ],
+      "popularity": 4,
+      "description": "The oldest square of Bhaktapur with the Dattatreya temple, surrounded by priests' houses and woodcarving shops.",
+      "imageUrl": null
+    },
+    {
+      "id": "peacock-window",
+      "name": "Pujari Math & Peacock Window",
+      "city": "bhaktapur",
+      "category": "heritage",
+      "secondaryCategories": [],
+      "lat": 27.6734,
+      "lng": 85.4344,
+      "visitMinutes": 30,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "10:00",
+        "close": "17:00",
+        "closedOn": []
+      },
+      "setting": "mixed",
+      "bestTimes": [
+        "morning",
+        "afternoon"
+      ],
+      "popularity": 3,
+      "description": "18th-century priest's house famous for its intricately carved peacock window; houses the National Woodcarving Museum.",
+      "imageUrl": null
+    },
+    {
+      "id": "pottery-square",
+      "name": "Pottery Square",
+      "city": "bhaktapur",
+      "category": "shopping",
+      "secondaryCategories": [
+        "heritage"
+      ],
+      "lat": 27.6705,
+      "lng": 85.428,
+      "visitMinutes": 45,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "08:00",
+        "close": "18:00",
+        "closedOn": []
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "morning",
+        "afternoon"
+      ],
+      "popularity": 4,
+      "description": "Open square where potters throw clay on hand-turned wheels and dry hundreds of pots in the sun.",
+      "imageUrl": null
+    },
+    {
+      "id": "national-art-gallery-bhaktapur",
+      "name": "National Art Gallery, Bhaktapur",
+      "city": "bhaktapur",
+      "category": "heritage",
+      "secondaryCategories": [],
+      "lat": 27.6723,
+      "lng": 85.4278,
+      "visitMinutes": 60,
+      "entryFeeNpr": {
+        "foreigner": 150,
+        "saarc": 50,
+        "nepali": 20
+      },
+      "openingHours": {
+        "open": "10:00",
+        "close": "16:00",
+        "closedOn": [
+          "tue"
+        ]
+      },
+      "setting": "indoor",
+      "bestTimes": [
+        "afternoon"
+      ],
+      "popularity": 3,
+      "description": "Gallery in the old palace with Hindu and Buddhist paubha paintings, palm-leaf manuscripts and stone sculpture.",
+      "imageUrl": null
+    },
+    {
+      "id": "siddha-pokhari",
+      "name": "Siddha Pokhari",
+      "city": "bhaktapur",
+      "category": "nature",
+      "secondaryCategories": [],
+      "lat": 27.6715,
+      "lng": 85.4208,
+      "visitMinutes": 30,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "alwaysOpen": true
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "morning",
+        "evening"
+      ],
+      "popularity": 2,
+      "description": "Large rectangular pond by the Bhaktapur bus park, lined with small shrines. A calm place to walk at sunset.",
+      "imageUrl": null
+    },
+    {
+      "id": "changu-narayan",
+      "name": "Changu Narayan Temple",
+      "city": "bhaktapur",
+      "category": "temple",
+      "secondaryCategories": [
+        "heritage",
+        "viewpoint"
+      ],
+      "lat": 27.7163,
+      "lng": 85.4278,
+      "visitMinutes": 90,
+      "entryFeeNpr": {
+        "foreigner": 300,
+        "saarc": 100,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "06:00",
+        "close": "18:00",
+        "closedOn": []
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "morning",
+        "afternoon"
+      ],
+      "popularity": 4,
+      "description": "The valley's oldest temple on a ridge north of Bhaktapur, with 5th-century inscriptions and masterful stone and wood carvings.",
+      "imageUrl": null,
+      "i18n": {
+        "ne": {
+          "name": "चाँगुनारायण"
+        }
+      }
+    },
+    {
+      "id": "nagarkot",
+      "name": "Nagarkot",
+      "city": "bhaktapur",
+      "category": "viewpoint",
+      "secondaryCategories": [
+        "nature"
+      ],
+      "lat": 27.7156,
+      "lng": 85.5203,
+      "visitMinutes": 240,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "alwaysOpen": true
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "earlyMorning",
+        "evening"
+      ],
+      "popularity": 5,
+      "description": "Hill station on the eastern rim famous for sunrise and sunset views of the Himalaya from Langtang to Everest on clear days. Worth an overnight stay.",
+      "imageUrl": null,
+      "i18n": {
+        "ne": {
+          "name": "नगरकोट"
+        }
+      }
+    },
+    {
+      "id": "surya-binayak",
+      "name": "Surya Binayak Temple",
+      "city": "bhaktapur",
+      "category": "temple",
+      "secondaryCategories": [
+        "viewpoint",
+        "nature"
+      ],
+      "lat": 27.662,
+      "lng": 85.429,
+      "visitMinutes": 60,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "05:00",
+        "close": "18:00",
+        "closedOn": []
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "earlyMorning",
+        "morning"
+      ],
+      "popularity": 2,
+      "description": "Ganesh temple in forest just south of Bhaktapur, reached by a stepped path; catches the first sun in the valley.",
+      "imageUrl": null
+    },
+    {
+      "id": "juju-dhau",
+      "name": "Juju Dhau (King Curd) Shops",
+      "city": "bhaktapur",
+      "category": "food",
+      "secondaryCategories": [],
+      "lat": 27.672,
+      "lng": 85.43,
+      "visitMinutes": 30,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "08:00",
+        "close": "19:00",
+        "closedOn": []
+      },
+      "setting": "indoor",
+      "bestTimes": [
+        "afternoon"
+      ],
+      "popularity": 4,
+      "description": "Try Bhaktapur's famous creamy sweet yogurt, set in clay pots, at the small shops around Taumadhi and Durbar Square.",
+      "imageUrl": null,
+      "i18n": {
+        "ne": {
+          "name": "जुजु धौ"
+        }
+      }
+    },
+    {
+      "id": "madhyapur-thimi",
+      "name": "Madhyapur Thimi",
+      "city": "bhaktapur",
+      "category": "heritage",
+      "secondaryCategories": [
+        "shopping"
+      ],
+      "lat": 27.681,
+      "lng": 85.387,
+      "visitMinutes": 90,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "alwaysOpen": true
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "morning",
+        "afternoon"
+      ],
+      "popularity": 2,
+      "description": "Traditional Newar pottery and mask-making town between Kathmandu and Bhaktapur, famous for its Bisket and Sindoor Jatra.",
+      "imageUrl": null
+    },
+    {
+      "id": "doleshwor-mahadev",
+      "name": "Doleshwor Mahadev",
+      "city": "bhaktapur",
+      "category": "temple",
+      "secondaryCategories": [],
+      "lat": 27.6424,
+      "lng": 85.4485,
+      "visitMinutes": 60,
+      "entryFeeNpr": {
+        "foreigner": 0,
+        "saarc": 0,
+        "nepali": 0
+      },
+      "openingHours": {
+        "open": "05:00",
+        "close": "19:00",
+        "closedOn": []
+      },
+      "setting": "outdoor",
+      "bestTimes": [
+        "morning"
+      ],
+      "popularity": 2,
+      "description": "Shiva temple at Sipadol believed to be the head of the Kedarnath linga, a pilgrimage site for Hindu visitors.",
+      "imageUrl": null
+    }
+  ]
+}
