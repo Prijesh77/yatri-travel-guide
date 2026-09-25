@@ -40,8 +40,12 @@ class TransportOptionTile extends StatelessWidget {
       TransportMode.bus => l10n.perPerson,
       TransportMode.taxi || TransportMode.bikeTaxi => l10n.perVehicle,
     };
+    final journey = o.journey;
     final details = <String>[
-      if (o.routeName != null) l10n.busRoute(o.routeName!, o.boardAt!, o.alightAt!),
+      if (journey != null)
+        l10n.busJourney(journey.rides.map((r) => r.route.id).join(' → '), o.boardAt!, o.alightAt!)
+      else if (o.routeName != null)
+        l10n.busRoute(o.routeName!, o.boardAt!, o.alightAt!),
       for (final n in o.notes) l10n.transportNote(n),
       if (!o.available) l10n.notAvailable,
     ];

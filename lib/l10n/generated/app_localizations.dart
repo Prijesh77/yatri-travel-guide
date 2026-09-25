@@ -337,7 +337,7 @@ abstract class AppLocalizations {
   /// No description provided for @reasonFestival.
   ///
   /// In en, this message translates to:
-  /// **'{title}: expect crowds'**
+  /// **'{title} nearby – lively, expect crowds'**
   String reasonFestival(String title);
 
   /// No description provided for @reasonClosureAlert.
@@ -969,6 +969,852 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Tribhuvan Airport'**
   String get presetAirport;
+
+  /// No description provided for @noteUnverifiedRoute.
+  ///
+  /// In en, this message translates to:
+  /// **'Route not verified for 2026 – confirm locally'**
+  String get noteUnverifiedRoute;
+
+  /// No description provided for @noteRerouted.
+  ///
+  /// In en, this message translates to:
+  /// **'Adjusted to avoid a reported disruption'**
+  String get noteRerouted;
+
+  /// No description provided for @tabHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get tabHome;
+
+  /// No description provided for @tabTransit.
+  ///
+  /// In en, this message translates to:
+  /// **'Transit'**
+  String get tabTransit;
+
+  /// No description provided for @tabAlerts.
+  ///
+  /// In en, this message translates to:
+  /// **'Alerts'**
+  String get tabAlerts;
+
+  /// No description provided for @tabProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get tabProfile;
+
+  /// No description provided for @search.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get search;
+
+  /// No description provided for @searchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search transport, stays, and more'**
+  String get searchHint;
+
+  /// No description provided for @planTripWithAi.
+  ///
+  /// In en, this message translates to:
+  /// **'Plan a trip with AI'**
+  String get planTripWithAi;
+
+  /// No description provided for @budgetConditionAware.
+  ///
+  /// In en, this message translates to:
+  /// **'Budget-aware, condition-aware'**
+  String get budgetConditionAware;
+
+  /// No description provided for @categories.
+  ///
+  /// In en, this message translates to:
+  /// **'Categories'**
+  String get categories;
+
+  /// No description provided for @catTransport.
+  ///
+  /// In en, this message translates to:
+  /// **'Transport'**
+  String get catTransport;
+
+  /// No description provided for @catStays.
+  ///
+  /// In en, this message translates to:
+  /// **'Stays'**
+  String get catStays;
+
+  /// No description provided for @plannedCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'{category, select, education{Education} fitness{Fitness} adventure{Adventure} health{Health} other{More}}'**
+  String plannedCategory(String category);
+
+  /// No description provided for @disruptionsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No disruptions} =1{1 disruption} other{{count} disruptions}}'**
+  String disruptionsCount(int count);
+
+  /// No description provided for @eventsToday.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No events today} =1{1 event today} other{{count} events today}}'**
+  String eventsToday(int count);
+
+  /// No description provided for @findYourRoute.
+  ///
+  /// In en, this message translates to:
+  /// **'Find your route'**
+  String get findYourRoute;
+
+  /// No description provided for @fromHint.
+  ///
+  /// In en, this message translates to:
+  /// **'From'**
+  String get fromHint;
+
+  /// No description provided for @whereTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Where to?'**
+  String get whereTo;
+
+  /// No description provided for @swap.
+  ///
+  /// In en, this message translates to:
+  /// **'Swap'**
+  String get swap;
+
+  /// No description provided for @bestOption.
+  ///
+  /// In en, this message translates to:
+  /// **'Best option'**
+  String get bestOption;
+
+  /// No description provided for @otherWays.
+  ///
+  /// In en, this message translates to:
+  /// **'Other ways to go'**
+  String get otherWays;
+
+  /// No description provided for @noBusRoute.
+  ///
+  /// In en, this message translates to:
+  /// **'No bus route found between these points in our data. Try a taxi or bike taxi, or ask locally.'**
+  String get noBusRoute;
+
+  /// No description provided for @everyMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'Every ~{minutes} min'**
+  String everyMinutes(int minutes);
+
+  /// No description provided for @boardAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Board at {stop} · {minutes} min walk'**
+  String boardAt(String stop, int minutes);
+
+  /// No description provided for @totalTime.
+  ///
+  /// In en, this message translates to:
+  /// **'~{duration} total'**
+  String totalTime(String duration);
+
+  /// No description provided for @changes.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 change} other{{count} changes}}'**
+  String changes(int count);
+
+  /// No description provided for @roughStop.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop position approximate'**
+  String get roughStop;
+
+  /// No description provided for @routeStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'{status, select, verified{Verified 2026} announced{Announced – verify} osm{OSM-mapped – verify} reported{Reported – verify} local{Local listing – verify} historical{Historical – may not run} other{Unverified}}'**
+  String routeStatus(String status);
+
+  /// No description provided for @walkTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Walk to {stop}'**
+  String walkTo(String stop);
+
+  /// No description provided for @walkBetween.
+  ///
+  /// In en, this message translates to:
+  /// **'Walk from {from} to {to}'**
+  String walkBetween(String from, String to);
+
+  /// No description provided for @walkToDestination.
+  ///
+  /// In en, this message translates to:
+  /// **'Walk to your destination'**
+  String get walkToDestination;
+
+  /// No description provided for @rideFromTo.
+  ///
+  /// In en, this message translates to:
+  /// **'{route}: {board} → {alight}'**
+  String rideFromTo(String route, String board, String alight);
+
+  /// No description provided for @stopsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 stop} other{{count} stops}}'**
+  String stopsCount(int count);
+
+  /// No description provided for @waitAbout.
+  ///
+  /// In en, this message translates to:
+  /// **'wait ~{minutes} min'**
+  String waitAbout(int minutes);
+
+  /// No description provided for @disruptionOnRoute.
+  ///
+  /// In en, this message translates to:
+  /// **'Reported on this route: {title}. Road travel may take longer.'**
+  String disruptionOnRoute(String title);
+
+  /// No description provided for @transitDisclaimer.
+  ///
+  /// In en, this message translates to:
+  /// **'Routes come from the Yatri transport data pack (Sajha Yatayat 2026 routes are verified; others need checking). Frequencies are only shown where published.'**
+  String get transitDisclaimer;
+
+  /// No description provided for @popularHubs.
+  ///
+  /// In en, this message translates to:
+  /// **'Popular hubs'**
+  String get popularHubs;
+
+  /// No description provided for @rideHailing.
+  ///
+  /// In en, this message translates to:
+  /// **'Taxis & ride-hailing'**
+  String get rideHailing;
+
+  /// No description provided for @networkSource.
+  ///
+  /// In en, this message translates to:
+  /// **'{routes} bus routes · {stops} stops in the data pack'**
+  String networkSource(int routes, int stops);
+
+  /// No description provided for @busJourney.
+  ///
+  /// In en, this message translates to:
+  /// **'{routes}: board at {board}, get off at {alight}'**
+  String busJourney(String routes, String board, String alight);
+
+  /// No description provided for @routeHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Route here'**
+  String get routeHere;
+
+  /// No description provided for @pickerHubs.
+  ///
+  /// In en, this message translates to:
+  /// **'Hubs'**
+  String get pickerHubs;
+
+  /// No description provided for @pickerPlaces.
+  ///
+  /// In en, this message translates to:
+  /// **'Places'**
+  String get pickerPlaces;
+
+  /// No description provided for @pickerStops.
+  ///
+  /// In en, this message translates to:
+  /// **'Bus stops'**
+  String get pickerStops;
+
+  /// No description provided for @noResults.
+  ///
+  /// In en, this message translates to:
+  /// **'No results'**
+  String get noResults;
+
+  /// No description provided for @fareCheck.
+  ///
+  /// In en, this message translates to:
+  /// **'Fare check'**
+  String get fareCheck;
+
+  /// No description provided for @fareFromHint.
+  ///
+  /// In en, this message translates to:
+  /// **'From (stop or place)'**
+  String get fareFromHint;
+
+  /// No description provided for @fareToHint.
+  ///
+  /// In en, this message translates to:
+  /// **'To (stop or place)'**
+  String get fareToHint;
+
+  /// No description provided for @fareMode.
+  ///
+  /// In en, this message translates to:
+  /// **'{mode, select, bus{Bus} microbus{Microbus} tempo{Tempo} taxi{Taxi} bikeTaxi{Bike taxi} other{Other}}'**
+  String fareMode(String mode);
+
+  /// No description provided for @fareCheckIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick where you are going to see the official fare and what other travellers reported paying.'**
+  String get fareCheckIntro;
+
+  /// No description provided for @basedOnReports.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{Based on 1 crowdsourced report} other{Based on {count} crowdsourced reports}}'**
+  String basedOnReports(int count);
+
+  /// No description provided for @includesSamples.
+  ///
+  /// In en, this message translates to:
+  /// **'includes sample data'**
+  String get includesSamples;
+
+  /// No description provided for @noFareReports.
+  ///
+  /// In en, this message translates to:
+  /// **'No fare reports for this trip yet – be the first to add one.'**
+  String get noFareReports;
+
+  /// No description provided for @officialFare.
+  ///
+  /// In en, this message translates to:
+  /// **'Official fare: {fare} ({distance}, April 2026 slab)'**
+  String officialFare(String fare, String distance);
+
+  /// No description provided for @meterFare.
+  ///
+  /// In en, this message translates to:
+  /// **'Meter: {fare} ({distance}; Rs 58 + Rs 12 per 200 m)'**
+  String meterFare(String fare, String distance);
+
+  /// No description provided for @appEstimate.
+  ///
+  /// In en, this message translates to:
+  /// **'App estimate: {fare} ({distance})'**
+  String appEstimate(String fare, String distance);
+
+  /// No description provided for @fareLow.
+  ///
+  /// In en, this message translates to:
+  /// **'Low'**
+  String get fareLow;
+
+  /// No description provided for @fareTypical.
+  ///
+  /// In en, this message translates to:
+  /// **'Typical'**
+  String get fareTypical;
+
+  /// No description provided for @fareHigh.
+  ///
+  /// In en, this message translates to:
+  /// **'High'**
+  String get fareHigh;
+
+  /// No description provided for @submitFareReport.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit a fare report'**
+  String get submitFareReport;
+
+  /// No description provided for @farePaid.
+  ///
+  /// In en, this message translates to:
+  /// **'Fare you paid'**
+  String get farePaid;
+
+  /// No description provided for @submit.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit'**
+  String get submit;
+
+  /// No description provided for @fareReportThanks.
+  ///
+  /// In en, this message translates to:
+  /// **'Thanks! Your fare report was added.'**
+  String get fareReportThanks;
+
+  /// No description provided for @loadSampleFares.
+  ///
+  /// In en, this message translates to:
+  /// **'Load sample fare reports'**
+  String get loadSampleFares;
+
+  /// No description provided for @reportsOnDevice.
+  ///
+  /// In en, this message translates to:
+  /// **'Reports are saved on this device for now; sharing them with other travellers comes with the Yatri backend.'**
+  String get reportsOnDevice;
+
+  /// No description provided for @liveConditions.
+  ///
+  /// In en, this message translates to:
+  /// **'Live conditions'**
+  String get liveConditions;
+
+  /// No description provided for @report.
+  ///
+  /// In en, this message translates to:
+  /// **'Report'**
+  String get report;
+
+  /// No description provided for @disruptions.
+  ///
+  /// In en, this message translates to:
+  /// **'Disruptions'**
+  String get disruptions;
+
+  /// No description provided for @events.
+  ///
+  /// In en, this message translates to:
+  /// **'Events'**
+  String get events;
+
+  /// No description provided for @noDisruptions.
+  ///
+  /// In en, this message translates to:
+  /// **'No disruptions reported.'**
+  String get noDisruptions;
+
+  /// No description provided for @noEvents.
+  ///
+  /// In en, this message translates to:
+  /// **'No events today.'**
+  String get noEvents;
+
+  /// No description provided for @allClear.
+  ///
+  /// In en, this message translates to:
+  /// **'All clear'**
+  String get allClear;
+
+  /// No description provided for @allClearBody.
+  ///
+  /// In en, this message translates to:
+  /// **'No disruptions or events reported for today. Seen a road closure, bandh or jatra? Report it to help others.'**
+  String get allClearBody;
+
+  /// No description provided for @loadSampleReports.
+  ///
+  /// In en, this message translates to:
+  /// **'Load sample reports'**
+  String get loadSampleReports;
+
+  /// No description provided for @alertType.
+  ///
+  /// In en, this message translates to:
+  /// **'{type, select, roadClosure{Road closed} traffic{Heavy traffic} bandh{Bandh} closure{Place closed} festival{Event / jatra} other{Alert}}'**
+  String alertType(String type);
+
+  /// No description provided for @alertSource.
+  ///
+  /// In en, this message translates to:
+  /// **'{source, select, official{Official} community{Community} sample{Sample} other{}}'**
+  String alertSource(String source);
+
+  /// No description provided for @confirms.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{no confirms yet} =1{1 confirm} other{{count} confirms}}'**
+  String confirms(int count);
+
+  /// No description provided for @stillThere.
+  ///
+  /// In en, this message translates to:
+  /// **'Still there'**
+  String get stillThere;
+
+  /// No description provided for @confirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirmed'**
+  String get confirmed;
+
+  /// No description provided for @removeReport.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove report'**
+  String get removeReport;
+
+  /// No description provided for @eventWhen.
+  ///
+  /// In en, this message translates to:
+  /// **'{day} {time}'**
+  String eventWhen(String day, String time);
+
+  /// No description provided for @justNow.
+  ///
+  /// In en, this message translates to:
+  /// **'just now'**
+  String get justNow;
+
+  /// No description provided for @minutesAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} min ago'**
+  String minutesAgo(int minutes);
+
+  /// No description provided for @hoursAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'{hours} h ago'**
+  String hoursAgo(int hours);
+
+  /// No description provided for @today.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get today;
+
+  /// No description provided for @tomorrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Tomorrow'**
+  String get tomorrow;
+
+  /// No description provided for @reportTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Report a condition'**
+  String get reportTitle;
+
+  /// No description provided for @whatsHappening.
+  ///
+  /// In en, this message translates to:
+  /// **'What\'s happening?'**
+  String get whatsHappening;
+
+  /// No description provided for @where.
+  ///
+  /// In en, this message translates to:
+  /// **'Where'**
+  String get where;
+
+  /// No description provided for @reportHint.
+  ///
+  /// In en, this message translates to:
+  /// **'{type, select, roadClosure{e.g. Road closed near Maitighar} traffic{e.g. Standstill at Koteshwor} bandh{e.g. Valley-wide bandh until 6 pm} closure{e.g. Garden of Dreams closed today} festival{e.g. Jatra procession at Basantapur} other{Describe it}}'**
+  String reportHint(String type);
+
+  /// No description provided for @reportThanks.
+  ///
+  /// In en, this message translates to:
+  /// **'Thanks! Your report is live on this device.'**
+  String get reportThanks;
+
+  /// No description provided for @planWithAi.
+  ///
+  /// In en, this message translates to:
+  /// **'Plan with AI'**
+  String get planWithAi;
+
+  /// No description provided for @budget.
+  ///
+  /// In en, this message translates to:
+  /// **'Budget'**
+  String get budget;
+
+  /// No description provided for @budgetLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'{style, select, budget{Budget} balanced{Mid-range} comfort{Comfort} other{}}'**
+  String budgetLevel(String style);
+
+  /// No description provided for @interestChoice.
+  ///
+  /// In en, this message translates to:
+  /// **'{choice, select, culture{Culture} food{Food} nature{Nature} views{Views} shopping{Shopping} other{}}'**
+  String interestChoice(String choice);
+
+  /// No description provided for @planOptionsSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'{date} · from {time} · {hours}'**
+  String planOptionsSummary(String date, String time, String hours);
+
+  /// No description provided for @generateItinerary.
+  ///
+  /// In en, this message translates to:
+  /// **'Generate itinerary'**
+  String get generateItinerary;
+
+  /// No description provided for @planning.
+  ///
+  /// In en, this message translates to:
+  /// **'Planning…'**
+  String get planning;
+
+  /// No description provided for @aiOff.
+  ///
+  /// In en, this message translates to:
+  /// **'AI is off (no Gemini API key in this build), so the built-in condition-aware planner is used.'**
+  String get aiOff;
+
+  /// No description provided for @planIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a budget and interests, then generate a plan that fits today’s weather, air quality, opening hours and reported disruptions.'**
+  String get planIntro;
+
+  /// No description provided for @suggestedItinerary.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggested itinerary'**
+  String get suggestedItinerary;
+
+  /// No description provided for @plannedWithAi.
+  ///
+  /// In en, this message translates to:
+  /// **'Planned with Gemini AI, checked against live conditions'**
+  String get plannedWithAi;
+
+  /// No description provided for @plannedOnDevice.
+  ///
+  /// In en, this message translates to:
+  /// **'Planned on this device (condition-aware)'**
+  String get plannedOnDevice;
+
+  /// No description provided for @aiUnavailableFallback.
+  ///
+  /// In en, this message translates to:
+  /// **'AI unavailable right now – used the built-in planner'**
+  String get aiUnavailableFallback;
+
+  /// No description provided for @departVia.
+  ///
+  /// In en, this message translates to:
+  /// **'Depart via {routes}'**
+  String departVia(String routes);
+
+  /// No description provided for @walkFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Walk {duration}'**
+  String walkFor(String duration);
+
+  /// No description provided for @avoids.
+  ///
+  /// In en, this message translates to:
+  /// **'Avoids {title}'**
+  String avoids(String title);
+
+  /// No description provided for @tagRerouted.
+  ///
+  /// In en, this message translates to:
+  /// **'rerouted'**
+  String get tagRerouted;
+
+  /// No description provided for @tagEvent.
+  ///
+  /// In en, this message translates to:
+  /// **'event'**
+  String get tagEvent;
+
+  /// No description provided for @optionalEventNearby.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional: {title} nearby'**
+  String optionalEventNearby(String title);
+
+  /// No description provided for @fromPlaceTo.
+  ///
+  /// In en, this message translates to:
+  /// **'To {place}'**
+  String fromPlaceTo(String place);
+
+  /// No description provided for @staysSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search hotels, guesthouses'**
+  String get staysSearchHint;
+
+  /// No description provided for @stayType.
+  ///
+  /// In en, this message translates to:
+  /// **'{type, select, heritage{Heritage} boutique{Boutique} hotel{Hotel} resort{Resort} guesthouse{Guesthouse} hostel{Hostel} other{Stay}}'**
+  String stayType(String type);
+
+  /// No description provided for @priceBand.
+  ///
+  /// In en, this message translates to:
+  /// **'{band, select, budget{Budget} mid{Mid-range} upscale{Upscale} luxury{Luxury} other{}}'**
+  String priceBand(String band);
+
+  /// No description provided for @perNight.
+  ///
+  /// In en, this message translates to:
+  /// **'{range}/night'**
+  String perNight(String range);
+
+  /// No description provided for @staysDisclaimer.
+  ///
+  /// In en, this message translates to:
+  /// **'Price ranges are approximate for the price band and change by season; check with the property. No ratings are shown until we have real reviews.'**
+  String get staysDisclaimer;
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// No description provided for @unsave.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from saved'**
+  String get unsave;
+
+  /// No description provided for @plannedSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'{category, select, education{Search schools, training centres} fitness{Search gyms, studios} adventure{Search trekking, rafting operators} health{Search clinics, pharmacies} other{Search}}'**
+  String plannedSearchHint(String category);
+
+  /// No description provided for @plannedItemA.
+  ///
+  /// In en, this message translates to:
+  /// **'{category, select, education{Language institute} fitness{Full gym} adventure{Guided trekking} health{General clinic} other{}}'**
+  String plannedItemA(String category);
+
+  /// No description provided for @plannedItemB.
+  ///
+  /// In en, this message translates to:
+  /// **'{category, select, education{Vocational training} fitness{Yoga studio} adventure{White-water rafting} health{Pharmacy} other{}}'**
+  String plannedItemB(String category);
+
+  /// No description provided for @detailsComingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Details coming soon'**
+  String get detailsComingSoon;
+
+  /// No description provided for @plannedNote.
+  ///
+  /// In en, this message translates to:
+  /// **'This category is planned for a later phase of Yatri.'**
+  String get plannedNote;
+
+  /// No description provided for @guestUser.
+  ///
+  /// In en, this message translates to:
+  /// **'Guest user'**
+  String get guestUser;
+
+  /// No description provided for @signInToSync.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to sync'**
+  String get signInToSync;
+
+  /// No description provided for @accountsComingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Accounts and sync are coming soon.'**
+  String get accountsComingSoon;
+
+  /// No description provided for @savedLocations.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved locations'**
+  String get savedLocations;
+
+  /// No description provided for @noSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing saved yet. Tap the bookmark on a place or stay.'**
+  String get noSaved;
+
+  /// No description provided for @settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings;
+
+  /// No description provided for @language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// No description provided for @languageEnglish.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get languageEnglish;
+
+  /// No description provided for @languageNepaliSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'नेपाली (Nepali) – coming soon'**
+  String get languageNepaliSoon;
+
+  /// No description provided for @notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get notifications;
+
+  /// No description provided for @notificationsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Disruptions near your saved places'**
+  String get notificationsHint;
+
+  /// No description provided for @preferencesSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'{visitor} · {budget}'**
+  String preferencesSummary(String visitor, String budget);
+
+  /// No description provided for @aboutData.
+  ///
+  /// In en, this message translates to:
+  /// **'About the data'**
+  String get aboutData;
+
+  /// No description provided for @aboutPlaces.
+  ///
+  /// In en, this message translates to:
+  /// **'Places: 63 attractions with approximate hours and entry fees – verify locally.'**
+  String get aboutPlaces;
+
+  /// No description provided for @aboutWeather.
+  ///
+  /// In en, this message translates to:
+  /// **'Weather and air quality: Open-Meteo. Maps: © OpenStreetMap contributors.'**
+  String get aboutWeather;
+
+  /// No description provided for @aboutAiOn.
+  ///
+  /// In en, this message translates to:
+  /// **'AI planning: Google Gemini ({model}, free tier). Only your preferences and the day’s conditions are sent – never your exact location.'**
+  String aboutAiOn(String model);
+
+  /// No description provided for @aboutAiOff.
+  ///
+  /// In en, this message translates to:
+  /// **'AI planning is off in this build (no API key); plans are made on the device.'**
+  String get aboutAiOff;
 }
 
 class _AppLocalizationsDelegate

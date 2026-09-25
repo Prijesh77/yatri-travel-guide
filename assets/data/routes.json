@@ -1,14 +1,23 @@
 {
-  "version": 1,
+  "version": 2,
   "updated": "2026-09-25",
   "currency": "NPR",
-  "disclaimer": "Sample fares and routes for planning only. Fares change often; confirm with the driver or conductor.",
+  "source": "Yatri – Kathmandu Valley transport data pack (compiled 10 Sep 2026)",
+  "disclaimer": "Bus fares are the official Kathmandu Valley slabs effective 11 Apr 2026. Only Sajha Yatayat 2026 routes are verified; other routes and all stop positions are approximate - check locally.",
   "network": {
     "roadDistanceFactor": 1.35,
-    "maxWalkToStopKm": 1.2,
+    "routeDistanceFactor": 1.15,
+    "maxWalkToStopKm": 1.5,
+    "transferWalkKm": 0.4,
     "rushHours": [
-      { "start": "08:00", "end": "10:30" },
-      { "start": "17:00", "end": "19:00" }
+      {
+        "start": "08:00",
+        "end": "10:30"
+      },
+      {
+        "start": "17:00",
+        "end": "19:00"
+      }
     ],
     "rushHourSpeedFactor": 0.7
   },
@@ -18,179 +27,1916 @@
       "maxKm": 3.0
     },
     "bikeTaxi": {
-      "label": "Bike taxi (Pathao / inDrive)",
+      "label": "Bike taxi (Pathao, inDrive, Yango, Uber, Tootle)",
       "speedKmh": 22,
       "pickupMinutes": 6,
       "baseFare": 40,
       "perKm": 22,
-      "minFare": 80,
-      "fareSpread": 0.15
+      "minFare": 70,
+      "fareSpread": 0.2
     },
     "taxi": {
-      "label": "Taxi",
+      "label": "Metered taxi",
       "speedKmh": 18,
       "pickupMinutes": 5,
-      "baseFare": 100,
-      "perKm": 55,
-      "minFare": 250,
-      "fareSpread": 0.2,
-      "night": { "start": "21:00", "end": "06:00", "multiplier": 1.5 }
+      "baseFare": 58.0,
+      "perKm": 60.0,
+      "minFare": 58.0,
+      "fareSpreadLow": 0.0,
+      "fareSpreadHigh": 0.3,
+      "night": {
+        "start": "21:00",
+        "end": "06:00",
+        "multiplier": 1.3
+      }
     },
     "bus": {
-      "label": "Local bus / microbus",
-      "speedKmh": 13,
+      "label": "Local bus",
+      "speedKmh": 14,
       "waitMinutes": 10,
-      "serviceHours": { "start": "06:00", "end": "20:00" },
+      "serviceHours": {
+        "start": "06:00",
+        "end": "20:00"
+      },
       "fareSlabs": [
-        { "upToKm": 5, "fare": 20 },
-        { "upToKm": 10, "fare": 25 },
-        { "upToKm": 15, "fare": 30 },
-        { "upToKm": 20, "fare": 35 },
-        { "upToKm": 30, "fare": 45 },
-        { "upToKm": 999, "fare": 70 }
+        {
+          "upToKm": 5.0,
+          "fare": 24
+        },
+        {
+          "upToKm": 10.0,
+          "fare": 33
+        },
+        {
+          "upToKm": 15.0,
+          "fare": 39
+        },
+        {
+          "upToKm": 20.0,
+          "fare": 44
+        },
+        {
+          "upToKm": 999,
+          "fare": 50
+        }
       ]
     }
   },
+  "operators": [
+    {
+      "name": "Metered taxi",
+      "modes": "Car",
+      "pricing": "Meter (govt-set)",
+      "fareInfo": "Flag-down Rs58 + Rs12 per 200 m (Apr 2026)",
+      "status": "Operating"
+    },
+    {
+      "name": "Pathao",
+      "modes": "Bike, Car",
+      "pricing": "Fixed algorithmic fare shown upfront; surge possible",
+      "fareInfo": "~20% commission on bike fares (rider-side blog)",
+      "status": "Operating since 2018; market leader in Kathmandu"
+    },
+    {
+      "name": "inDrive",
+      "modes": "Bike, Car, Intercity",
+      "pricing": "Passenger proposes fare, driver accepts/counters",
+      "fareInfo": "~10% commission (blog)",
+      "status": "Operating since 2022"
+    },
+    {
+      "name": "Yango",
+      "modes": "Bike, Car",
+      "pricing": "Algorithmic, low per-km",
+      "fareInfo": "Bikes reportedly from Rs40, cars from Rs180 (blog, Mar 2026)",
+      "status": "Launched Kathmandu May 2025 (with TaxiMandu)"
+    },
+    {
+      "name": "Uber",
+      "modes": "Bike, Uber Go (taxi), Comfort",
+      "pricing": "Upfront fare",
+      "fareInfo": "Uses black-plate taxis via local partner",
+      "status": "Soft launch 20 May 2026; official launch June 2026"
+    },
+    {
+      "name": "Tootle",
+      "modes": "Bike",
+      "pricing": "App-based",
+      "fareInfo": "—",
+      "status": "First ride-hailing app in Nepal (2017)"
+    },
+    {
+      "name": "ZumZum / Sajilo / La Basham",
+      "modes": "Various",
+      "pricing": "App-based",
+      "fareInfo": "—",
+      "status": "Smaller local platforms"
+    }
+  ],
+  "hubs": [
+    {
+      "name": "Ratnapark",
+      "district": "Kathmandu",
+      "notes": "Central hub: microbuses/tempos to Khokana, Baneshwor, Sanothimi, Thamel, Maharajgunj, Lagankhel, Chabahil; Sajha routes 3 and 4 terminate here.",
+      "stopId": "ratnapark"
+    },
+    {
+      "name": "Bhaktapur Bus Park (Bagbazar)",
+      "district": "Kathmandu",
+      "notes": "Buses to Bhaktapur incl. Sanothimi, Chyamasingh, Byasi and Changunarayan (user reports). No direct Nagarkot bus – change at Kamalbinayak.",
+      "stopId": "bagbazar-stop"
+    },
+    {
+      "name": "Purano (Old) Bus Park",
+      "district": "Kathmandu",
+      "notes": "Origin for many OSM-mapped routes (Sakhu, Budhanilkantha, Shivapuri, Patan Dhoka, Attrekhel).",
+      "stopId": "purano-bus-park"
+    },
+    {
+      "name": "New Bus Park, Gongabu",
+      "district": "Kathmandu",
+      "notes": "Ring Road hub; long-distance arrivals from central/western Nepal; Sajha Route 1 terminus.",
+      "stopId": "gongabu-bus-park"
+    },
+    {
+      "name": "Lagankhel Bus Park",
+      "district": "Lalitpur",
+      "notes": "Hub for Patan and south Lalitpur (Godawari, Chapagaun, Lamatar, Tikabhairab); on almost every Sajha route.",
+      "stopId": "lagankhel"
+    },
+    {
+      "name": "Kamalbinayak",
+      "district": "Bhaktapur",
+      "notes": "Terminus for Bhaktapur Minibus Samiti Route 7 from Ratnapark; Nagarkot and Telkot buses leave from the pond-side bus park.",
+      "stopId": "kamalbinayak"
+    },
+    {
+      "name": "Chyamasingh Bus Station",
+      "district": "Bhaktapur",
+      "notes": "Bhaktapur – Ratnapark, – Airport – Gongabu, – Lagankhel, – Kalanki.",
+      "stopId": "chyamasingh"
+    },
+    {
+      "name": "Nala Bus Station (Chyamasingh)",
+      "district": "Bhaktapur",
+      "notes": "Bhaktapur – Tathali – Nala.",
+      "stopId": "chyamasingh"
+    },
+    {
+      "name": "Changu Narayan Bus Station (Dekocha)",
+      "district": "Bhaktapur",
+      "notes": "Bhaktapur – Changunarayan Temple.",
+      "stopId": "changu-narayan-bus-station-dekocha"
+    },
+    {
+      "name": "Suryabinayak Bus Stop",
+      "district": "Bhaktapur",
+      "notes": "On Araniko Highway: Ratnapark, Airport–Gongabu, Lagankhel, Kalanki, Banepa–Panauti, Banepa–Dhulikhel, Pokhara.",
+      "stopId": "suryabinayak"
+    },
+    {
+      "name": "Kalanki",
+      "district": "Kathmandu",
+      "notes": "West-side interchange on Ring Road; Sajha 5 and 6 pass through.",
+      "stopId": "kalanki"
+    }
+  ],
   "stops": [
-    { "id": "ratnapark", "name": "Ratna Park", "lat": 27.70600, "lng": 85.31500 },
-    { "id": "jamal", "name": "Jamal", "lat": 27.70950, "lng": 85.31520 },
-    { "id": "lainchaur", "name": "Lainchaur", "lat": 27.71700, "lng": 85.31450 },
-    { "id": "tripureshwor", "name": "Tripureshwor", "lat": 27.69400, "lng": 85.31400 },
-    { "id": "sundhara", "name": "Sundhara", "lat": 27.70050, "lng": 85.31250 },
-    { "id": "chhetrapati", "name": "Chhetrapati", "lat": 27.71250, "lng": 85.30750 },
-    { "id": "swayambhu", "name": "Swayambhu (Bhuikhel)", "lat": 27.71250, "lng": 85.29350 },
-    { "id": "chhauni", "name": "Chhauni", "lat": 27.70600, "lng": 85.28950 },
-    { "id": "kalanki", "name": "Kalanki", "lat": 27.69350, "lng": 85.28100 },
-    { "id": "balkhu", "name": "Balkhu", "lat": 27.68350, "lng": 85.29800 },
-    { "id": "kirtipur", "name": "Kirtipur (Naya Bazar)", "lat": 27.67900, "lng": 85.28000 },
-    { "id": "chobhar", "name": "Chobhar", "lat": 27.66300, "lng": 85.29600 },
-    { "id": "taudaha", "name": "Taudaha", "lat": 27.64850, "lng": 85.28250 },
-    { "id": "dakshinkali", "name": "Dakshinkali", "lat": 27.60400, "lng": 85.26400 },
-    { "id": "gaushala", "name": "Gaushala (Pashupati)", "lat": 27.70700, "lng": 85.34400 },
-    { "id": "chabahil", "name": "Chabahil", "lat": 27.71750, "lng": 85.34600 },
-    { "id": "boudha", "name": "Boudha", "lat": 27.72060, "lng": 85.35900 },
-    { "id": "jorpati", "name": "Jorpati", "lat": 27.72300, "lng": 85.37500 },
-    { "id": "gongabu", "name": "Gongabu (New Bus Park)", "lat": 27.73550, "lng": 85.31300 },
-    { "id": "maharajgunj", "name": "Maharajgunj", "lat": 27.73800, "lng": 85.33100 },
-    { "id": "budhanilkantha", "name": "Budhanilkantha", "lat": 27.76400, "lng": 85.36200 },
-    { "id": "sundarijal", "name": "Sundarijal", "lat": 27.76900, "lng": 85.42700 },
-    { "id": "koteshwor", "name": "Koteshwor", "lat": 27.67800, "lng": 85.34900 },
-    { "id": "thimi", "name": "Thimi", "lat": 27.68100, "lng": 85.38600 },
-    { "id": "bhaktapur", "name": "Bhaktapur Bus Park", "lat": 27.67150, "lng": 85.42050 },
-    { "id": "kamalbinayak", "name": "Kamal Binayak", "lat": 27.67800, "lng": 85.43900 },
-    { "id": "changunarayan", "name": "Changu Narayan", "lat": 27.71600, "lng": 85.42700 },
-    { "id": "nagarkot", "name": "Nagarkot Bazaar", "lat": 27.71600, "lng": 85.51900 },
-    { "id": "thapathali", "name": "Thapathali", "lat": 27.69000, "lng": 85.31900 },
-    { "id": "kupondole", "name": "Kupondole", "lat": 27.68600, "lng": 85.31600 },
-    { "id": "pulchowk", "name": "Pulchowk", "lat": 27.67800, "lng": 85.31700 },
-    { "id": "jawalakhel", "name": "Jawalakhel", "lat": 27.67290, "lng": 85.31360 },
-    { "id": "patandhoka", "name": "Patan Dhoka", "lat": 27.67800, "lng": 85.32200 },
-    { "id": "lagankhel", "name": "Lagankhel", "lat": 27.66670, "lng": 85.32300 },
-    { "id": "satdobato", "name": "Satdobato", "lat": 27.65900, "lng": 85.32500 },
-    { "id": "godawari", "name": "Godawari", "lat": 27.59600, "lng": 85.37800 },
-    { "id": "nakhu", "name": "Nakhu", "lat": 27.66200, "lng": 85.30500 },
-    { "id": "bungamati", "name": "Bungamati", "lat": 27.62950, "lng": 85.30100 }
+    {
+      "id": "adarsha",
+      "name": "Adarsha",
+      "lat": 27.662,
+      "lng": 85.433,
+      "accuracy": "rough"
+    },
+    {
+      "id": "bnb-hospital",
+      "name": "BNB Hospital",
+      "lat": 27.664,
+      "lng": 85.329,
+      "accuracy": "rough"
+    },
+    {
+      "id": "babar-mahal",
+      "name": "Babar Mahal",
+      "lat": 27.692,
+      "lng": 85.326,
+      "accuracy": "approx"
+    },
+    {
+      "id": "badegaun",
+      "name": "Badegaun",
+      "lat": 27.625,
+      "lng": 85.3445,
+      "accuracy": "rough"
+    },
+    {
+      "id": "bafal",
+      "name": "Bafal",
+      "lat": 27.7,
+      "lng": 85.283,
+      "accuracy": "approx"
+    },
+    {
+      "id": "bagbazar-stop",
+      "name": "Bagbazar Stop",
+      "lat": 27.7055,
+      "lng": 85.3185,
+      "accuracy": "approx"
+    },
+    {
+      "id": "balaju",
+      "name": "Balaju",
+      "lat": 27.731,
+      "lng": 85.299,
+      "accuracy": "approx"
+    },
+    {
+      "id": "banasthali",
+      "name": "Banasthali",
+      "lat": 27.725,
+      "lng": 85.292,
+      "accuracy": "approx"
+    },
+    {
+      "id": "barahi-movies",
+      "name": "Barahi Movies",
+      "lat": 27.668,
+      "lng": 85.423,
+      "accuracy": "rough"
+    },
+    {
+      "id": "basundhara",
+      "name": "Basundhara",
+      "lat": 27.7425,
+      "lng": 85.329,
+      "accuracy": "approx"
+    },
+    {
+      "id": "bhadrakali",
+      "name": "Bhadrakali",
+      "lat": 27.699,
+      "lng": 85.3155,
+      "accuracy": "approx"
+    },
+    {
+      "id": "bhaisepati",
+      "name": "Bhaisepati",
+      "lat": 27.648,
+      "lng": 85.305,
+      "accuracy": "approx"
+    },
+    {
+      "id": "bijuli-bazar",
+      "name": "Bijuli Bazar",
+      "lat": 27.69,
+      "lng": 85.331,
+      "accuracy": "approx"
+    },
+    {
+      "id": "bir-hospital",
+      "name": "Bir Hospital",
+      "lat": 27.705,
+      "lng": 85.3135,
+      "accuracy": "approx"
+    },
+    {
+      "id": "boudha",
+      "name": "Boudha",
+      "lat": 27.7206,
+      "lng": 85.359,
+      "accuracy": "approx"
+    },
+    {
+      "id": "buddhanagar",
+      "name": "Buddhanagar",
+      "lat": 27.6885,
+      "lng": 85.33,
+      "accuracy": "approx"
+    },
+    {
+      "id": "budhanilkantha",
+      "name": "Budhanilkantha",
+      "lat": 27.765,
+      "lng": 85.3627,
+      "accuracy": "approx"
+    },
+    {
+      "id": "bungamati",
+      "name": "Bungamati",
+      "lat": 27.629,
+      "lng": 85.301,
+      "accuracy": "approx"
+    },
+    {
+      "id": "chabahil",
+      "name": "Chabahil",
+      "lat": 27.7175,
+      "lng": 85.346,
+      "accuracy": "approx"
+    },
+    {
+      "id": "changu-narayan-bus-station-dekocha",
+      "name": "Changu Narayan Bus Station (Dekocha)",
+      "lat": 27.68,
+      "lng": 85.424,
+      "accuracy": "rough"
+    },
+    {
+      "id": "changunarayan",
+      "name": "Changunarayan",
+      "lat": 27.716,
+      "lng": 85.427,
+      "accuracy": "approx"
+    },
+    {
+      "id": "chapagaun-dobato",
+      "name": "Chapagaun Dobato",
+      "lat": 27.66,
+      "lng": 85.324,
+      "accuracy": "rough"
+    },
+    {
+      "id": "chapali",
+      "name": "Chapali",
+      "lat": 27.762,
+      "lng": 85.356,
+      "accuracy": "rough"
+    },
+    {
+      "id": "chardobato",
+      "name": "Chardobato",
+      "lat": 27.679,
+      "lng": 85.379,
+      "accuracy": "rough"
+    },
+    {
+      "id": "checkpost",
+      "name": "Checkpost",
+      "lat": 27.689,
+      "lng": 85.234,
+      "accuracy": "rough"
+    },
+    {
+      "id": "chundevi",
+      "name": "Chundevi",
+      "lat": 27.67,
+      "lng": 85.419,
+      "accuracy": "rough"
+    },
+    {
+      "id": "chyamasingh",
+      "name": "Chyamasingh",
+      "lat": 27.672,
+      "lng": 85.44,
+      "accuracy": "rough"
+    },
+    {
+      "id": "dakshindhoka",
+      "name": "Dakshindhoka",
+      "lat": 27.724,
+      "lng": 85.389,
+      "accuracy": "rough"
+    },
+    {
+      "id": "deuba-chowk",
+      "name": "Deuba Chowk",
+      "lat": 27.7645,
+      "lng": 85.359,
+      "accuracy": "rough"
+    },
+    {
+      "id": "dholahiti",
+      "name": "Dholahiti",
+      "lat": 27.642,
+      "lng": 85.324,
+      "accuracy": "rough"
+    },
+    {
+      "id": "dui-adda",
+      "name": "Dui Adda",
+      "lat": 27.693,
+      "lng": 85.272,
+      "accuracy": "rough"
+    },
+    {
+      "id": "dungin",
+      "name": "Dungin",
+      "lat": 27.644,
+      "lng": 85.393,
+      "accuracy": "rough"
+    },
+    {
+      "id": "ekantakuna",
+      "name": "Ekantakuna",
+      "lat": 27.668,
+      "lng": 85.308,
+      "accuracy": "approx"
+    },
+    {
+      "id": "fun-valley",
+      "name": "Fun Valley",
+      "lat": 27.645,
+      "lng": 85.46,
+      "accuracy": "rough"
+    },
+    {
+      "id": "gairigaun",
+      "name": "Gairigaun",
+      "lat": 27.6905,
+      "lng": 85.348,
+      "accuracy": "approx"
+    },
+    {
+      "id": "gangalal-hospital",
+      "name": "Gangalal Hospital",
+      "lat": 27.7455,
+      "lng": 85.3435,
+      "accuracy": "approx"
+    },
+    {
+      "id": "gatthaghar",
+      "name": "Gatthaghar",
+      "lat": 27.678,
+      "lng": 85.374,
+      "accuracy": "approx"
+    },
+    {
+      "id": "gaushala",
+      "name": "Gaushala",
+      "lat": 27.707,
+      "lng": 85.344,
+      "accuracy": "approx"
+    },
+    {
+      "id": "godawari",
+      "name": "Godawari",
+      "lat": 27.596,
+      "lng": 85.378,
+      "accuracy": "approx"
+    },
+    {
+      "id": "golfutar",
+      "name": "Golfutar",
+      "lat": 27.7535,
+      "lng": 85.348,
+      "accuracy": "approx"
+    },
+    {
+      "id": "gongabu",
+      "name": "Gongabu",
+      "lat": 27.735,
+      "lng": 85.314,
+      "accuracy": "approx"
+    },
+    {
+      "id": "gongabu-bus-park",
+      "name": "Gongabu Bus Park",
+      "lat": 27.7355,
+      "lng": 85.313,
+      "accuracy": "approx"
+    },
+    {
+      "id": "gwarko",
+      "name": "Gwarko",
+      "lat": 27.6665,
+      "lng": 85.331,
+      "accuracy": "approx"
+    },
+    {
+      "id": "gyaneshwor",
+      "name": "Gyaneshwor",
+      "lat": 27.709,
+      "lng": 85.331,
+      "accuracy": "approx"
+    },
+    {
+      "id": "handigaun",
+      "name": "Handigaun",
+      "lat": 27.615,
+      "lng": 85.355,
+      "accuracy": "rough"
+    },
+    {
+      "id": "harihar-bhawan",
+      "name": "Harihar Bhawan",
+      "lat": 27.683,
+      "lng": 85.3175,
+      "accuracy": "approx"
+    },
+    {
+      "id": "harisiddhi",
+      "name": "Harisiddhi",
+      "lat": 27.639,
+      "lng": 85.3355,
+      "accuracy": "approx"
+    },
+    {
+      "id": "hattiban",
+      "name": "Hattiban",
+      "lat": 27.648,
+      "lng": 85.33,
+      "accuracy": "approx"
+    },
+    {
+      "id": "hattigauda",
+      "name": "Hattigauda",
+      "lat": 27.759,
+      "lng": 85.353,
+      "accuracy": "approx"
+    },
+    {
+      "id": "imadol-krishna-mandir",
+      "name": "Imadol Krishna Mandir",
+      "lat": 27.6625,
+      "lng": 85.344,
+      "accuracy": "rough"
+    },
+    {
+      "id": "imadol-police-chowki",
+      "name": "Imadol Police Chowki",
+      "lat": 27.664,
+      "lng": 85.347,
+      "accuracy": "rough"
+    },
+    {
+      "id": "jadibuti",
+      "name": "Jadibuti",
+      "lat": 27.674,
+      "lng": 85.357,
+      "accuracy": "approx"
+    },
+    {
+      "id": "jagati",
+      "name": "Jagati",
+      "lat": 27.658,
+      "lng": 85.44,
+      "accuracy": "approx"
+    },
+    {
+      "id": "jamal",
+      "name": "Jamal",
+      "lat": 27.7095,
+      "lng": 85.3152,
+      "accuracy": "approx"
+    },
+    {
+      "id": "jawalakhel",
+      "name": "Jawalakhel",
+      "lat": 27.6729,
+      "lng": 85.3136,
+      "accuracy": "approx"
+    },
+    {
+      "id": "jorpati",
+      "name": "Jorpati",
+      "lat": 27.723,
+      "lng": 85.375,
+      "accuracy": "approx"
+    },
+    {
+      "id": "kist-hospital",
+      "name": "KIST Hospital",
+      "lat": 27.666,
+      "lng": 85.335,
+      "accuracy": "approx"
+    },
+    {
+      "id": "kalanki",
+      "name": "Kalanki",
+      "lat": 27.6935,
+      "lng": 85.281,
+      "accuracy": "approx"
+    },
+    {
+      "id": "kalanki-mandir",
+      "name": "Kalanki Mandir",
+      "lat": 27.6932,
+      "lng": 85.2835,
+      "accuracy": "approx"
+    },
+    {
+      "id": "kalimati",
+      "name": "Kalimati",
+      "lat": 27.698,
+      "lng": 85.299,
+      "accuracy": "approx"
+    },
+    {
+      "id": "kamalbinayak",
+      "name": "Kamalbinayak",
+      "lat": 27.678,
+      "lng": 85.439,
+      "accuracy": "approx"
+    },
+    {
+      "id": "kamalpokhari",
+      "name": "Kamalpokhari",
+      "lat": 27.659,
+      "lng": 85.351,
+      "accuracy": "rough"
+    },
+    {
+      "id": "kanti-hospital",
+      "name": "Kanti Hospital",
+      "lat": 27.7345,
+      "lng": 85.33,
+      "accuracy": "approx"
+    },
+    {
+      "id": "katunje-chowk",
+      "name": "Katunje Chowk",
+      "lat": 27.67,
+      "lng": 85.418,
+      "accuracy": "rough"
+    },
+    {
+      "id": "kausaltar",
+      "name": "Kausaltar",
+      "lat": 27.676,
+      "lng": 85.368,
+      "accuracy": "approx"
+    },
+    {
+      "id": "khumaltar",
+      "name": "Khumaltar",
+      "lat": 27.656,
+      "lng": 85.327,
+      "accuracy": "approx"
+    },
+    {
+      "id": "koteshwor",
+      "name": "Koteshwor",
+      "lat": 27.678,
+      "lng": 85.349,
+      "accuracy": "approx"
+    },
+    {
+      "id": "kumaripati",
+      "name": "Kumaripati",
+      "lat": 27.67,
+      "lng": 85.319,
+      "accuracy": "approx"
+    },
+    {
+      "id": "kupondole",
+      "name": "Kupondole",
+      "lat": 27.6865,
+      "lng": 85.3165,
+      "accuracy": "approx"
+    },
+    {
+      "id": "lagankhel",
+      "name": "Lagankhel",
+      "lat": 27.6667,
+      "lng": 85.323,
+      "accuracy": "approx"
+    },
+    {
+      "id": "lainchaur",
+      "name": "Lainchaur",
+      "lat": 27.717,
+      "lng": 85.3145,
+      "accuracy": "approx"
+    },
+    {
+      "id": "lamatar",
+      "name": "Lamatar",
+      "lat": 27.64,
+      "lng": 85.399,
+      "accuracy": "rough"
+    },
+    {
+      "id": "lazimpat",
+      "name": "Lazimpat",
+      "lat": 27.7215,
+      "lng": 85.3195,
+      "accuracy": "approx"
+    },
+    {
+      "id": "lele",
+      "name": "Lele",
+      "lat": 27.579,
+      "lng": 85.329,
+      "accuracy": "rough"
+    },
+    {
+      "id": "lokanthali",
+      "name": "Lokanthali",
+      "lat": 27.675,
+      "lng": 85.362,
+      "accuracy": "approx"
+    },
+    {
+      "id": "lubhu",
+      "name": "Lubhu",
+      "lat": 27.644,
+      "lng": 85.383,
+      "accuracy": "approx"
+    },
+    {
+      "id": "mahakali",
+      "name": "Mahakali",
+      "lat": 27.676,
+      "lng": 85.43,
+      "accuracy": "rough"
+    },
+    {
+      "id": "mahalaxmi",
+      "name": "Mahalaxmi",
+      "lat": 27.677,
+      "lng": 85.435,
+      "accuracy": "rough"
+    },
+    {
+      "id": "maitighar",
+      "name": "Maitighar",
+      "lat": 27.694,
+      "lng": 85.322,
+      "accuracy": "approx"
+    },
+    {
+      "id": "minbhawan",
+      "name": "Minbhawan",
+      "lat": 27.6865,
+      "lng": 85.3395,
+      "accuracy": "approx"
+    },
+    {
+      "id": "nac",
+      "name": "NAC",
+      "lat": 27.7033,
+      "lng": 85.3122,
+      "accuracy": "approx"
+    },
+    {
+      "id": "nagarkot",
+      "name": "Nagarkot",
+      "lat": 27.716,
+      "lng": 85.519,
+      "accuracy": "approx"
+    },
+    {
+      "id": "naikap",
+      "name": "Naikap",
+      "lat": 27.692,
+      "lng": 85.262,
+      "accuracy": "approx"
+    },
+    {
+      "id": "nakhkhu",
+      "name": "Nakhkhu",
+      "lat": 27.662,
+      "lng": 85.306,
+      "accuracy": "approx"
+    },
+    {
+      "id": "nalinchowk",
+      "name": "Nalinchowk",
+      "lat": 27.651,
+      "lng": 85.452,
+      "accuracy": "rough"
+    },
+    {
+      "id": "narayan-gopal-chowk",
+      "name": "Narayan Gopal Chowk",
+      "lat": 27.74,
+      "lng": 85.3375,
+      "accuracy": "approx"
+    },
+    {
+      "id": "narayansthan",
+      "name": "Narayansthan",
+      "lat": 27.7655,
+      "lng": 85.363,
+      "accuracy": "approx"
+    },
+    {
+      "id": "neuro-hospital",
+      "name": "Neuro Hospital",
+      "lat": 27.7475,
+      "lng": 85.3445,
+      "accuracy": "approx"
+    },
+    {
+      "id": "new-baneshwor",
+      "name": "New Baneshwor",
+      "lat": 27.689,
+      "lng": 85.336,
+      "accuracy": "approx"
+    },
+    {
+      "id": "norvic-hospital",
+      "name": "Norvic Hospital",
+      "lat": 27.6905,
+      "lng": 85.3195,
+      "accuracy": "approx"
+    },
+    {
+      "id": "palase",
+      "name": "Palase",
+      "lat": 27.644,
+      "lng": 85.465,
+      "accuracy": "rough"
+    },
+    {
+      "id": "panipokhari",
+      "name": "Panipokhari",
+      "lat": 27.73,
+      "lng": 85.323,
+      "accuracy": "approx"
+    },
+    {
+      "id": "patan-dhoka",
+      "name": "Patan Dhoka",
+      "lat": 27.678,
+      "lng": 85.322,
+      "accuracy": "approx"
+    },
+    {
+      "id": "patan-hospital",
+      "name": "Patan Hospital",
+      "lat": 27.668,
+      "lng": 85.3205,
+      "accuracy": "approx"
+    },
+    {
+      "id": "prasuti-griha",
+      "name": "Prasuti Griha",
+      "lat": 27.6925,
+      "lng": 85.3185,
+      "accuracy": "approx"
+    },
+    {
+      "id": "president-s-residence",
+      "name": "President's Residence",
+      "lat": 27.7335,
+      "lng": 85.328,
+      "accuracy": "approx"
+    },
+    {
+      "id": "pulchowk",
+      "name": "Pulchowk",
+      "lat": 27.679,
+      "lng": 85.317,
+      "accuracy": "approx"
+    },
+    {
+      "id": "purano-bus-park",
+      "name": "Purano Bus Park",
+      "lat": 27.704,
+      "lng": 85.316,
+      "accuracy": "approx"
+    },
+    {
+      "id": "pyanggaun",
+      "name": "Pyanggaun",
+      "lat": 27.613,
+      "lng": 85.318,
+      "accuracy": "rough"
+    },
+    {
+      "id": "radhe-radhe",
+      "name": "Radhe Radhe",
+      "lat": 27.679,
+      "lng": 85.393,
+      "accuracy": "approx"
+    },
+    {
+      "id": "ratnapark",
+      "name": "Ratnapark",
+      "lat": 27.706,
+      "lng": 85.315,
+      "accuracy": "approx"
+    },
+    {
+      "id": "ratomakai-chowk",
+      "name": "Ratomakai Chowk",
+      "lat": 27.665,
+      "lng": 85.339,
+      "accuracy": "rough"
+    },
+    {
+      "id": "ratopul",
+      "name": "Ratopul",
+      "lat": 27.7075,
+      "lng": 85.3375,
+      "accuracy": "approx"
+    },
+    {
+      "id": "ravi-bhawan",
+      "name": "Ravi Bhawan",
+      "lat": 27.695,
+      "lng": 85.29,
+      "accuracy": "approx"
+    },
+    {
+      "id": "sallaghari",
+      "name": "Sallaghari",
+      "lat": 27.6735,
+      "lng": 85.415,
+      "accuracy": "approx"
+    },
+    {
+      "id": "samakhusi",
+      "name": "Samakhusi",
+      "lat": 27.7355,
+      "lng": 85.3175,
+      "accuracy": "approx"
+    },
+    {
+      "id": "sanagaun",
+      "name": "Sanagaun",
+      "lat": 27.6505,
+      "lng": 85.365,
+      "accuracy": "rough"
+    },
+    {
+      "id": "sanga",
+      "name": "Sanga",
+      "lat": 27.642,
+      "lng": 85.472,
+      "accuracy": "approx"
+    },
+    {
+      "id": "satdobato",
+      "name": "Satdobato",
+      "lat": 27.659,
+      "lng": 85.325,
+      "accuracy": "approx"
+    },
+    {
+      "id": "satungal",
+      "name": "Satungal",
+      "lat": 27.6905,
+      "lng": 85.249,
+      "accuracy": "approx"
+    },
+    {
+      "id": "school-chowk",
+      "name": "School Chowk",
+      "lat": 27.646,
+      "lng": 85.376,
+      "accuracy": "rough"
+    },
+    {
+      "id": "shahid-gate",
+      "name": "Shahid Gate",
+      "lat": 27.7005,
+      "lng": 85.316,
+      "accuracy": "approx"
+    },
+    {
+      "id": "shantinagar",
+      "name": "Shantinagar",
+      "lat": 27.687,
+      "lng": 85.344,
+      "accuracy": "approx"
+    },
+    {
+      "id": "sinamangal",
+      "name": "Sinamangal",
+      "lat": 27.693,
+      "lng": 85.35,
+      "accuracy": "approx"
+    },
+    {
+      "id": "singha-durbar",
+      "name": "Singha Durbar",
+      "lat": 27.6975,
+      "lng": 85.323,
+      "accuracy": "approx"
+    },
+    {
+      "id": "singha-durbar-west",
+      "name": "Singha Durbar West",
+      "lat": 27.698,
+      "lng": 85.319,
+      "accuracy": "approx"
+    },
+    {
+      "id": "sitapaila",
+      "name": "Sitapaila",
+      "lat": 27.7075,
+      "lng": 85.28,
+      "accuracy": "approx"
+    },
+    {
+      "id": "soltimode",
+      "name": "Soltimode",
+      "lat": 27.6955,
+      "lng": 85.296,
+      "accuracy": "approx"
+    },
+    {
+      "id": "srijananagar",
+      "name": "Srijananagar",
+      "lat": 27.678,
+      "lng": 85.401,
+      "accuracy": "approx"
+    },
+    {
+      "id": "sunakothi",
+      "name": "Sunakothi",
+      "lat": 27.633,
+      "lng": 85.323,
+      "accuracy": "approx"
+    },
+    {
+      "id": "sundhara",
+      "name": "Sundhara",
+      "lat": 27.7005,
+      "lng": 85.3125,
+      "accuracy": "approx"
+    },
+    {
+      "id": "suryabinayak",
+      "name": "Suryabinayak",
+      "lat": 27.666,
+      "lng": 85.427,
+      "accuracy": "approx"
+    },
+    {
+      "id": "swayambhu",
+      "name": "Swayambhu",
+      "lat": 27.716,
+      "lng": 85.285,
+      "accuracy": "approx"
+    },
+    {
+      "id": "takhel",
+      "name": "Takhel",
+      "lat": 27.599,
+      "lng": 85.314,
+      "accuracy": "rough"
+    },
+    {
+      "id": "taukhel",
+      "name": "Taukhel",
+      "lat": 27.604,
+      "lng": 85.368,
+      "accuracy": "rough"
+    },
+    {
+      "id": "teaching-hospital",
+      "name": "Teaching Hospital",
+      "lat": 27.736,
+      "lng": 85.3305,
+      "accuracy": "approx"
+    },
+    {
+      "id": "teku",
+      "name": "Teku",
+      "lat": 27.696,
+      "lng": 85.306,
+      "accuracy": "approx"
+    },
+    {
+      "id": "telecom-chowk",
+      "name": "Telecom Chowk",
+      "lat": 27.756,
+      "lng": 85.35,
+      "accuracy": "rough"
+    },
+    {
+      "id": "telkot",
+      "name": "Telkot",
+      "lat": 27.705,
+      "lng": 85.47,
+      "accuracy": "rough"
+    },
+    {
+      "id": "thankot",
+      "name": "Thankot",
+      "lat": 27.688,
+      "lng": 85.216,
+      "accuracy": "approx"
+    },
+    {
+      "id": "thapathali",
+      "name": "Thapathali",
+      "lat": 27.691,
+      "lng": 85.319,
+      "accuracy": "approx"
+    },
+    {
+      "id": "thecho",
+      "name": "Thecho",
+      "lat": 27.62,
+      "lng": 85.32,
+      "accuracy": "approx"
+    },
+    {
+      "id": "thimi",
+      "name": "Thimi",
+      "lat": 27.68,
+      "lng": 85.383,
+      "accuracy": "approx"
+    },
+    {
+      "id": "tikabhairav",
+      "name": "Tikabhairav",
+      "lat": 27.587,
+      "lng": 85.316,
+      "accuracy": "approx"
+    },
+    {
+      "id": "tinkune",
+      "name": "Tinkune",
+      "lat": 27.6855,
+      "lng": 85.347,
+      "accuracy": "approx"
+    },
+    {
+      "id": "tinkune-bhaktapur",
+      "name": "Tinkune (Bhaktapur)",
+      "lat": 27.676,
+      "lng": 85.408,
+      "accuracy": "rough"
+    },
+    {
+      "id": "trauma-centre",
+      "name": "Trauma Centre",
+      "lat": 27.7045,
+      "lng": 85.313,
+      "accuracy": "approx"
+    },
+    {
+      "id": "tribhuvan-international-airport",
+      "name": "Tribhuvan International Airport",
+      "lat": 27.6966,
+      "lng": 85.3591,
+      "accuracy": "approx"
+    },
+    {
+      "id": "tribhuvan-park",
+      "name": "Tribhuvan Park",
+      "lat": 27.688,
+      "lng": 85.223,
+      "accuracy": "approx"
+    },
+    {
+      "id": "tripureshwor",
+      "name": "Tripureshwor",
+      "lat": 27.6945,
+      "lng": 85.314,
+      "accuracy": "approx"
+    }
   ],
   "routes": [
     {
-      "id": "ratnapark-bhaktapur",
-      "name": "Ratna Park – Bhaktapur",
-      "vehicle": "Bus / microbus",
-      "stops": ["ratnapark", "tripureshwor", "thapathali", "koteshwor", "thimi", "bhaktapur", "kamalbinayak"],
-      "frequencyMinutes": 10
-    },
-    {
-      "id": "ratnapark-lagankhel",
-      "name": "Ratna Park – Lagankhel",
-      "vehicle": "Microbus / tempo",
-      "stops": ["ratnapark", "tripureshwor", "thapathali", "kupondole", "pulchowk", "jawalakhel", "lagankhel"],
-      "frequencyMinutes": 5
-    },
-    {
-      "id": "ratnapark-patandhoka",
-      "name": "Ratna Park – Patan Dhoka",
-      "vehicle": "Safa tempo / microbus",
-      "stops": ["ratnapark", "sundhara", "tripureshwor", "thapathali", "kupondole", "patandhoka"],
-      "frequencyMinutes": 8
-    },
-    {
-      "id": "ring-road",
-      "name": "Ring Road (Sajha Yatayat)",
-      "vehicle": "Sajha bus",
-      "stops": ["kalanki", "balkhu", "nakhu", "satdobato", "koteshwor", "gaushala", "chabahil", "maharajgunj", "gongabu", "swayambhu", "kalanki"],
-      "frequencyMinutes": 12
-    },
-    {
-      "id": "ratnapark-boudha",
-      "name": "Ratna Park – Boudha – Jorpati",
-      "vehicle": "Microbus",
-      "stops": ["ratnapark", "jamal", "gaushala", "chabahil", "boudha", "jorpati"],
-      "frequencyMinutes": 6
-    },
-    {
-      "id": "ratnapark-budhanilkantha",
-      "name": "Ratna Park – Budhanilkantha",
-      "vehicle": "Microbus",
-      "stops": ["ratnapark", "jamal", "lainchaur", "maharajgunj", "budhanilkantha"],
-      "frequencyMinutes": 12
-    },
-    {
-      "id": "ratnapark-swayambhu",
-      "name": "Ratna Park – Swayambhu – Chhauni",
-      "vehicle": "Microbus",
-      "stops": ["ratnapark", "jamal", "chhetrapati", "swayambhu", "chhauni", "kalanki"],
-      "frequencyMinutes": 10
-    },
-    {
-      "id": "ratnapark-kirtipur",
-      "name": "Ratna Park – Kirtipur",
-      "vehicle": "Bus / microbus",
-      "stops": ["ratnapark", "sundhara", "tripureshwor", "balkhu", "kirtipur"],
-      "frequencyMinutes": 10
-    },
-    {
-      "id": "ratnapark-dakshinkali",
-      "name": "Ratna Park – Pharping – Dakshinkali",
+      "id": "SAJ-01",
+      "name": "Route 1: Lagankhel – Gongabu Buspark",
+      "operator": "Sajha Yatayat",
       "vehicle": "Bus",
-      "stops": ["ratnapark", "sundhara", "tripureshwor", "balkhu", "chobhar", "taudaha", "dakshinkali"],
-      "frequencyMinutes": 30,
-      "flatFare": 60
+      "status": "verified",
+      "statusLabel": "Verified (official, 2026)",
+      "completeness": "Full",
+      "stops": [
+        "lagankhel",
+        "kumaripati",
+        "jawalakhel",
+        "pulchowk",
+        "harihar-bhawan",
+        "kupondole",
+        "tripureshwor",
+        "nac",
+        "jamal",
+        "lainchaur",
+        "lazimpat",
+        "panipokhari",
+        "president-s-residence",
+        "teaching-hospital",
+        "narayan-gopal-chowk",
+        "basundhara",
+        "samakhusi",
+        "gongabu",
+        "gongabu-bus-park"
+      ],
+      "source": "https://sajhayatayat.com.np/short-routes/",
+      "notes": "Official Intracity Express list."
     },
     {
-      "id": "ratnapark-sundarijal",
-      "name": "Ratna Park – Sundarijal",
-      "vehicle": "Bus / microbus",
-      "stops": ["ratnapark", "jamal", "gaushala", "chabahil", "jorpati", "sundarijal"],
-      "frequencyMinutes": 20
+      "id": "SAJ-02",
+      "name": "Route 2: Lagankhel – Budhanilkantha",
+      "operator": "Sajha Yatayat",
+      "vehicle": "Bus (incl. electric)",
+      "status": "verified",
+      "statusLabel": "Verified (official, 2026)",
+      "completeness": "Full",
+      "stops": [
+        "lagankhel",
+        "kumaripati",
+        "jawalakhel",
+        "pulchowk",
+        "harihar-bhawan",
+        "kupondole",
+        "tripureshwor",
+        "nac",
+        "jamal",
+        "lainchaur",
+        "lazimpat",
+        "panipokhari",
+        "president-s-residence",
+        "teaching-hospital",
+        "narayan-gopal-chowk",
+        "gangalal-hospital",
+        "neuro-hospital",
+        "golfutar",
+        "telecom-chowk",
+        "hattigauda",
+        "chapali",
+        "deuba-chowk",
+        "budhanilkantha"
+      ],
+      "source": "https://sajhayatayat.com.np/short-routes/",
+      "notes": "Official list."
     },
     {
-      "id": "bhaktapur-nagarkot",
-      "name": "Bhaktapur – Nagarkot",
+      "id": "SAJ-03",
+      "name": "Route 3: Godawari – Ratnapark",
+      "operator": "Sajha Yatayat",
       "vehicle": "Bus",
-      "stops": ["bhaktapur", "kamalbinayak", "nagarkot"],
-      "frequencyMinutes": 30,
-      "flatFare": 70
+      "status": "verified",
+      "statusLabel": "Verified (official, 2026)",
+      "completeness": "Full",
+      "stops": [
+        "godawari",
+        "taukhel",
+        "handigaun",
+        "badegaun",
+        "harisiddhi",
+        "hattiban",
+        "khumaltar",
+        "satdobato",
+        "lagankhel",
+        "kumaripati",
+        "jawalakhel",
+        "pulchowk",
+        "harihar-bhawan",
+        "kupondole",
+        "tripureshwor",
+        "nac",
+        "ratnapark"
+      ],
+      "source": "https://sajhayatayat.com.np/short-routes/",
+      "notes": "Site spells 'Handegaun'."
     },
     {
-      "id": "bhaktapur-changunarayan",
-      "name": "Bhaktapur – Changu Narayan",
+      "id": "SAJ-04",
+      "name": "Route 4: Lamatar – Ratnapark",
+      "operator": "Sajha Yatayat",
       "vehicle": "Bus",
-      "stops": ["bhaktapur", "changunarayan"],
+      "status": "verified",
+      "statusLabel": "Verified (official, 2026)",
+      "completeness": "Full",
+      "stops": [
+        "lamatar",
+        "dungin",
+        "lubhu",
+        "school-chowk",
+        "sanagaun",
+        "kamalpokhari",
+        "imadol-krishna-mandir",
+        "ratomakai-chowk",
+        "kist-hospital",
+        "gwarko",
+        "satdobato",
+        "lagankhel",
+        "jawalakhel",
+        "pulchowk",
+        "harihar-bhawan",
+        "kupondole",
+        "tripureshwor",
+        "nac",
+        "jamal",
+        "lazimpat",
+        "lainchaur",
+        "ratnapark"
+      ],
+      "source": "https://sajhayatayat.com.np/short-routes/",
+      "notes": "Stop order after Jamal copied as listed by Sajha; confirm direction on the ground."
+    },
+    {
+      "id": "SAJ-05",
+      "name": "Route 5: Thankot – Tribhuvan International Airport",
+      "operator": "Sajha Yatayat",
+      "vehicle": "Bus (incl. electric)",
+      "status": "verified",
+      "statusLabel": "Verified (official, 2026)",
+      "completeness": "Full",
+      "stops": [
+        "thankot",
+        "tribhuvan-park",
+        "checkpost",
+        "satungal",
+        "naikap",
+        "dui-adda",
+        "kalanki",
+        "kalanki-mandir",
+        "ravi-bhawan",
+        "soltimode",
+        "kalimati",
+        "teku",
+        "tripureshwor",
+        "nac",
+        "ratnapark",
+        "singha-durbar",
+        "maitighar",
+        "bijuli-bazar",
+        "new-baneshwor",
+        "tinkune",
+        "sinamangal",
+        "tribhuvan-international-airport"
+      ],
+      "source": "https://sajhayatayat.com.np/short-routes/",
+      "notes": "Site has typos (Tek, Vipreshwar, N.A.Bh, Tinkun) – normalised to Teku, Tripureshwor, NAC, Tinkune."
+    },
+    {
+      "id": "SAJ-06",
+      "name": "Route 6: Thankot – Budhanilkantha",
+      "operator": "Sajha Yatayat",
+      "vehicle": "Bus",
+      "status": "verified",
+      "statusLabel": "Verified (official, 2026)",
+      "completeness": "Full",
+      "stops": [
+        "thankot",
+        "tribhuvan-park",
+        "checkpost",
+        "satungal",
+        "naikap",
+        "kalanki",
+        "bafal",
+        "sitapaila",
+        "swayambhu",
+        "banasthali",
+        "balaju",
+        "gongabu-bus-park",
+        "samakhusi",
+        "basundhara",
+        "narayan-gopal-chowk",
+        "gangalal-hospital",
+        "neuro-hospital",
+        "golfutar",
+        "hattigauda",
+        "deuba-chowk",
+        "budhanilkantha"
+      ],
+      "source": "https://sajhayatayat.com.np/short-routes/",
+      "notes": "Site says 'Gokarna Bus Park' between Balaju and Samakhusi – almost certainly Gongabu Bus Park; confirm."
+    },
+    {
+      "id": "SAJ-07",
+      "name": "Route 7: Lele – Jamal",
+      "operator": "Sajha Yatayat",
+      "vehicle": "Bus",
+      "status": "verified",
+      "statusLabel": "Verified (official, 2026)",
+      "completeness": "Full",
+      "stops": [
+        "lele",
+        "tikabhairav",
+        "takhel",
+        "pyanggaun",
+        "thecho",
+        "sunakothi",
+        "dholahiti",
+        "khumaltar",
+        "chapagaun-dobato",
+        "lagankhel",
+        "kumaripati",
+        "jawalakhel",
+        "pulchowk",
+        "harihar-bhawan",
+        "kupondole",
+        "tripureshwor",
+        "nac",
+        "jamal"
+      ],
+      "source": "https://sajhayatayat.com.np/short-routes/",
+      "notes": "Official list."
+    },
+    {
+      "id": "SAJ-08",
+      "name": "Route 8: Bungamati – Jamal",
+      "operator": "Sajha Yatayat",
+      "vehicle": "Bus",
+      "status": "verified",
+      "statusLabel": "Verified (official, 2026)",
+      "completeness": "Full",
+      "stops": [
+        "bungamati",
+        "bhaisepati",
+        "nakhkhu",
+        "ekantakuna",
+        "lagankhel",
+        "jawalakhel",
+        "pulchowk",
+        "kupondole",
+        "thapathali",
+        "singha-durbar",
+        "bhadrakali",
+        "nac",
+        "jamal"
+      ],
+      "source": "https://sajhayatayat.com.np/short-routes/",
+      "notes": "Returns via same route."
+    },
+    {
+      "id": "SAJ-N1",
+      "name": "Night e-bus: Lagankhel – Budhanilkantha (hospital corridor)",
+      "operator": "Sajha Yatayat + Kathmandu Metropolitan City",
+      "vehicle": "Electric bus",
+      "status": "announced",
+      "statusLabel": "Announced 2026 – verify running",
+      "completeness": "Key points only",
+      "stops": [
+        "lagankhel",
+        "patan-hospital",
+        "norvic-hospital",
+        "prasuti-griha",
+        "trauma-centre",
+        "bir-hospital",
+        "kanti-hospital",
+        "teaching-hospital",
+        "gangalal-hospital",
+        "budhanilkantha"
+      ],
+      "source": "https://nepsetrading.com/news/kathmandu-to-introduce-night-time-electric-bus-service-with-sajha-yatayat (KMC announcement, Apr 2026)",
+      "notes": "~16 km. Key landmarks only, not full stop list. Announced to start Baisakh 1, 2083.",
+      "frequencyMinutes": 20,
+      "serviceHours": {
+        "start": "20:00",
+        "end": "23:00"
+      }
+    },
+    {
+      "id": "SAJ-N2",
+      "name": "Night e-bus: Thankot – Airport",
+      "operator": "Sajha Yatayat + Kathmandu Metropolitan City",
+      "vehicle": "Electric bus",
+      "status": "announced",
+      "statusLabel": "Announced 2026 – verify running",
+      "completeness": "Key points only",
+      "stops": [
+        "thankot",
+        "satungal",
+        "kalanki",
+        "kalimati",
+        "tripureshwor",
+        "thapathali",
+        "maitighar",
+        "new-baneshwor",
+        "minbhawan",
+        "tinkune",
+        "tribhuvan-international-airport"
+      ],
+      "source": "https://nepsetrading.com/news/kathmandu-to-introduce-night-time-electric-bus-service-with-sajha-yatayat (KMC announcement, Apr 2026)",
+      "notes": "~20 km. Key points only.",
+      "frequencyMinutes": 20,
+      "serviceHours": {
+        "start": "20:00",
+        "end": "23:00"
+      }
+    },
+    {
+      "id": "SAJ-E23",
+      "name": "E-bus: Patan Dhoka – Dakshindhoka",
+      "operator": "Sajha Yatayat",
+      "vehicle": "Electric bus",
+      "status": "reported",
+      "statusLabel": "Reported 2023 – verify running",
+      "completeness": "Full",
+      "stops": [
+        "patan-dhoka",
+        "ratnapark",
+        "gyaneshwor",
+        "ratopul",
+        "gaushala",
+        "chabahil",
+        "boudha",
+        "jorpati",
+        "dakshindhoka"
+      ],
+      "source": "https://english.onlinekhabar.com/electric-buses-sajha-yatayat-new.html (May 2023)",
+      "notes": "Not on Sajha's 2026 official list."
+    },
+    {
+      "id": "SAJ-H2",
+      "name": "Old Line 2: Imadol – Narayansthan",
+      "operator": "Sajha Yatayat",
+      "vehicle": "Bus",
+      "status": "historical",
+      "statusLabel": "Historical – verify",
+      "completeness": "Full",
+      "stops": [
+        "imadol-police-chowki",
+        "imadol-krishna-mandir",
+        "ratomakai-chowk",
+        "kist-hospital",
+        "gwarko",
+        "bnb-hospital",
+        "satdobato",
+        "lagankhel",
+        "jawalakhel",
+        "pulchowk",
+        "kupondole",
+        "thapathali",
+        "tripureshwor",
+        "nac",
+        "jamal",
+        "lazimpat",
+        "panipokhari",
+        "teaching-hospital",
+        "narayan-gopal-chowk",
+        "gangalal-hospital",
+        "golfutar",
+        "hattigauda",
+        "chapali",
+        "narayansthan"
+      ],
+      "source": "https://en.wikipedia.org/wiki/Sajha_Yatayat (from archived 2020 Sajha site)",
+      "notes": "Pre-2020 numbering. Wikipedia lists 'Sallaghari' after Narayan Gopal Chowk – likely an error, omitted."
+    },
+    {
+      "id": "SAJ-H3",
+      "name": "Old Line 3: Ratnapark – Airport",
+      "operator": "Sajha Yatayat",
+      "vehicle": "Bus",
+      "status": "historical",
+      "statusLabel": "Historical – verify",
+      "completeness": "Full",
+      "stops": [
+        "ratnapark",
+        "purano-bus-park",
+        "shahid-gate",
+        "tripureshwor",
+        "thapathali",
+        "maitighar",
+        "babar-mahal",
+        "new-baneshwor",
+        "shantinagar",
+        "tinkune",
+        "gairigaun",
+        "sinamangal",
+        "tribhuvan-international-airport"
+      ],
+      "source": "https://en.wikipedia.org/wiki/Sajha_Yatayat (from archived 2020 Sajha site)",
+      "notes": "Pre-2020 numbering."
+    },
+    {
+      "id": "SAJ-H4",
+      "name": "Old Line 4: Ratnapark – Sanga",
+      "operator": "Sajha Yatayat",
+      "vehicle": "Bus",
+      "status": "historical",
+      "statusLabel": "Historical – verify",
+      "completeness": "Full",
+      "stops": [
+        "ratnapark",
+        "babar-mahal",
+        "new-baneshwor",
+        "tinkune",
+        "koteshwor",
+        "jadibuti",
+        "lokanthali",
+        "gatthaghar",
+        "thimi",
+        "srijananagar",
+        "sallaghari",
+        "suryabinayak",
+        "jagati",
+        "nalinchowk",
+        "fun-valley",
+        "palase",
+        "sanga"
+      ],
+      "source": "https://en.wikipedia.org/wiki/Sajha_Yatayat (from archived 2020 Sajha site)",
+      "notes": "Pre-2020 numbering. Key Bhaktapur corridor."
+    },
+    {
+      "id": "SAJ-H5",
+      "name": "Old Line 5: Swayambhu – Suryabinayak",
+      "operator": "Sajha Yatayat",
+      "vehicle": "Bus",
+      "status": "historical",
+      "statusLabel": "Historical – verify",
+      "completeness": "Full",
+      "stops": [
+        "swayambhu",
+        "sitapaila",
+        "bafal",
+        "kalanki",
+        "kalimati",
+        "teku",
+        "tripureshwor",
+        "nac",
+        "ratnapark",
+        "purano-bus-park",
+        "shahid-gate",
+        "maitighar",
+        "new-baneshwor",
+        "minbhawan",
+        "tinkune",
+        "koteshwor",
+        "jadibuti",
+        "lokanthali",
+        "kausaltar",
+        "radhe-radhe",
+        "srijananagar",
+        "sallaghari",
+        "katunje-chowk",
+        "chundevi",
+        "suryabinayak"
+      ],
+      "source": "https://kathmandupost.com/valley/2017/05/23/20-sajha-buses-to-begin-service-from-tomorrow ; https://en.wikipedia.org/wiki/Sajha_Yatayat (from archived 2020 Sajha site)",
+      "notes": "~27 km. Launched 2017; stop list from Kathmandu Post.",
+      "serviceHours": {
+        "start": "05:30",
+        "end": "20:00"
+      }
+    },
+    {
+      "id": "BKT-01",
+      "name": "Route 7: Ratnapark (Bagbazar) – Kamalbinayak",
+      "operator": "Bhaktapur Minibus Samiti",
+      "vehicle": "Minibus/Bus",
+      "status": "osm",
+      "statusLabel": "OSM-mapped – verify",
+      "completeness": "Full",
+      "stops": [
+        "bagbazar-stop",
+        "purano-bus-park",
+        "bhadrakali",
+        "singha-durbar-west",
+        "maitighar",
+        "buddhanagar",
+        "new-baneshwor",
+        "minbhawan",
+        "shantinagar",
+        "tinkune",
+        "koteshwor",
+        "jadibuti",
+        "lokanthali",
+        "gatthaghar",
+        "thimi",
+        "srijananagar",
+        "tinkune-bhaktapur",
+        "sallaghari",
+        "mahakali",
+        "mahalaxmi",
+        "kamalbinayak"
+      ],
+      "source": "OpenStreetMap relation 2988890 (via nepal-streets.openalfa.com)",
+      "notes": "Main Kathmandu–Bhaktapur city route. OSM stored stops out of order – re-sequenced along Araniko Highway. Mahakali/Mahalaxmi order inside Bhaktapur needs a field check.",
+      "frequencyMinutes": 10,
+      "serviceHours": {
+        "start": "06:00",
+        "end": "18:45"
+      }
+    },
+    {
+      "id": "BKT-02",
+      "name": "Ratnapark – Chyamasingh",
+      "operator": "Madhya Upatyaka Bus Samiti",
+      "vehicle": "Bus",
+      "status": "osm",
+      "statusLabel": "OSM-mapped – verify",
+      "completeness": "Full",
+      "stops": [
+        "chyamasingh",
+        "jagati",
+        "adarsha",
+        "suryabinayak",
+        "barahi-movies",
+        "sallaghari",
+        "tinkune-bhaktapur",
+        "srijananagar",
+        "radhe-radhe",
+        "thimi",
+        "chardobato",
+        "gatthaghar",
+        "kausaltar",
+        "jadibuti",
+        "koteshwor",
+        "tinkune",
+        "shantinagar",
+        "minbhawan",
+        "new-baneshwor",
+        "buddhanagar",
+        "babar-mahal",
+        "maitighar",
+        "singha-durbar-west",
+        "bhadrakali",
+        "shahid-gate",
+        "sundhara",
+        "nac",
+        "bir-hospital",
+        "ratnapark",
+        "purano-bus-park"
+      ],
+      "source": "OpenStreetMap relation 2988983 (via nepal-streets.openalfa.com)",
+      "notes": "Best-ordered Bhaktapur route in OSM. Chyamasingh was listed last in OSM; placed as the start terminal. Duplicate Srijananagar (Nepali/English) merged."
+    },
+    {
+      "id": "BKT-03",
+      "name": "Route 11: Ratnapark – Panauti (via Bhaktapur, Banepa)",
+      "operator": "Not tagged",
+      "vehicle": "Bus",
+      "status": "osm",
+      "statusLabel": "OSM-mapped – verify",
+      "completeness": "Full",
+      "stops": [
+        "purano-bus-park",
+        "bhadrakali",
+        "singha-durbar-west",
+        "maitighar",
+        "buddhanagar",
+        "new-baneshwor",
+        "minbhawan",
+        "tinkune",
+        "koteshwor",
+        "jadibuti",
+        "kausaltar",
+        "gatthaghar",
+        "thimi",
+        "srijananagar",
+        "tinkune-bhaktapur",
+        "sallaghari",
+        "chundevi",
+        "barahi-movies",
+        "suryabinayak",
+        "adarsha",
+        "jagati",
+        "sanga"
+      ],
+      "source": "OpenStreetMap relation 2988891 (via nepal-streets.openalfa.com)",
+      "notes": "Leaves the valley at Sanga. Koteshwor and Purano Bus Park were out of order in OSM – re-sequenced.",
+      "missingStops": [
+        "Bansdol",
+        "Banepa Tindobato",
+        "Panauti"
+      ]
+    },
+    {
+      "id": "BKT-04",
+      "name": "Route 12: Ratnapark – Dhulikhel (via Bhaktapur, Banepa)",
+      "operator": "Not tagged",
+      "vehicle": "Bus",
+      "status": "osm",
+      "statusLabel": "OSM-mapped – verify",
+      "completeness": "Full",
+      "stops": [
+        "purano-bus-park",
+        "bhadrakali",
+        "singha-durbar-west",
+        "maitighar",
+        "buddhanagar",
+        "new-baneshwor",
+        "minbhawan",
+        "shantinagar",
+        "tinkune",
+        "koteshwor",
+        "jadibuti",
+        "lokanthali",
+        "kausaltar",
+        "gatthaghar",
+        "thimi",
+        "srijananagar",
+        "tinkune-bhaktapur",
+        "sallaghari",
+        "chundevi",
+        "barahi-movies",
+        "suryabinayak",
+        "adarsha",
+        "jagati",
+        "sanga"
+      ],
+      "source": "OpenStreetMap relation 2988993 (via nepal-streets.openalfa.com)",
+      "notes": "OSM lists it Dhulikhel→Kathmandu; reversed here. Travellers also report Dhulikhel buses boarding at Bir Hospital stop.",
+      "missingStops": [
+        "Bansdol",
+        "Banepa Tindobato",
+        "Dhulikhel"
+      ]
+    },
+    {
+      "id": "BKT-05",
+      "name": "Kamalbinayak – Nagarkot",
+      "operator": "Bhaktapur Minibus Samiti",
+      "vehicle": "Bus",
+      "status": "osm",
+      "statusLabel": "OSM-mapped – verify",
+      "completeness": "Terminals only",
+      "stops": [
+        "kamalbinayak",
+        "nagarkot"
+      ],
+      "source": "OpenStreetMap relation 2988930 (via nepal-streets.openalfa.com) ; bhaktapur.com/discover/nagarkot ; peacefulcottage.xyz",
+      "notes": "Terminals only – OSM has no intermediate stops. No direct Kathmandu–Nagarkot local bus; change at Kamalbinayak.",
+      "frequencyMinutes": 45,
+      "serviceHours": {
+        "start": "06:00",
+        "end": "17:30"
+      }
+    },
+    {
+      "id": "BKT-06",
+      "name": "Kamalbinayak – Telkot",
+      "operator": "Not specified",
+      "vehicle": "Bus",
+      "status": "local",
+      "statusLabel": "Listed by local site – verify",
+      "completeness": "Terminals only",
+      "stops": [
+        "kamalbinayak",
+        "telkot"
+      ],
+      "source": "infobhaktapur.com/information/bus-park/ (bus station list) ; bhaktapur.com/discover/telkot",
+      "notes": "Terminals only. Telkot sits between Changunarayan and Nagarkot."
+    },
+    {
+      "id": "BKT-07",
+      "name": "Bhaktapur – Changunarayan Temple",
+      "operator": "Not specified",
+      "vehicle": "Bus",
+      "status": "local",
+      "statusLabel": "Listed by local site – verify",
+      "completeness": "Terminals only",
+      "stops": [
+        "changu-narayan-bus-station-dekocha",
+        "changunarayan"
+      ],
+      "source": "infobhaktapur.com/information/bus-park/ (bus station list) ; namastebhaktapur.com/getting-here-away",
+      "notes": "Terminals only.",
       "frequencyMinutes": 30
     },
     {
-      "id": "lagankhel-godawari",
-      "name": "Lagankhel – Godawari",
-      "vehicle": "Bus / microbus",
-      "stops": ["lagankhel", "satdobato", "godawari"],
+      "id": "BKT-08",
+      "name": "Ratnapark – Changu (direct)",
+      "operator": "Bhaktapur Minibus Samiti",
+      "vehicle": "Bus",
+      "status": "osm",
+      "statusLabel": "OSM-mapped – verify",
+      "completeness": "Partial",
+      "stops": [
+        "bagbazar-stop",
+        "chardobato",
+        "changunarayan"
+      ],
+      "source": "OpenStreetMap relation 2988893 (via nepal-streets.openalfa.com) ; namastebhaktapur.com",
+      "notes": "Partial – OSM has only 2 stops. A 2017 guide confirms a direct bus from Purano Bus Park."
+    },
+    {
+      "id": "BKT-10",
+      "name": "Bhaktapur – Airport – Gongabu",
+      "operator": "Not specified",
+      "vehicle": "Bus",
+      "status": "local",
+      "statusLabel": "Listed by local site – verify",
+      "completeness": "Partial",
+      "stops": [
+        "chyamasingh",
+        "suryabinayak",
+        "tribhuvan-international-airport",
+        "gongabu-bus-park"
+      ],
+      "source": "infobhaktapur.com/information/bus-park/ (bus station list)",
+      "notes": "Departs Chyamasingh Bus Station and Suryabinayak stop. Likely a Ring Road route, but intermediate stops are not published – collect in field."
+    },
+    {
+      "id": "BKT-11",
+      "name": "Bhaktapur – Lagankhel",
+      "operator": "Not specified",
+      "vehicle": "Minibus",
+      "status": "local",
+      "statusLabel": "Listed by local site – verify",
+      "completeness": "Partial",
+      "stops": [
+        "chyamasingh",
+        "suryabinayak",
+        "lagankhel"
+      ],
+      "source": "infobhaktapur.com/information/bus-park/ (bus station list) ; bhaktapur.com/discover/nagarkot ; namastebhaktapur.com",
+      "notes": "Some buses run to Kamalbinayak via Naya Thimi, others via Naya Bato – check the board. Bhaktapur stand is just SW of Nawpokhu Pokhari (2017).",
       "frequencyMinutes": 15
     },
     {
-      "id": "lagankhel-bungamati",
-      "name": "Lagankhel – Bungamati",
+      "id": "BKT-12",
+      "name": "Bhaktapur – Kalanki",
+      "operator": "Not specified",
       "vehicle": "Bus",
-      "stops": ["lagankhel", "nakhu", "bungamati"],
-      "frequencyMinutes": 20
+      "status": "local",
+      "statusLabel": "Listed by local site – verify",
+      "completeness": "Partial",
+      "stops": [
+        "chyamasingh",
+        "suryabinayak",
+        "kalanki"
+      ],
+      "source": "infobhaktapur.com/information/bus-park/ (bus station list)",
+      "notes": "Terminals only – collect in field."
     }
   ]
 }

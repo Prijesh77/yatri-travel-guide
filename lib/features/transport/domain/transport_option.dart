@@ -1,3 +1,5 @@
+import 'journey_planner.dart';
+
 enum TransportMode { walk, bikeTaxi, taxi, bus }
 
 /// How the traveller trades cost against comfort when we pick a default
@@ -47,6 +49,12 @@ enum TransportNote {
 
   /// A bandh (strike) is active: vehicles may not run.
   bandh,
+
+  /// Uses a route whose data is not verified for 2026.
+  unverifiedRoute,
+
+  /// Slowed down to avoid a reported road closure or disruption.
+  rerouted,
 }
 
 class TransportOption {
@@ -62,6 +70,7 @@ class TransportOption {
     this.boardAt,
     this.alightAt,
     this.walkMinutes = 0,
+    this.journey,
   });
 
   final TransportMode mode;
@@ -84,5 +93,25 @@ class TransportOption {
   final String? alightAt;
   final int walkMinutes;
 
+  /// Full bus journey (walks, rides, transfer) when found in the network.
+  final Journey? journey;
+
+  int get transfers => journey?.transfers ?? 0;
+
   bool get isEstimate => notes.contains(TransportNote.estimatedRoute);
+
+  TransportOption copyWith({int? durationMinutes, List<TransportNote>? notes}) => TransportOption(
+        mode: mode,
+        durationMinutes: durationMinutes ?? this.durationMinutes,
+        fare: fare,
+        distanceKm: distanceKm,
+        available: available,
+        notes: notes ?? this.notes,
+        routeName: routeName,
+        vehicle: vehicle,
+        boardAt: boardAt,
+        alightAt: alightAt,
+        walkMinutes: walkMinutes,
+        journey: journey,
+      );
 }

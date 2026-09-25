@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:yatri/core/geo/geo_point.dart';
+import 'package:yatri/features/alerts/domain/condition_alert.dart';
 import 'package:yatri/core/time/kathmandu_time.dart';
 import 'package:yatri/features/itinerary/domain/itinerary.dart';
 import 'package:yatri/features/itinerary/domain/itinerary_planner.dart';
@@ -190,6 +191,77 @@ void main() {
       expect(planner.optimizeOrder(thamel, []), isEmpty);
       final two = [byId('nagarkot'), byId('garden-of-dreams')];
       expect(planner.optimizeOrder(thamel, two).first.id, 'garden-of-dreams');
+    });
+  });
+
+  group('advisories', () {
+    final req = request(start: ktm(2026, 10, 1, 10), style: TravelStyle.comfort);
+    // Garden of Dreams (Thamel) -> Patan Durbar Square passes Tripureshwor.
+    final ordered = [byId('garden-of-dreams'), byId('patan-durbar-square')];
+
+    test('a leg through a reported road closure is rerouted and slower', () {
+      final closure = ConditionAlert(
+        id: 'rc',
+        type: AlertType.roadClosure,
+        title: 'Tripureshwor closed',
+        start: ktm(2026, 10, 1),
+        end: ktm(2026, 10, 2),
+        location: const GeoPoint(27.6945, 85.3140),
+        radiusKm: 0.5,
+      );
+      final normal = planner.schedule(req, ordered);
+      final rerouted = planner.schedule(req, ordered, alerts: [closure]);
+      final leg = rerouted.stops[1].leg;
+      expect(leg.isRerouted, isTrue);
+      expect(leg.avoiding!.id, 'rc');
+      expect(leg.chosen!.notes, contains(TransportNote.rerouted));
+      expect(leg.minutes, normal.stops[1].leg.minutes + ItineraryPlanner.detourMinutes(AlertType.roadClosure));
+      expect(rerouted.stops.first.leg.isRerouted, isFalse, reason: 'first leg is a short walk');
+    });
+
+    test('closures elsewhere or outside their time do not reroute', () {
+      final elsewhere = ConditionAlert(
+        id: 'x',
+        type: AlertType.roadClosure,
+        title: 'Far away',
+        start: ktm(2026, 10, 1),
+        end: ktm(2026, 10, 2),
+        location: const GeoPoint(27.7156, 85.5203),
+      );
+      final yesterday = ConditionAlert(
+        id: 'y',
+        type: AlertType.roadClosure,
+        title: 'Over',
+        start: ktm(2026, 9, 30),
+        end: ktm(2026, 9, 30, 23),
+        location: const GeoPoint(27.6945, 85.3140),
+      );
+      final it = planner.schedule(req, ordered, alerts: [elsewhere, yesterday]);
+      expect(it.stops.any((s) => s.leg.isRerouted), isFalse);
+    });
+
+    test('events near a stop during the visit are attached', () {
+      final jatra = ConditionAlert(
+        id: 'ev',
+        type: AlertType.festival,
+        title: 'Procession',
+        start: ktm(2026, 10, 1, 9),
+        end: ktm(2026, 10, 1, 18),
+        location: const GeoPoint(27.6730, 85.3250),
+        radiusKm: 0.5,
+      );
+      final it = planner.schedule(req, ordered, alerts: [jatra]);
+      expect(it.stops[1].nearbyEvents.single.id, 'ev');
+      expect(it.stops[0].nearbyEvents, isEmpty);
+    });
+
+    test('notes and source are carried through', () {
+      final it = planner.schedule(req, ordered,
+          notes: {'garden-of-dreams': 'Quiet morning walk'}, source: PlanSource.ai, summary: 'A calm day');
+      expect(it.stops.first.note, 'Quiet morning walk');
+      expect(it.stops[1].note, isNull);
+      expect(it.source, PlanSource.ai);
+      expect(it.summary, 'A calm day');
     });
   });
 

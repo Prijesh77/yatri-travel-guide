@@ -3,6 +3,8 @@ import 'package:yatri/core/geo/geo_point.dart';
 import 'package:yatri/core/time/kathmandu_time.dart';
 import 'package:yatri/features/alerts/domain/condition_alert.dart';
 import 'package:yatri/features/places/domain/place_category.dart';
+import 'package:yatri/features/stays/domain/stay.dart';
+import 'package:yatri/features/transport/domain/route_network.dart';
 
 import '../../helpers/fixtures.dart';
 
@@ -71,6 +73,42 @@ void main() {
         expect(slabs[i].fare, greaterThanOrEqualTo(slabs[i - 1].fare));
       }
     });
+  });
+
+  group('routes.json (imported data pack)', () {
+    final network = loadBundledNetwork();
+
+    test('every route has a status and at least one verified route exists', () {
+      expect(network.routes.where((r) => r.status == RouteStatus.verified), isNotEmpty);
+      expect(network.routes.where((r) => r.statusLabel.isEmpty), isEmpty);
+    });
+
+    test('hubs point at stops and operators are listed', () {
+      expect(network.hubs, isNotEmpty);
+      expect(network.hubs.where((h) => h.stop != null).length, greaterThanOrEqualTo(network.hubs.length - 1));
+      expect(network.operators.map((o) => o.name), contains('Pathao'));
+    });
+
+    // Verified routes have full stop lists, so neighbouring stops are close.
+    // (Partial / terminals-only routes in the pack legitimately have gaps.)
+    test('consecutive stops on verified routes are close (catches misplaced coordinates)', () {
+      for (final r in network.routes.where((r) => r.status == RouteStatus.verified)) {
+        for (var i = 1; i < r.stops.length; i++) {
+          final km = r.stops[i - 1].location.distanceKmTo(r.stops[i].location);
+          expect(km, lessThan(4), reason: '${r.id}: ${r.stops[i - 1].name} -> ${r.stops[i].name}');
+        }
+      }
+    });
+  });
+
+  test('stays.json parses with valley coordinates and price ranges', () {
+    final catalog = StayCatalog.fromJson(readJson('assets/data/stays.json'));
+    expect(catalog.stays.length, greaterThanOrEqualTo(10));
+    expect(catalog.stays.map((s) => s.id).toSet().length, catalog.stays.length);
+    for (final s in catalog.stays) {
+      expect(ValleyBounds.contains(s.location), isTrue, reason: s.id);
+      expect(catalog.priceRanges[s.priceBand], isNotNull, reason: s.id);
+    }
   });
 
   test('alerts.json parses', () {

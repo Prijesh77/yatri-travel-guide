@@ -1,4 +1,5 @@
 import '../../../core/geo/geo_point.dart';
+import '../../alerts/domain/condition_alert.dart';
 import '../../places/domain/place.dart';
 import '../../places/domain/place_category.dart';
 import '../../recommendations/domain/scored_place.dart';
@@ -55,7 +56,7 @@ class ItineraryRequest {
 }
 
 class ItineraryLeg {
-  const ItineraryLeg({required this.from, required this.to, required this.options, this.chosen});
+  const ItineraryLeg({required this.from, required this.to, required this.options, this.chosen, this.avoiding});
 
   final GeoPoint from;
   final GeoPoint to;
@@ -63,6 +64,11 @@ class ItineraryLeg {
 
   /// Option used for timing (depends on the travel style).
   final TransportOption? chosen;
+
+  /// A reported disruption on the way; the leg is timed to go around it.
+  final ConditionAlert? avoiding;
+
+  bool get isRerouted => avoiding != null;
 
   int get minutes => chosen?.durationMinutes ?? 0;
 }
@@ -87,6 +93,8 @@ class ItineraryStop {
     required this.departure,
     required this.scored,
     this.warnings = const [],
+    this.nearbyEvents = const [],
+    this.note,
   });
 
   final Place place;
@@ -103,14 +111,42 @@ class ItineraryStop {
   final ScoredPlace scored;
   final List<StopWarning> warnings;
 
+  /// Events (jatras, processions) near this stop during the visit.
+  final List<ConditionAlert> nearbyEvents;
+
+  /// Short tip from the AI planner, if the plan came from it.
+  final String? note;
+
   int get waitMinutes => visitStart.difference(arrival).inMinutes;
 }
 
+enum PlanSource {
+  /// Built by the on-device condition-aware planner.
+  local,
+
+  /// Places and order chosen by the AI model, then checked and timed on
+  /// device.
+  ai,
+
+  /// The AI planner was asked but failed (offline, quota, bad answer), so
+  /// the on-device planner was used instead.
+  localFallback,
+}
+
 class Itinerary {
-  const Itinerary({required this.request, required this.stops});
+  const Itinerary({
+    required this.request,
+    required this.stops,
+    this.source = PlanSource.local,
+    this.summary,
+  });
 
   final ItineraryRequest request;
   final List<ItineraryStop> stops;
+  final PlanSource source;
+
+  /// One or two sentences from the AI planner about the day.
+  final String? summary;
 
   bool get isEmpty => stops.isEmpty;
 

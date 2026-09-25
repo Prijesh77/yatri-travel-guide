@@ -2,15 +2,17 @@ import 'dart:math' as math;
 
 import '../../../core/geo/geo_point.dart';
 import '../../alerts/domain/condition_alert.dart';
+import 'journey_planner.dart';
 import 'route_network.dart';
 import 'transport_option.dart';
 
 /// Estimates door-to-door time and fare for each transport mode between two
-/// points, using the fare models and sample routes in [RouteNetwork].
+/// points, using the fare models and bus routes in [RouteNetwork].
 class FareEstimator {
-  const FareEstimator(this.network);
+  FareEstimator(this.network) : journeys = JourneyPlanner(network);
 
   final RouteNetwork network;
+  final JourneyPlanner journeys;
 
   /// Below this distance, walking is the only sensible option.
   static const walkOnlyKm = 0.4;
@@ -44,7 +46,7 @@ class FareEstimator {
     if (km > walk.maxKm) return null;
     return TransportOption(
       mode: TransportMode.walk,
-      durationMinutes: math.max(1, (km / walk.speedKmh * 60).ceil()),
+      durationMinutes: math.max(1, walk.minutesFor(km)),
       fare: const FareRange.free(),
       distanceKm: km,
     );
@@ -74,50 +76,25 @@ class FareEstimator {
     var fare = math.max(model.minFare, model.baseFare + model.perKm * km);
     if (night) fare *= model.nightMultiplier;
     return FareRange(
-      _roundTo10(fare * (1 - model.fareSpread)),
-      _roundTo10(fare * (1 + model.fareSpread)),
+      _roundTo10(fare * (1 - model.fareSpreadLow)),
+      _roundTo10(fare * (1 + model.fareSpreadHigh)),
     );
   }
 
-  /// Best direct bus between two points (within walking distance of a stop
-  /// at each end), else a generic estimate for longer trips.
+  /// Best bus journey (direct or with one change), else a generic estimate
+  /// for trips too long to walk.
   TransportOption? busOption(GeoPoint from, GeoPoint to, DateTime departure, {bool bandh = false}) {
     final settings = network.settings;
     final bus = network.bus;
     final rush = settings.isRushHour(departure);
-    final speed = bus.speedKmh * (rush ? settings.rushHourSpeedFactor : 1);
-    final inService = bus.serviceHours.contains(departure) && !bandh;
-    final notes = <TransportNote>[
-      if (!bus.serviceHours.contains(departure)) TransportNote.noBusService,
-      if (bandh) TransportNote.bandh,
-      if (rush) TransportNote.rushHour,
-    ];
 
-    _BusMatch? best;
-    for (final route in network.routes) {
-      final match = _matchRoute(route, from, to, speed);
-      if (match != null && (best == null || match.totalMinutes < best.totalMinutes)) best = match;
-    }
+    final found = journeys.plan(from, to, departure, maxResults: 1);
+    if (found.isNotEmpty) return busOptionFor(found.first, departure, bandh: bandh);
 
-    if (best != null) {
-      return TransportOption(
-        mode: TransportMode.bus,
-        durationMinutes: best.totalMinutes,
-        fare: FareRange.exact(best.route.flatFare ?? bus.fareForKm(best.rideKm)),
-        distanceKm: best.rideKm,
-        available: inService,
-        notes: notes,
-        routeName: best.route.name,
-        vehicle: best.route.vehicle,
-        boardAt: best.board.name,
-        alightAt: best.alight.name,
-        walkMinutes: best.walkMinutes,
-      );
-    }
-
-    // No sample route: offer a rough estimate for trips too long to walk.
     final km = roadKm(from, to);
     if (km <= network.walk.maxKm) return null;
+    final inService = bus.serviceHours.contains(departure);
+    final speed = bus.speedKmh * (rush ? settings.rushHourSpeedFactor : 1);
     const walkMinutes = 16; // to and from stops, both ends
     const transferMinutes = 10; // likely one change
     return TransportOption(
@@ -125,46 +102,37 @@ class FareEstimator {
       durationMinutes: walkMinutes + bus.waitMinutes + transferMinutes + (km / speed * 60).ceil(),
       fare: FareRange.exact(bus.fareForKm(km)),
       distanceKm: km,
-      available: inService,
-      notes: [...notes, TransportNote.estimatedRoute],
+      available: inService && !bandh,
+      notes: [
+        if (!inService) TransportNote.noBusService,
+        if (bandh) TransportNote.bandh,
+        if (rush) TransportNote.rushHour,
+        TransportNote.estimatedRoute,
+      ],
       walkMinutes: walkMinutes,
     );
   }
 
-  _BusMatch? _matchRoute(BusRoute route, GeoPoint from, GeoPoint to, double speedKmh) {
-    final settings = network.settings;
-    final walk = network.walk;
-    _BusMatch? best;
-    for (var i = 0; i < route.stops.length; i++) {
-      final walkIn = from.distanceKmTo(route.stops[i].location);
-      if (walkIn > settings.maxWalkToStopKm) continue;
-      for (var j = 0; j < route.stops.length; j++) {
-        if (i == j || route.stops[i].id == route.stops[j].id) continue;
-        final walkOut = to.distanceKmTo(route.stops[j].location);
-        if (walkOut > settings.maxWalkToStopKm) continue;
-
-        final rideKm = _alongRouteKm(route, i, j) * settings.roadDistanceFactor;
-        final walkMinutes = ((walkIn + walkOut) * settings.roadDistanceFactor / walk.speedKmh * 60).ceil();
-        final wait = route.frequencyMinutes == null
-            ? network.bus.waitMinutes
-            : math.min(network.bus.waitMinutes, (route.frequencyMinutes! / 2).ceil());
-        final total = walkMinutes + wait + (rideKm / speedKmh * 60).ceil();
-        if (best == null || total < best.totalMinutes) {
-          best = _BusMatch(route, route.stops[i], route.stops[j], rideKm, walkMinutes, total);
-        }
-      }
-    }
-    return best;
-  }
-
-  static double _alongRouteKm(BusRoute route, int i, int j) {
-    final lo = math.min(i, j);
-    final hi = math.max(i, j);
-    var km = 0.0;
-    for (var k = lo; k < hi; k++) {
-      km += route.stops[k].location.distanceKmTo(route.stops[k + 1].location);
-    }
-    return km;
+  TransportOption busOptionFor(Journey journey, DateTime departure, {bool bandh = false}) {
+    final rides = journey.rides;
+    return TransportOption(
+      mode: TransportMode.bus,
+      durationMinutes: journey.totalMinutes,
+      fare: FareRange.exact(journey.fare),
+      distanceKm: journey.rideKm,
+      available: !bandh,
+      notes: [
+        if (bandh) TransportNote.bandh,
+        if (network.settings.isRushHour(departure)) TransportNote.rushHour,
+        if (!journey.allVerified) TransportNote.unverifiedRoute,
+      ],
+      routeName: rides.first.route.name,
+      vehicle: rides.first.route.vehicle,
+      boardAt: rides.first.board.name,
+      alightAt: rides.last.alight.name,
+      walkMinutes: journey.walkMinutes,
+      journey: journey,
+    );
   }
 
   /// Picks the option used for itinerary timing, given the traveller's style.
@@ -195,20 +163,10 @@ class FareEstimator {
       TravelStyle.budget => bus ?? bike ?? walk ?? taxi,
       TravelStyle.balanced => (bus != null && taxi != null && bus.durationMinutes <= taxi.durationMinutes * 1.5 + 10)
           ? bus
-          : (walk != null && walk.distanceKm <= 2 ? walk : (taxi ?? bike ?? bus ?? walk)),
+          : (taxi ?? bike ?? bus ?? walk),
       TravelStyle.comfort => taxi ?? bike ?? bus ?? walk,
     };
   }
 
   static int _roundTo10(double v) => (v / 10).round() * 10;
-}
-
-class _BusMatch {
-  const _BusMatch(this.route, this.board, this.alight, this.rideKm, this.walkMinutes, this.totalMinutes);
-  final BusRoute route;
-  final TransitStop board;
-  final TransitStop alight;
-  final double rideKm;
-  final int walkMinutes;
-  final int totalMinutes;
 }
