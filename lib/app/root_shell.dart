@@ -41,24 +41,45 @@ class _RootShellState extends ConsumerState<RootShell> {
           page(RootTab.profile, const ProfileScreen()),
         ],
       ),
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: tab.index,
-        onDestinationSelected: (i) => ref.read(rootTabProvider.notifier).select(RootTab.values[i]),
-        destinations: [
-          NavigationDestination(icon: const Icon(Icons.home_outlined), selectedIcon: const Icon(Icons.home), label: l10n.tabHome),
-          NavigationDestination(icon: const Icon(Icons.route_outlined), selectedIcon: const Icon(Icons.route), label: l10n.tabTransit),
-          NavigationDestination(
-            icon: Badge(
-              isLabelVisible: disruptions > 0,
-              label: Text('$disruptions'),
-              child: const Icon(Icons.warning_amber_outlined),
+      bottomNavigationBar: DecoratedBox(
+        decoration: BoxDecoration(
+          border: Border(top: BorderSide(color: Theme.of(context).colorScheme.outlineVariant)),
+        ),
+        child: NavigationBar(
+          selectedIndex: tab.index,
+          onDestinationSelected: (i) => ref.read(rootTabProvider.notifier).select(RootTab.values[i]),
+          destinations: [
+            NavigationDestination(
+              icon: const Icon(Icons.home_outlined),
+              selectedIcon: const Icon(Icons.home),
+              label: l10n.tabHome,
             ),
-            selectedIcon: const Icon(Icons.warning_amber),
-            label: l10n.tabAlerts,
-          ),
-          NavigationDestination(icon: const Icon(Icons.auto_awesome_outlined), selectedIcon: const Icon(Icons.auto_awesome), label: l10n.tabPlan),
-          NavigationDestination(icon: const Icon(Icons.person_outline), selectedIcon: const Icon(Icons.person), label: l10n.tabProfile),
-        ],
+            NavigationDestination(
+              icon: const Icon(Icons.route_outlined),
+              selectedIcon: const Icon(Icons.route),
+              label: l10n.tabTransit,
+            ),
+            NavigationDestination(
+              icon: Badge(
+                isLabelVisible: disruptions > 0,
+                label: Text('$disruptions'),
+                child: const Icon(Icons.warning_amber_outlined),
+              ),
+              selectedIcon: const Icon(Icons.warning_amber),
+              label: l10n.tabAlerts,
+            ),
+            NavigationDestination(
+              icon: const Icon(Icons.auto_awesome_outlined),
+              selectedIcon: const Icon(Icons.auto_awesome),
+              label: l10n.tabPlan,
+            ),
+            NavigationDestination(
+              icon: const Icon(Icons.person_outline),
+              selectedIcon: const Icon(Icons.person),
+              label: l10n.tabProfile,
+            ),
+          ],
+        ),
       ),
     );
   }

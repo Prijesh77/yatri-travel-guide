@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../theme/app_theme.dart';
+
 /// Screen title with a rounded icon tile, as in the wireframes
 /// ("Find your route", "Live conditions", "Plan with AI", ...).
 class ScreenHeader extends StatelessWidget {
@@ -21,19 +23,18 @@ class ScreenHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
+      padding: const EdgeInsets.fromLTRB(16, 14, 16, 10),
       child: Row(
         children: [
           Container(
-            width: 36,
-            height: 36,
-            decoration: BoxDecoration(color: background, borderRadius: BorderRadius.circular(10)),
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(color: background, borderRadius: BorderRadius.circular(12)),
             child: Icon(icon, color: color, size: 22),
           ),
-          const SizedBox(width: 10),
+          const SizedBox(width: 12),
           Expanded(
-            child: Text(title,
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700)),
+            child: Text(title, style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: 22)),
           ),
           ?action,
         ],
@@ -50,15 +51,11 @@ class SectionLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+      padding: const EdgeInsets.fromLTRB(16, 22, 16, 10),
       child: Row(
         children: [
           Expanded(
-            child: Text(text,
-                style: Theme.of(context)
-                    .textTheme
-                    .titleSmall
-                    ?.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant)),
+            child: Text(text, style: Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 17)),
           ),
           ?trailing,
         ],
@@ -84,7 +81,14 @@ class TagChip extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           if (icon != null) ...[Icon(icon, size: 13, color: color), const SizedBox(width: 4)],
-          Text(text, style: Theme.of(context).textTheme.labelSmall?.copyWith(color: color, fontWeight: FontWeight.w600)),
+          Flexible(
+            child: Text(
+              text,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: Theme.of(context).textTheme.labelSmall?.copyWith(color: color, fontWeight: FontWeight.w600),
+            ),
+          ),
         ],
       ),
     );
@@ -103,10 +107,12 @@ class SoftCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
     return Material(
-      color: highlighted ? scheme.primaryContainer.withValues(alpha: 0.35) : scheme.surfaceContainer,
+      color: highlighted ? context.yatri.transitContainer : scheme.surfaceContainerLow,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(14),
-        side: highlighted ? BorderSide(color: scheme.primary.withValues(alpha: 0.5)) : BorderSide.none,
+        borderRadius: BorderRadius.circular(16),
+        side: highlighted
+            ? BorderSide(color: context.yatri.transit.withValues(alpha: 0.55), width: 1.5)
+            : BorderSide(color: scheme.outlineVariant.withValues(alpha: 0.7)),
       ),
       clipBehavior: Clip.antiAlias,
       child: InkWell(

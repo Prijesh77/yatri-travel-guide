@@ -31,55 +31,143 @@ class ProfileScreen extends ConsumerWidget {
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
-              child: Row(
-                children: [
-                  const CircleAvatar(radius: 28, backgroundColor: AppTheme.transitBackground, child: Text('GU')),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(l10n.guestUser, style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700)),
-                        InkWell(
-                          onTap: () => ScaffoldMessenger.of(context)
-                              .showSnackBar(SnackBar(content: Text(l10n.accountsComingSoon))),
-                          child: Text(l10n.signInToSync, style: theme.textTheme.bodyMedium?.copyWith(color: AppTheme.seed)),
-                        ),
-                      ],
+              child: Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(colors: [context.yatri.heroStart, context.yatri.heroEnd]),
+                  borderRadius: BorderRadius.circular(AppTheme.radiusL),
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 56,
+                      height: 56,
+                      decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.18), shape: BoxShape.circle),
+                      child: const Icon(Icons.person_outline, color: Colors.white, size: 30),
                     ),
-                  ),
-                ],
+                    const SizedBox(width: 14),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(l10n.guestUser, style: theme.textTheme.titleMedium?.copyWith(color: Colors.white)),
+                          const SizedBox(height: 2),
+                          Text(
+                            l10n.preferencesSummary(
+                                l10n.visitorType(prefs.visitorType.name), l10n.budgetLevel(prefs.travelStyle.name)),
+                            style: theme.textTheme.bodySmall?.copyWith(color: Colors.white.withValues(alpha: 0.8)),
+                          ),
+                          const SizedBox(height: 8),
+                          InkWell(
+                            borderRadius: BorderRadius.circular(20),
+                            onTap: () => ScaffoldMessenger.of(context)
+                                .showSnackBar(SnackBar(content: Text(l10n.accountsComingSoon))),
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20)),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(l10n.signInToSync,
+                                      style: theme.textTheme.labelMedium?.copyWith(
+                                          color: context.yatri.heroStart, fontWeight: FontWeight.w700)),
+                                  const SizedBox(width: 4),
+                                  Icon(Icons.arrow_forward, size: 14, color: context.yatri.heroStart),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-            SectionLabel(l10n.savedLocations),
-            if (saved.isEmpty)
-              Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: Text(l10n.noSaved))
-            else
-              for (final item in saved) _SavedTile(item: item),
+            SectionLabel(l10n.savedLocations,
+                trailing: saved.isEmpty
+                    ? null
+                    : Text('${saved.length}',
+                        style: theme.textTheme.labelLarge?.copyWith(color: theme.colorScheme.onSurfaceVariant))),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: saved.isEmpty
+                  ? Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(AppTheme.radiusL - 2),
+                        border: Border.all(color: theme.colorScheme.outlineVariant),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(Icons.bookmark_border, color: theme.colorScheme.onSurfaceVariant),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Text(l10n.noSaved,
+                                style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurfaceVariant)),
+                          ),
+                        ],
+                      ),
+                    )
+                  : Card(
+                      clipBehavior: Clip.antiAlias,
+                      child: Column(
+                        children: [
+                          for (final (i, item) in saved.indexed) ...[
+                            if (i > 0) const Divider(indent: 72),
+                            _SavedTile(item: item),
+                          ],
+                        ],
+                      ),
+                    ),
+            ),
             SectionLabel(l10n.settings),
-            ListTile(
-              leading: const Icon(Icons.language),
-              title: Text(l10n.language),
-              trailing: Text(l10n.languageEnglish),
-              onTap: () => _chooseLanguage(context),
-            ),
-            SwitchListTile(
-              secondary: const Icon(Icons.notifications_outlined),
-              title: Text(l10n.notifications),
-              subtitle: Text(l10n.notificationsHint),
-              value: prefs.notifications,
-              onChanged: (on) => ref.read(preferencesProvider.notifier).setNotifications(on),
-            ),
-            ListTile(
-              leading: const Icon(Icons.tune),
-              title: Text(l10n.preferences),
-              subtitle: Text(l10n.preferencesSummary(l10n.visitorType(prefs.visitorType.name), l10n.budgetLevel(prefs.travelStyle.name))),
-              onTap: () => showPreferencesSheet(context),
-            ),
-            ListTile(
-              leading: const Icon(Icons.info_outline),
-              title: Text(l10n.aboutData),
-              onTap: () => _about(context, ref),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Card(
+                clipBehavior: Clip.antiAlias,
+                child: Column(
+                  children: [
+                    ListTile(
+                      leading: const Icon(Icons.language),
+                      title: Text(l10n.language),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(l10n.languageEnglish,
+                              style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurfaceVariant)),
+                          const Icon(Icons.chevron_right),
+                        ],
+                      ),
+                      onTap: () => _chooseLanguage(context),
+                    ),
+                    const Divider(indent: 56),
+                    SwitchListTile(
+                      secondary: const Icon(Icons.notifications_outlined),
+                      title: Text(l10n.notifications),
+                      subtitle: Text(l10n.notificationsHint),
+                      value: prefs.notifications,
+                      onChanged: (on) => ref.read(preferencesProvider.notifier).setNotifications(on),
+                    ),
+                    const Divider(indent: 56),
+                    ListTile(
+                      leading: const Icon(Icons.tune),
+                      title: Text(l10n.preferences),
+                      subtitle: Text(l10n.preferencesSummary(
+                          l10n.visitorType(prefs.visitorType.name), l10n.budgetLevel(prefs.travelStyle.name))),
+                      trailing: const Icon(Icons.chevron_right),
+                      onTap: () => showPreferencesSheet(context),
+                    ),
+                    const Divider(indent: 56),
+                    ListTile(
+                      leading: const Icon(Icons.info_outline),
+                      title: Text(l10n.aboutData),
+                      trailing: const Icon(Icons.chevron_right),
+                      onTap: () => _about(context, ref),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
@@ -159,7 +247,12 @@ class _SavedTile extends ConsumerWidget {
     };
     if (title == null) return const SizedBox.shrink();
     return ListTile(
-      leading: CircleAvatar(backgroundColor: AppTheme.transitBackground, child: Icon(icon, color: AppTheme.seed)),
+      leading: Container(
+        width: 40,
+        height: 40,
+        decoration: BoxDecoration(color: context.yatri.transitContainer, borderRadius: BorderRadius.circular(12)),
+        child: Icon(icon, color: context.yatri.transit, size: 20),
+      ),
       title: Text(title),
       subtitle: Text(subtitle),
       onTap: open,

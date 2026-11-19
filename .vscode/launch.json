@@ -1,0 +1,46 @@
+{
+  // Run and Debug (Ctrl+Shift+D) -> pick a configuration -> F5.
+  // AI planning: set a GEMINI_API_KEY environment variable before starting
+  // VS Code (see README, "Run in VS Code"). If it is not set, the app uses the
+  // on-device planner. The key is read from your environment and never committed.
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Yatri (Chrome)",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main.dart",
+      "deviceId": "chrome",
+      "toolArgs": ["--dart-define=GEMINI_API_KEY=${env:GEMINI_API_KEY}"]
+    },
+    {
+      "name": "Yatri (Edge)",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main.dart",
+      "deviceId": "edge",
+      "toolArgs": ["--dart-define=GEMINI_API_KEY=${env:GEMINI_API_KEY}"]
+    },
+    {
+      "name": "Yatri (selected device)",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main.dart",
+      "toolArgs": ["--dart-define=GEMINI_API_KEY=${env:GEMINI_API_KEY}"]
+    },
+    {
+      "name": "Yatri (selected device, profile mode)",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main.dart",
+      "flutterMode": "profile",
+      "toolArgs": ["--dart-define=GEMINI_API_KEY=${env:GEMINI_API_KEY}"]
+    },
+    {
+      "name": "All tests",
+      "type": "dart",
+      "request": "launch",
+      "program": "test/"
+    }
+  ]
+}

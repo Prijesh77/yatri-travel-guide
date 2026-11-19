@@ -57,7 +57,7 @@ class StayDetailScreen extends ConsumerWidget {
           Text(stay.name, style: theme.textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w700)),
           const SizedBox(height: 6),
           Wrap(spacing: 6, children: [
-            TagChip(l10n.stayType(stay.type.name), color: AppTheme.seed, background: AppTheme.transitBackground),
+            TagChip(l10n.stayType(stay.type.name), color: context.yatri.transit, background: context.yatri.transitContainer),
             TagChip(l10n.priceBand(stay.priceBand.name),
                 color: theme.colorScheme.onSurfaceVariant, background: theme.colorScheme.surfaceContainerHighest),
           ]),

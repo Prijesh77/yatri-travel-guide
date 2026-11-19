@@ -96,7 +96,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
             ),
           for (final r in routes)
             ListTile(
-              leading: const Icon(Icons.route, color: AppTheme.seed),
+              leading: Icon(Icons.route, color: context.yatri.transit),
               title: Text('${r.id} · ${r.name}'),
               subtitle: Text(r.stops.map((s) => s.name).join(' → '), maxLines: 2, overflow: TextOverflow.ellipsis),
             ),

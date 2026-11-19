@@ -29,6 +29,14 @@ enum InterestChoice {
   const InterestChoice(this.categories);
   final Set<PlaceCategory> categories;
 
+  IconData get icon => switch (this) {
+        culture => Icons.account_balance_outlined,
+        food => Icons.restaurant_outlined,
+        nature => Icons.park_outlined,
+        views => Icons.landscape_outlined,
+        shopping => Icons.shopping_bag_outlined,
+      };
+
   static Set<InterestChoice> fromCategories(Set<PlaceCategory> cats) =>
       {for (final c in values) if (c.categories.any(cats.contains)) c};
 }
@@ -50,6 +58,10 @@ class _PlanScreenState extends ConsumerState<PlanScreen> {
   late double _hours;
   StartPreset? _preset = StartPreset.thamel; // null = my location
   bool _showOptions = false;
+
+  /// With a plan on screen the form collapses to a summary, so the plan is
+  /// what the traveller sees first.
+  bool _editing = false;
 
   @override
   void initState() {
@@ -85,76 +97,194 @@ class _PlanScreenState extends ConsumerState<PlanScreen> {
     final aiEnabled = ref.watch(aiConfigProvider).isEnabled;
     final loading = itinerary.isLoading;
 
+    final theme = Theme.of(context);
+    final y = context.yatri;
+
     final form = Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         ScreenHeader(
           icon: Icons.auto_awesome,
           title: l10n.planWithAi,
-          color: AppTheme.aiColor,
-          background: AppTheme.aiBackground,
+          color: y.ai,
+          background: y.aiContainer,
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text(l10n.budget, style: Theme.of(context).textTheme.labelLarge),
-              const SizedBox(height: 6),
-              DropdownButtonFormField<TravelStyle>(
-                initialValue: _budget,
-                isExpanded: true,
-                items: [
-                  for (final s in TravelStyle.values) DropdownMenuItem(value: s, child: Text(l10n.budgetLevel(s.name))),
+              _FieldLabel(l10n.budget),
+              SegmentedButton<TravelStyle>(
+                segments: [
+                  for (final s in TravelStyle.values)
+                    ButtonSegment(
+                      value: s,
+                      label: Text(l10n.budgetLevel(s.name), maxLines: 1, overflow: TextOverflow.ellipsis),
+                      icon: Icon(switch (s) {
+                        TravelStyle.budget => Icons.savings_outlined,
+                        TravelStyle.balanced => Icons.balance,
+                        TravelStyle.comfort => Icons.local_taxi_outlined,
+                      }),
+                    ),
                 ],
-                onChanged: (s) => setState(() => _budget = s ?? _budget),
+                selected: {_budget},
+                showSelectedIcon: false,
+                onSelectionChanged: (s) => setState(() => _budget = s.first),
               ),
-              const SizedBox(height: 4),
-              Text(l10n.travelStyleHint(_budget.name), style: Theme.of(context).textTheme.bodySmall),
-              const SizedBox(height: 14),
-              Text(l10n.planInterests, style: Theme.of(context).textTheme.labelLarge),
               const SizedBox(height: 6),
+              Text(l10n.travelStyleHint(_budget.name),
+                  style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.onSurfaceVariant)),
+              _FieldLabel(l10n.planInterests),
               Wrap(
                 spacing: 8,
-                runSpacing: 6,
+                runSpacing: 8,
                 children: [
                   for (final i in InterestChoice.values)
                     FilterChip(
+                      avatar: Icon(i.icon, size: 18, color: _interests.contains(i) ? y.ai : null),
                       label: Text(l10n.interestChoice(i.name)),
                       selected: _interests.contains(i),
-                      selectedColor: AppTheme.aiBackground,
+                      selectedColor: y.aiContainer,
+                      side: _interests.contains(i) ? BorderSide(color: y.ai.withValues(alpha: 0.5)) : null,
+                      labelStyle: _interests.contains(i)
+                          ? theme.textTheme.labelLarge?.copyWith(color: y.ai, fontWeight: FontWeight.w700)
+                          : null,
                       onSelected: (on) => setState(() => on ? _interests.add(i) : _interests.remove(i)),
                     ),
                 ],
               ),
-              TextButton.icon(
-                style: TextButton.styleFrom(alignment: Alignment.centerLeft, padding: EdgeInsets.zero),
-                onPressed: () => setState(() => _showOptions = !_showOptions),
-                icon: Icon(_showOptions ? Icons.expand_less : Icons.expand_more),
-                label: Text(l10n.planOptionsSummary(
-                  DateFormat.MMMEd(l10n.localeName).format(_date),
-                  l10n.minuteOfDayTime(_startMinute),
-                  l10n.hoursValue(_hours.round()),
-                )),
+              _FieldLabel(l10n.tripDetails),
+              Card(
+                clipBehavior: Clip.antiAlias,
+                child: Column(
+                  children: [
+                    InkWell(
+                      onTap: () => setState(() => _showOptions = !_showOptions),
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(14, 12, 8, 12),
+                        child: Row(
+                          children: [
+                            Icon(Icons.event_note_outlined, color: theme.colorScheme.onSurfaceVariant),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: Text(
+                                l10n.planOptionsSummary(
+                                  DateFormat.MMMEd(l10n.localeName).format(_date),
+                                  l10n.minuteOfDayTime(_startMinute),
+                                  l10n.hoursValue(_hours.round()),
+                                ),
+                                style: theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
+                              ),
+                            ),
+                            AnimatedRotation(
+                              turns: _showOptions ? 0.5 : 0,
+                              duration: const Duration(milliseconds: 200),
+                              child: const Icon(Icons.expand_more),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    AnimatedSize(
+                      duration: const Duration(milliseconds: 220),
+                      curve: Curves.easeOutCubic,
+                      alignment: Alignment.topCenter,
+                      child: _showOptions
+                          ? Padding(padding: const EdgeInsets.fromLTRB(14, 0, 14, 8), child: _options(context))
+                          : const SizedBox(width: double.infinity),
+                    ),
+                  ],
+                ),
               ),
-              if (_showOptions) _options(context),
-              const SizedBox(height: 6),
+              const SizedBox(height: 16),
               FilledButton.icon(
                 style: FilledButton.styleFrom(
-                  minimumSize: const Size.fromHeight(48),
-                  backgroundColor: const Color(0xFF2F80D8),
+                  minimumSize: const Size.fromHeight(52),
+                  backgroundColor: y.ai,
+                  foregroundColor: y.aiContainer,
                 ),
                 icon: loading
-                    ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
+                    ? SizedBox(
+                        width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2, color: y.aiContainer))
                     : const Icon(Icons.auto_awesome),
                 label: Text(loading ? l10n.planning : l10n.generateItinerary),
-                onPressed: loading ? null : () => ref.read(itineraryControllerProvider.notifier).plan(_request()),
+                onPressed: loading
+                    ? null
+                    : () {
+                        setState(() => _editing = false);
+                        ref.read(itineraryControllerProvider.notifier).plan(_request());
+                      },
               ),
               if (!aiEnabled) ...[
-                const SizedBox(height: 6),
-                Text(l10n.aiOff, style: Theme.of(context).textTheme.bodySmall),
+                const SizedBox(height: 10),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Icon(Icons.info_outline, size: 16, color: theme.colorScheme.onSurfaceVariant),
+                    const SizedBox(width: 6),
+                    Expanded(
+                      child: Text(l10n.aiOff,
+                          style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.onSurfaceVariant)),
+                    ),
+                  ],
+                ),
               ],
             ],
+          ),
+        ),
+      ],
+    );
+
+    final compact = Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        ScreenHeader(icon: Icons.auto_awesome, title: l10n.planWithAi, color: y.ai, background: y.aiContainer),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Card(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(14, 10, 8, 10),
+              child: Row(
+                children: [
+                  Icon(Icons.tune, color: theme.colorScheme.onSurfaceVariant),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          [
+                            l10n.budgetLevel(_budget.name),
+                            if (_interests.isEmpty)
+                              l10n.anyInterests
+                            else
+                              [for (final i in InterestChoice.values) if (_interests.contains(i)) l10n.interestChoice(i.name)]
+                                  .join(', '),
+                          ].join(' · '),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
+                        ),
+                        Text(
+                          l10n.planOptionsSummary(
+                            DateFormat.MMMEd(l10n.localeName).format(_date),
+                            l10n.minuteOfDayTime(_startMinute),
+                            l10n.hoursValue(_hours.round()),
+                          ),
+                          style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+                        ),
+                      ],
+                    ),
+                  ),
+                  TextButton.icon(
+                    onPressed: () => setState(() => _editing = true),
+                    icon: const Icon(Icons.edit_outlined, size: 18),
+                    label: Text(l10n.editPlan),
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
       ],
@@ -163,18 +293,15 @@ class _PlanScreenState extends ConsumerState<PlanScreen> {
     return Scaffold(
       body: SafeArea(
         child: switch (itinerary) {
-          AsyncValue(:final value?) when !loading => PlanTimeline(itinerary: value, header: form),
+          AsyncValue(:final value?) when !loading =>
+            PlanTimeline(itinerary: value, header: _editing ? form : compact),
           AsyncError(:final error) when !loading => ListView(children: [
               form,
               Padding(padding: const EdgeInsets.all(16), child: Text('${l10n.errorLoading}\n$error')),
             ]),
           _ => ListView(children: [
               form,
-              if (!loading)
-                Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Text(l10n.planIntro, style: Theme.of(context).textTheme.bodyMedium),
-                ),
+              if (!loading) const _PlanIntro(),
             ]),
         },
       ),
@@ -224,8 +351,9 @@ class _PlanScreenState extends ConsumerState<PlanScreen> {
             ),
           ],
         ),
-        const SizedBox(height: 8),
-        Text('${l10n.planTimeAvailable}: ${l10n.hoursValue(_hours.round())}'),
+        const SizedBox(height: 12),
+        Text('${l10n.planTimeAvailable}: ${l10n.hoursValue(_hours.round())}',
+            style: Theme.of(context).textTheme.labelLarge),
         Slider(
           value: _hours,
           min: 1,
@@ -246,6 +374,70 @@ class _PlanScreenState extends ConsumerState<PlanScreen> {
         ),
         const SizedBox(height: 8),
       ],
+    );
+  }
+}
+
+class _FieldLabel extends StatelessWidget {
+  const _FieldLabel(this.text);
+  final String text;
+
+  @override
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.only(top: 18, bottom: 8),
+        child: Text(text, style: Theme.of(context).textTheme.titleSmall),
+      );
+}
+
+/// Shown before the first plan: what the planner does, in three steps.
+class _PlanIntro extends StatelessWidget {
+  const _PlanIntro();
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final theme = Theme.of(context);
+    final y = context.yatri;
+    final steps = [
+      (Icons.tune, l10n.planEmptyStep1),
+      (Icons.schedule, l10n.planEmptyStep2),
+      (Icons.alt_route, l10n.planEmptyStep3),
+    ];
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 24, 16, 24),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(AppTheme.radiusL),
+          border: Border.all(color: theme.colorScheme.outlineVariant),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(l10n.planEmptyTitle, style: theme.textTheme.titleMedium),
+            const SizedBox(height: 4),
+            Text(l10n.planIntro, style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.onSurfaceVariant)),
+            const SizedBox(height: 14),
+            for (final (i, (icon, text)) in steps.indexed)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 32,
+                      height: 32,
+                      decoration: BoxDecoration(color: y.aiContainer, borderRadius: BorderRadius.circular(10)),
+                      child: Icon(icon, size: 18, color: y.ai),
+                    ),
+                    const SizedBox(width: 12),
+                    Text('${i + 1}. ', style: theme.textTheme.labelLarge?.copyWith(color: y.ai)),
+                    Expanded(child: Text(text, style: theme.textTheme.bodyMedium)),
+                  ],
+                ),
+              ),
+          ],
+        ),
+      ),
     );
   }
 }

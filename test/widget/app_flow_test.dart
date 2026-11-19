@@ -102,12 +102,26 @@ void main() {
     await tester.pumpAndSettle();
   }
 
+  /// Drags [scrollable] until [finder] is built, then centres the first match
+  /// so taps don't land at the edge of the viewport.
+  Future<void> scrollToCenter(WidgetTester tester, Finder finder, Finder scrollable, {double dy = -250}) async {
+    for (var i = 0; i < 40 && finder.evaluate().isEmpty; i++) {
+      await tester.drag(scrollable, Offset(0, dy));
+      await tester.pumpAndSettle();
+    }
+    expect(finder, findsWidgets);
+    await Scrollable.ensureVisible(tester.element(finder.first), alignment: 0.5);
+    await tester.pumpAndSettle();
+  }
+
   Finder scrollableOf(Type screen) => find.descendant(of: find.byType(screen), matching: find.byType(Scrollable)).first;
 
   testWidgets('home follows the wireframe and ranks for the rain', (tester) async {
     await pumpApp(tester, weather: reportOf(rainy, now));
 
     expect(find.text('Yatri'), findsOneWidget);
+    expect(find.text('Good afternoon'), findsOneWidget);
+    expect(find.text('21°'), findsOneWidget);
     expect(find.text('Plan a trip with AI'), findsOneWidget);
     for (final label in ['Transport', 'Stays', 'Education', 'Fitness', 'Adventure', 'Health']) {
       expect(find.text(label), findsOneWidget, reason: label);
@@ -115,7 +129,6 @@ void main() {
     expect(find.text('No disruptions'), findsOneWidget);
 
     await tester.scrollUntilVisible(find.text('Good for today'), 300, scrollable: find.byType(Scrollable).first);
-    expect(find.text('21°'), findsOneWidget);
     final rainReason = find.textContaining('Indoor, good for a rainy afternoon');
     for (var i = 0; i < 20 && rainReason.evaluate().isEmpty; i++) {
       await tester.drag(find.byType(Scrollable).first, const Offset(0, -300));
@@ -137,7 +150,7 @@ void main() {
   testWidgets('place detail adds to the plan', (tester) async {
     await pumpApp(tester, weather: reportOf(sunny, now));
 
-    await tester.scrollUntilVisible(find.text('Patan Museum'), 300, scrollable: find.byType(Scrollable).first);
+    await scrollToCenter(tester, find.text('Patan Museum'), find.byType(Scrollable).first);
     await tester.tap(find.text('Patan Museum'));
     await tester.pumpAndSettle();
     expect(find.text('10:30–17:30'), findsOneWidget);
@@ -171,7 +184,7 @@ void main() {
 
     final before = stopCount();
     expect(before, greaterThan(1));
-    await tester.scrollUntilVisible(find.byTooltip('Remove stop').first, 200, scrollable: scrollableOf(Scaffold));
+    await scrollToCenter(tester, find.byTooltip('Remove stop'), scrollableOf(Scaffold), dy: -200);
     await tester.tap(find.byTooltip('Remove stop').first);
     await tester.pumpAndSettle();
     await tester.scrollUntilVisible(find.textContaining(RegExp(r'\d+ stops? · ')), -200, scrollable: scrollableOf(Scaffold));

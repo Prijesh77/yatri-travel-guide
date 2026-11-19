@@ -1,0 +1,19 @@
+{
+  "dart.lineLength": 120,
+  "[dart]": {
+    "editor.rulers": [120],
+    "editor.formatOnSave": false,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
+  "dart.previewFlutterUiGuides": true,
+  "dart.flutterHotReloadOnSave": "all",
+  "files.exclude": {
+    "**/.dart_tool": true,
+    "**/build": true
+  },
+  "search.exclude": {
+    "lib/l10n/generated/**": true,
+    "assets/data/routes.json": true
+  }
+}

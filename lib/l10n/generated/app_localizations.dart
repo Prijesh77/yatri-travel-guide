@@ -1815,6 +1815,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'AI planning is off in this build (no API key); plans are made on the device.'**
   String get aboutAiOff;
+
+  /// No description provided for @greeting.
+  ///
+  /// In en, this message translates to:
+  /// **'{dayPart, select, earlyMorning{Good morning} morning{Good morning} afternoon{Good afternoon} evening{Good evening} other{Good evening}}'**
+  String greeting(String dayPart);
+
+  /// No description provided for @explore.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore'**
+  String get explore;
+
+  /// No description provided for @soon.
+  ///
+  /// In en, this message translates to:
+  /// **'Soon'**
+  String get soon;
+
+  /// No description provided for @catTransportHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Buses, fares & hubs'**
+  String get catTransportHint;
+
+  /// No description provided for @catStaysHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Hotels & guesthouses'**
+  String get catStaysHint;
+
+  /// No description provided for @moreForToday.
+  ///
+  /// In en, this message translates to:
+  /// **'More for today'**
+  String get moreForToday;
+
+  /// No description provided for @weatherLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking the weather…'**
+  String get weatherLoading;
+
+  /// No description provided for @planEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your day, planned around the conditions'**
+  String get planEmptyTitle;
+
+  /// No description provided for @planEmptyStep1.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a budget and what you enjoy'**
+  String get planEmptyStep1;
+
+  /// No description provided for @planEmptyStep2.
+  ///
+  /// In en, this message translates to:
+  /// **'Set the day, start point and hours'**
+  String get planEmptyStep2;
+
+  /// No description provided for @planEmptyStep3.
+  ///
+  /// In en, this message translates to:
+  /// **'Get a timed route with transport for each leg'**
+  String get planEmptyStep3;
+
+  /// No description provided for @tripDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip details'**
+  String get tripDetails;
+
+  /// No description provided for @editPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get editPlan;
+
+  /// No description provided for @anyInterests.
+  ///
+  /// In en, this message translates to:
+  /// **'Any interests'**
+  String get anyInterests;
 }
 
 class _AppLocalizationsDelegate

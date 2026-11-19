@@ -137,8 +137,8 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                     point: _ll(a.location!),
                     radius: a.radiusKm * 1000,
                     useRadiusInMeter: true,
-                    color: (a.isEvent ? AppTheme.eventColor : AppTheme.alertColor).withValues(alpha: 0.18),
-                    borderColor: a.isEvent ? AppTheme.eventColor : AppTheme.alertColor,
+                    color: (a.isEvent ? context.yatri.event : context.yatri.alert).withValues(alpha: 0.18),
+                    borderColor: a.isEvent ? context.yatri.event : context.yatri.alert,
                     borderStrokeWidth: 1.5,
                   ),
               ]),
@@ -157,7 +157,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                     Polyline(
                       points: journeyPoints,
                       strokeWidth: 5,
-                      color: AppTheme.seed,
+                      color: context.yatri.transit,
                       borderStrokeWidth: 2,
                       borderColor: Colors.white,
                     ),
@@ -180,7 +180,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                       child: Tooltip(
                         message: a.title,
                         child: CircleAvatar(
-                          backgroundColor: a.isEvent ? AppTheme.eventColor : AppTheme.alertColor,
+                          backgroundColor: a.isEvent ? context.yatri.event : context.yatri.alert,
                           child: Icon(a.isEvent ? Icons.celebration : Icons.warning_amber, size: 16, color: Colors.white),
                         ),
                       ),
@@ -213,9 +213,9 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                       Marker(point: _ll(ride.alight.location), width: 22, height: 22, child: const _StopDot()),
                     ],
                   if (widget.from != null)
-                    Marker(point: _ll(widget.from!), width: 26, height: 26, child: const _EndDot(color: Color(0xFF5B9A2E))),
+                    Marker(point: _ll(widget.from!), width: 26, height: 26, child: _EndDot(color: context.yatri.origin)),
                   if (widget.to != null)
-                    Marker(point: _ll(widget.to!), width: 26, height: 26, child: const _EndDot(color: Color(0xFFE0483C))),
+                    Marker(point: _ll(widget.to!), width: 26, height: 26, child: _EndDot(color: context.yatri.destination)),
                   if (here != null)
                     Marker(
                       point: _ll(here),
@@ -343,7 +343,7 @@ class _StopDot extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           shape: BoxShape.circle,
-          border: Border.all(color: AppTheme.seed, width: 4),
+          border: Border.all(color: context.yatri.transit, width: 4),
         ),
       );
 }

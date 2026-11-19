@@ -48,16 +48,16 @@ class _JourneyCardState extends State<JourneyCard> {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(Icons.directions_bus, size: 20, color: widget.isBest ? AppTheme.seed : null),
+              Icon(Icons.directions_bus, size: 20, color: widget.isBest ? context.yatri.transit : null),
               const SizedBox(width: 6),
               Expanded(
                 child: Text('$title · $vehicle',
                     style: theme.textTheme.titleSmall?.copyWith(
-                        fontWeight: FontWeight.w700, color: widget.isBest ? AppTheme.seed : null)),
+                        fontWeight: FontWeight.w700, color: widget.isBest ? context.yatri.transit : null)),
               ),
               if (freq != null)
                 Text(l10n.everyMinutes(freq),
-                    style: theme.textTheme.labelMedium?.copyWith(color: widget.isBest ? AppTheme.seed : null)),
+                    style: theme.textTheme.labelMedium?.copyWith(color: widget.isBest ? context.yatri.transit : null)),
             ],
           ),
           const SizedBox(height: 4),
@@ -77,7 +77,7 @@ class _JourneyCardState extends State<JourneyCard> {
                 TagChip(l10n.changes(j.transfers),
                     color: theme.colorScheme.onSurfaceVariant, background: theme.colorScheme.surfaceContainerHighest),
               if (j.hasRoughStop)
-                TagChip(l10n.roughStop, color: AppTheme.alertColor, background: AppTheme.alertBackground),
+                TagChip(l10n.roughStop, color: context.yatri.alert, background: context.yatri.alertContainer),
             ],
           ),
           if (_expanded) ...[
@@ -102,9 +102,9 @@ class _JourneyCardState extends State<JourneyCard> {
     final l10n = context.l10n;
     return status.isVerified
         ? TagChip(l10n.routeStatus(status.name),
-            icon: Icons.verified, color: AppTheme.eventColor, background: AppTheme.eventBackground)
+            icon: Icons.verified, color: context.yatri.event, background: context.yatri.eventContainer)
         : TagChip(l10n.routeStatus(status.name),
-            icon: Icons.help_outline, color: AppTheme.alertColor, background: AppTheme.alertBackground);
+            icon: Icons.help_outline, color: context.yatri.alert, background: context.yatri.alertContainer);
   }
 }
 

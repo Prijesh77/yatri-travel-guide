@@ -81,7 +81,7 @@ class _LocationPickerState extends ConsumerState<_LocationPicker> {
 
     Widget header(String text) => Padding(
           padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
-          child: Text(text, style: Theme.of(context).textTheme.labelLarge?.copyWith(color: AppTheme.seed)),
+          child: Text(text, style: Theme.of(context).textTheme.labelLarge?.copyWith(color: context.yatri.transit)),
         );
 
     return Column(

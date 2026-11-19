@@ -1036,5 +1036,26 @@
       }
     }
   },
-  "aboutAiOff": "AI planning is off in this build (no API key); plans are made on the device."
+  "aboutAiOff": "AI planning is off in this build (no API key); plans are made on the device.",
+  "greeting": "{dayPart, select, earlyMorning{Good morning} morning{Good morning} afternoon{Good afternoon} evening{Good evening} other{Good evening}}",
+  "@greeting": {
+    "placeholders": {
+      "dayPart": {
+        "type": "String"
+      }
+    }
+  },
+  "explore": "Explore",
+  "soon": "Soon",
+  "catTransportHint": "Buses, fares & hubs",
+  "catStaysHint": "Hotels & guesthouses",
+  "moreForToday": "More for today",
+  "weatherLoading": "Checking the weather…",
+  "planEmptyTitle": "Your day, planned around the conditions",
+  "planEmptyStep1": "Pick a budget and what you enjoy",
+  "planEmptyStep2": "Set the day, start point and hours",
+  "planEmptyStep3": "Get a timed route with transport for each leg",
+  "tripDetails": "Trip details",
+  "editPlan": "Edit",
+  "anyInterests": "Any interests"
 }

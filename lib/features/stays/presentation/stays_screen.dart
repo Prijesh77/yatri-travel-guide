@@ -51,8 +51,8 @@ class _StaysScreenState extends ConsumerState<StaysScreen> {
           ScreenHeader(
             icon: Icons.bed_outlined,
             title: l10n.catStays,
-            color: AppTheme.seed,
-            background: AppTheme.transitBackground,
+            color: context.yatri.transit,
+            background: context.yatri.transitContainer,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -108,7 +108,7 @@ class _StaysScreenState extends ConsumerState<StaysScreen> {
                           children: [
                             Text(s.name, style: Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700)),
                             const SizedBox(height: 4),
-                            TagChip(l10n.stayType(s.type.name), color: AppTheme.seed, background: AppTheme.transitBackground),
+                            TagChip(l10n.stayType(s.type.name), color: context.yatri.transit, background: context.yatri.transitContainer),
                             const SizedBox(height: 4),
                             Text(
                               <String>{

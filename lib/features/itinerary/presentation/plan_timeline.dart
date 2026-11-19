@@ -82,9 +82,9 @@ class _Summary extends ConsumerWidget {
     final r = itinerary.request;
 
     final (sourceIcon, sourceText, sourceColor) = switch (itinerary.source) {
-      PlanSource.ai => (Icons.auto_awesome, l10n.plannedWithAi, AppTheme.aiColor),
+      PlanSource.ai => (Icons.auto_awesome, l10n.plannedWithAi, context.yatri.ai),
       PlanSource.local => (Icons.memory, l10n.plannedOnDevice, theme.colorScheme.onSurfaceVariant),
-      PlanSource.localFallback => (Icons.cloud_off, l10n.aiUnavailableFallback, AppTheme.alertColor),
+      PlanSource.localFallback => (Icons.cloud_off, l10n.aiUnavailableFallback, context.yatri.alert),
     };
 
     return Padding(
@@ -235,7 +235,7 @@ class _TimelineItem extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(top: 4),
                             child: TagChip(l10n.tagRerouted,
-                                color: AppTheme.alertColor, background: AppTheme.alertBackground),
+                                color: context.yatri.alert, background: context.yatri.alertContainer),
                           ),
                         const SizedBox(height: 10),
                       ],
@@ -275,7 +275,7 @@ class _TimelineItem extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.only(top: 4),
                                 child: TagChip(l10n.tagEvent,
-                                    color: AppTheme.eventColor, background: AppTheme.eventBackground),
+                                    color: context.yatri.event, background: context.yatri.eventContainer),
                               ),
                           ],
                         ),

@@ -45,8 +45,8 @@ class _FareCheckScreenState extends ConsumerState<FareCheckScreen> {
           ScreenHeader(
             icon: Icons.confirmation_number_outlined,
             title: l10n.fareCheck,
-            color: AppTheme.eventColor,
-            background: AppTheme.eventBackground,
+            color: context.yatri.event,
+            background: context.yatri.eventContainer,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -196,7 +196,7 @@ class _FareResult extends ConsumerWidget {
                 stats.low == stats.high
                     ? l10n.npr(l10n.amount(stats.typical))
                     : l10n.nprRange(l10n.amount(stats.low), l10n.amount(stats.high)),
-                style: theme.textTheme.headlineSmall?.copyWith(color: AppTheme.eventColor, fontWeight: FontWeight.w700),
+                style: theme.textTheme.headlineSmall?.copyWith(color: context.yatri.event, fontWeight: FontWeight.w700),
               ),
               Text(
                 l10n.basedOnReports(stats.count) +
@@ -236,11 +236,11 @@ class _RangeBar extends StatelessWidget {
         LayoutBuilder(
           builder: (context, c) => Stack(
             children: [
-              Container(height: 10, decoration: BoxDecoration(color: AppTheme.eventBackground, borderRadius: BorderRadius.circular(5))),
+              Container(height: 10, decoration: BoxDecoration(color: context.yatri.eventContainer, borderRadius: BorderRadius.circular(5))),
               Positioned(
                 left: c.maxWidth * 0.15,
                 width: c.maxWidth * 0.7,
-                child: Container(height: 10, decoration: BoxDecoration(color: const Color(0xFF6A9E2C), borderRadius: BorderRadius.circular(5))),
+                child: Container(height: 10, decoration: BoxDecoration(color: context.yatri.success, borderRadius: BorderRadius.circular(5))),
               ),
               Positioned(
                 left: (c.maxWidth * (0.15 + 0.7 * typicalPos) - 2).clamp(0, c.maxWidth - 4),

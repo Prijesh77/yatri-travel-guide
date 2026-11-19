@@ -33,8 +33,8 @@ class PlannedCategoryScreen extends StatelessWidget {
           ScreenHeader(
             icon: category.icon,
             title: l10n.plannedCategory(name),
-            color: AppTheme.plannedColor,
-            background: AppTheme.plannedBackground,
+            color: context.yatri.planned,
+            background: context.yatri.plannedContainer,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -51,8 +51,8 @@ class PlannedCategoryScreen extends StatelessWidget {
                 child: Row(
                   children: [
                     CircleAvatar(
-                      backgroundColor: AppTheme.plannedBackground,
-                      child: Icon(category.icon, color: AppTheme.plannedColor),
+                      backgroundColor: context.yatri.plannedContainer,
+                      child: Icon(category.icon, color: context.yatri.planned),
                     ),
                     const SizedBox(width: 12),
                     Expanded(

@@ -47,6 +47,43 @@ flutter test             # unit + widget tests
 flutter analyze
 ```
 
+### Run in VS Code (Windows)
+
+The repo ships a `.vscode/` folder with run configurations, so you don't need
+to type flutter commands.
+
+1. Install [VS Code](https://code.visualstudio.com) and the Flutter SDK
+   (`flutter doctor` should run in a new PowerShell window).
+2. In VS Code: **File → Open Folder…** and pick the folder that contains
+   `pubspec.yaml` (for example `Documents\yatri-travel-guide\yatri-travel-guide`).
+   Opening its parent folder is the most common reason nothing runs.
+3. Accept the prompt to install the recommended extensions (**Flutter** and
+   **Dart**). If there is no prompt, install **Flutter** from the Extensions view
+   (Ctrl+Shift+X).
+4. Run **Terminal → Run Task… → flutter pub get** once (or run
+   `flutter pub get` in the terminal with Ctrl+`).
+5. Open **Run and Debug** (Ctrl+Shift+D), choose **Yatri (Chrome)** or
+   **Yatri (Edge)**, then press **F5**. The app opens in the browser.
+   - **r** in the Debug Console, or saving a file, hot-reloads.
+   - **Yatri (selected device)** runs on whatever the status bar's device
+     picker (bottom right) shows, such as an Android emulator or a phone with
+     USB debugging.
+   - This project has no Windows desktop target. Add one with
+     `flutter create --platforms=windows .` if you want it; that also needs
+     Visual Studio's "Desktop development with C++" workload.
+6. Tests: **Terminal → Run Task… → flutter test**, the **All tests**
+   configuration, or the Testing view (flask icon) to run single tests.
+
+To turn on AI planning in VS Code, store your key as a user environment variable
+and restart VS Code:
+
+```powershell
+setx GEMINI_API_KEY "your-key"
+```
+
+Every launch configuration passes `GEMINI_API_KEY` from the environment. If it
+is not set, the on-device planner is used.
+
 ### Turning on AI planning (free)
 
 *Plan with AI* uses Google's Gemini API free tier, which needs no card.
@@ -74,6 +111,21 @@ Platform notes:
 - **Android**: `INTERNET` and location permissions are declared in `android/app/src/main/AndroidManifest.xml`.
 - **iOS**: `NSLocationWhenInUseUsageDescription` is set in `ios/Runner/Info.plist`.
 - If location is denied, the app still works. Distances are hidden and the planner starts from a preset such as Thamel.
+
+## Design system
+
+- **Theme** (`lib/core/theme/app_theme.dart`): Material 3, seeded from the
+  wireframe navy (`#1D4E89`), with neutral surfaces and component themes for
+  buttons, chips, inputs, the navigation bar, sheets and dialogs.
+- **Accent colours** live in the `YatriColors` theme extension, with light and
+  dark variants: AI (violet), alerts (amber), events/verified (green), transit
+  (navy), planned (warm grey), success, and the route start/end dots. Read them
+  with `context.yatri.alert` and so on. Don't hard-code colour values in widgets,
+  or dark mode breaks.
+- **Type**: Plus Jakarta Sans, bundled in `assets/fonts/` (SIL Open Font
+  License, see `assets/fonts/OFL.txt`), so it works offline. It has no
+  Devanagari glyphs, so Nepali text falls back to the platform font.
+- The app follows the system light/dark setting.
 
 ## Architecture
 

@@ -278,7 +278,7 @@ class _InfoSection extends ConsumerWidget {
                   Text(
                     statusText,
                     style: TextStyle(
-                      color: status.isOpen ? const Color(0xFF2E7D32) : theme.colorScheme.error,
+                      color: status.isOpen ? context.yatri.success : theme.colorScheme.error,
                       fontWeight: FontWeight.w600,
                     ),
                   ),

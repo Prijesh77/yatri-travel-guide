@@ -1333,4 +1333,55 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get aboutAiOff =>
       'AI planning is off in this build (no API key); plans are made on the device.';
+
+  @override
+  String greeting(String dayPart) {
+    String _temp0 = intl.Intl.selectLogic(dayPart, {
+      'earlyMorning': 'Good morning',
+      'morning': 'Good morning',
+      'afternoon': 'Good afternoon',
+      'evening': 'Good evening',
+      'other': 'Good evening',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String get explore => 'Explore';
+
+  @override
+  String get soon => 'Soon';
+
+  @override
+  String get catTransportHint => 'Buses, fares & hubs';
+
+  @override
+  String get catStaysHint => 'Hotels & guesthouses';
+
+  @override
+  String get moreForToday => 'More for today';
+
+  @override
+  String get weatherLoading => 'Checking the weather…';
+
+  @override
+  String get planEmptyTitle => 'Your day, planned around the conditions';
+
+  @override
+  String get planEmptyStep1 => 'Pick a budget and what you enjoy';
+
+  @override
+  String get planEmptyStep2 => 'Set the day, start point and hours';
+
+  @override
+  String get planEmptyStep3 => 'Get a timed route with transport for each leg';
+
+  @override
+  String get tripDetails => 'Trip details';
+
+  @override
+  String get editPlan => 'Edit';
+
+  @override
+  String get anyInterests => 'Any interests';
 }
