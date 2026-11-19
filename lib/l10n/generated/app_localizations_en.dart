@@ -497,17 +497,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get planTravelStyle => 'Getting around';
 
   @override
-  String travelStyle(String style) {
-    String _temp0 = intl.Intl.selectLogic(style, {
-      'budget': 'Budget',
-      'balanced': 'Balanced',
-      'comfort': 'Comfort',
-      'other': '',
-    });
-    return '$_temp0';
-  }
-
-  @override
   String travelStyleHint(String style) {
     String _temp0 = intl.Intl.selectLogic(style, {
       'budget': 'Local buses and walking where possible',

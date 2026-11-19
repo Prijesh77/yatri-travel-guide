@@ -409,14 +409,6 @@
   "planInterests": "Interests",
   "planInterestsHint": "Leave empty for a mix of everything",
   "planTravelStyle": "Getting around",
-  "travelStyle": "{style, select, budget{Budget} balanced{Balanced} comfort{Comfort} other{}}",
-  "@travelStyle": {
-    "placeholders": {
-      "style": {
-        "type": "String"
-      }
-    }
-  },
   "travelStyleHint": "{style, select, budget{Local buses and walking where possible} balanced{Bus when it's not much slower, otherwise taxi} comfort{Taxis, walking only short hops} other{}}",
   "@travelStyleHint": {
     "placeholders": {

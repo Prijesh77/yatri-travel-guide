@@ -718,12 +718,6 @@ abstract class AppLocalizations {
   /// **'Getting around'**
   String get planTravelStyle;
 
-  /// No description provided for @travelStyle.
-  ///
-  /// In en, this message translates to:
-  /// **'{style, select, budget{Budget} balanced{Balanced} comfort{Comfort} other{}}'**
-  String travelStyle(String style);
-
   /// No description provided for @travelStyleHint.
   ///
   /// In en, this message translates to:

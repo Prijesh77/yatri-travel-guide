@@ -63,7 +63,7 @@ class PreferencesSheet extends ConsumerWidget {
             const SizedBox(height: 8),
             SegmentedButton<TravelStyle>(
               segments: [
-                for (final s in TravelStyle.values) ButtonSegment(value: s, label: Text(l10n.travelStyle(s.name))),
+                for (final s in TravelStyle.values) ButtonSegment(value: s, label: Text(l10n.budgetLevel(s.name))),
               ],
               selected: {prefs.travelStyle},
               onSelectionChanged: (s) => controller.setTravelStyle(s.single),
