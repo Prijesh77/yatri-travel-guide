@@ -14,6 +14,16 @@ class FareEstimator {
   final RouteNetwork network;
   final JourneyPlanner journeys;
 
+  JourneySearch? _lastSearch;
+
+  /// Reuses the origin-side search while the origin and time stay the same,
+  /// which is the case for every candidate in one itinerary-planner step.
+  JourneySearch _searchFrom(GeoPoint from, DateTime departure) {
+    final last = _lastSearch;
+    if (last != null && last.from == from && last.departure == departure) return last;
+    return _lastSearch = journeys.searchFrom(from, departure);
+  }
+
   /// Below this distance, walking is the only sensible option.
   static const walkOnlyKm = 0.4;
 
@@ -88,8 +98,8 @@ class FareEstimator {
     final bus = network.bus;
     final rush = settings.isRushHour(departure);
 
-    final found = journeys.plan(from, to, departure, maxResults: 1);
-    if (found.isNotEmpty) return busOptionFor(found.first, departure, bandh: bandh);
+    final found = _searchFrom(from, departure).bestTo(to);
+    if (found != null) return busOptionFor(found, departure, bandh: bandh);
 
     final km = roadKm(from, to);
     if (km <= network.walk.maxKm) return null;

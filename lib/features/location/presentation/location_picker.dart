@@ -52,9 +52,12 @@ class _LocationPickerState extends ConsumerState<_LocationPicker> {
     final q = _query.trim().toLowerCase();
     bool match(String s) => q.isEmpty || s.toLowerCase().contains(q);
 
+    // Two hubs can share a stop (Chyamasingh and Nala bus stations), so list
+    // each stop once.
+    final seenHubStops = <String>{};
     final hubs = [
       for (final h in network?.hubs ?? const [])
-        if (h.stop != null && (match(h.name) || match(h.stop!.name)))
+        if (h.stop != null && (match(h.name) || match(h.stop!.name)) && seenHubStops.add(h.stop!.id))
           LocationChoice(h.stop!.name, h.stop!.location, LocationKind.hub),
     ];
     final hubStops = {for (final h in hubs) h.label};
@@ -95,16 +98,27 @@ class _LocationPickerState extends ConsumerState<_LocationPicker> {
           ),
         ),
         Expanded(
-          child: ListView(
-            children: [
-              if (here != null && q.isEmpty) tile(LocationChoice(l10n.myLocation, here, LocationKind.myLocation)),
-              if (hubs.isNotEmpty) ...[header(l10n.pickerHubs), ...hubs.map(tile)],
-              if (placeChoices.isNotEmpty) ...[header(l10n.pickerPlaces), ...placeChoices.map(tile)],
-              if (stops.isNotEmpty) ...[header(l10n.pickerStops), ...stops.map(tile)],
-              if (hubs.isEmpty && placeChoices.isEmpty && stops.isEmpty)
-                Padding(padding: const EdgeInsets.all(24), child: Text(l10n.noResults)),
-            ],
-          ),
+          child: Builder(builder: (context) {
+            // Built lazily: the full list has ~200 rows and is rebuilt on
+            // every keystroke.
+            final rows = <Widget Function()>[
+              if (here != null && q.isEmpty) () => tile(LocationChoice(l10n.myLocation, here, LocationKind.myLocation)),
+              if (hubs.isNotEmpty) ...[() => header(l10n.pickerHubs), for (final c in hubs) () => tile(c)],
+              if (placeChoices.isNotEmpty) ...[
+                () => header(l10n.pickerPlaces),
+                for (final c in placeChoices) () => tile(c),
+              ],
+              if (stops.isNotEmpty) ...[() => header(l10n.pickerStops), for (final c in stops) () => tile(c)],
+            ];
+            if (rows.isEmpty) {
+              return Padding(padding: const EdgeInsets.all(24), child: Text(l10n.noResults));
+            }
+            return ListView.builder(
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+              itemCount: rows.length,
+              itemBuilder: (context, i) => rows[i](),
+            );
+          }),
         ),
       ],
     );

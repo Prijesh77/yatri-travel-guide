@@ -99,6 +99,11 @@ class ItineraryController extends AsyncNotifier<Itinerary?> {
           itinerary = null;
         }
       }
+      if (itinerary == null) {
+        // Planning is synchronous and runs on the UI thread (web has no
+        // isolates), so let a frame paint the "Planning…" state first.
+        await Future<void>.delayed(const Duration(milliseconds: 20));
+      }
       itinerary ??= _withSource(
         planner.plan(request, places, weather: weather, alerts: alerts),
         ai == null ? PlanSource.local : PlanSource.localFallback,

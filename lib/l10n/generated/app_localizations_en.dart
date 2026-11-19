@@ -1384,4 +1384,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get anyInterests => 'Any interests';
+
+  @override
+  String freeTimeHint(String time) {
+    return 'Free from $time. Add more places from Home or the map, or generate a new plan to fill the day.';
+  }
+
+  @override
+  String get searchTry => 'Try searching for';
+
+  @override
+  String get searchIntro =>
+      'Places, stays, bus stops and routes across Kathmandu, Lalitpur and Bhaktapur. Category and city names work too, such as \"temple\" or \"Bhaktapur\".';
+
+  @override
+  String get clearSearch => 'Clear search';
 }

@@ -78,6 +78,22 @@ class _PlanScreenState extends ConsumerState<PlanScreen> {
     if (ref.read(userLocationProvider) != null) _preset = null;
   }
 
+  /// Starts editing from the plan on screen, so "Edit" shows its settings.
+  void _loadFrom(ItineraryRequest r) {
+    _budget = r.travelStyle;
+    _interests = InterestChoice.fromCategories(r.interests);
+    final today = dateOnly(ref.read(nowProvider));
+    final day = dateOnly(r.startTime);
+    if (!day.isBefore(today)) {
+      _date = day;
+      _startMinute = minuteOfDay(r.startTime);
+      _hours = (r.availableMinutes / 60).clamp(1, 12).roundToDouble();
+    }
+    for (final p in StartPreset.values) {
+      if (p.name == r.start.label) _preset = p;
+    }
+  }
+
   ItineraryRequest _request() {
     final here = ref.read(userLocationProvider);
     final GeoPoint location = _preset?.location ?? here ?? StartPreset.thamel.location;
@@ -236,7 +252,7 @@ class _PlanScreenState extends ConsumerState<PlanScreen> {
       ],
     );
 
-    final compact = Column(
+    Widget compact(ItineraryRequest r) => Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         ScreenHeader(icon: Icons.auto_awesome, title: l10n.planWithAi, color: y.ai, background: y.aiContainer),
@@ -255,12 +271,14 @@ class _PlanScreenState extends ConsumerState<PlanScreen> {
                       children: [
                         Text(
                           [
-                            l10n.budgetLevel(_budget.name),
-                            if (_interests.isEmpty)
+                            l10n.budgetLevel(r.travelStyle.name),
+                            if (r.interests.isEmpty)
                               l10n.anyInterests
                             else
-                              [for (final i in InterestChoice.values) if (_interests.contains(i)) l10n.interestChoice(i.name)]
-                                  .join(', '),
+                              [
+                                for (final i in InterestChoice.fromCategories(r.interests))
+                                  l10n.interestChoice(i.name),
+                              ].join(', '),
                           ].join(' · '),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -268,9 +286,9 @@ class _PlanScreenState extends ConsumerState<PlanScreen> {
                         ),
                         Text(
                           l10n.planOptionsSummary(
-                            DateFormat.MMMEd(l10n.localeName).format(_date),
-                            l10n.minuteOfDayTime(_startMinute),
-                            l10n.hoursValue(_hours.round()),
+                            DateFormat.MMMEd(l10n.localeName).format(r.startTime),
+                            l10n.time(r.startTime),
+                            l10n.hoursValue((r.availableMinutes / 60).round()),
                           ),
                           style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.onSurfaceVariant),
                         ),
@@ -278,7 +296,10 @@ class _PlanScreenState extends ConsumerState<PlanScreen> {
                     ),
                   ),
                   TextButton.icon(
-                    onPressed: () => setState(() => _editing = true),
+                    onPressed: () => setState(() {
+                      _loadFrom(r);
+                      _editing = true;
+                    }),
                     icon: const Icon(Icons.edit_outlined, size: 18),
                     label: Text(l10n.editPlan),
                   ),
@@ -294,7 +315,7 @@ class _PlanScreenState extends ConsumerState<PlanScreen> {
       body: SafeArea(
         child: switch (itinerary) {
           AsyncValue(:final value?) when !loading =>
-            PlanTimeline(itinerary: value, header: _editing ? form : compact),
+            PlanTimeline(itinerary: value, header: _editing ? form : compact(value.request)),
           AsyncError(:final error) when !loading => ListView(children: [
               form,
               Padding(padding: const EdgeInsets.all(16), child: Text('${l10n.errorLoading}\n$error')),

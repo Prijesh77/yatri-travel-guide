@@ -244,6 +244,54 @@ void main() {
     await disposeApp(tester);
   });
 
+  testWidgets('search suggests queries and matches category names', (tester) async {
+    await pumpApp(tester, weather: reportOf(sunny, now));
+    await tester.tap(find.byTooltip('Search'));
+    await tester.pumpAndSettle();
+    expect(find.text('Try searching for'), findsOneWidget);
+
+    await tester.tap(find.widgetWithText(ActionChip, 'Temple'));
+    await tester.pumpAndSettle();
+    expect(find.text('Pashupatinath Temple'), findsOneWidget); // matched by its "Temples" category
+    await tester.tap(find.byTooltip('Clear search'));
+    await tester.pumpAndSettle();
+    expect(find.text('Try searching for'), findsOneWidget);
+    await disposeApp(tester);
+  });
+
+  testWidgets('"added to plan" snack bar dismisses itself and the plan summary shows the real plan', (tester) async {
+    await pumpApp(tester, weather: reportOf(sunny, now));
+    await scrollToCenter(tester, find.text('Patan Museum'), find.byType(Scrollable).first);
+    await tester.tap(find.text('Patan Museum'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Add to itinerary'));
+    await tester.pumpAndSettle();
+    expect(find.text('View plan'), findsOneWidget);
+    await tester.pump(const Duration(seconds: 6));
+    await tester.pumpAndSettle();
+    expect(find.text('View plan'), findsNothing);
+
+    await tester.pageBack();
+    await tester.pumpAndSettle();
+    await tapTab(tester, 'Plan');
+    // Adding a place starts the plan at the next quarter hour (14:15); the
+    // form's own default (next half hour) would say 14:30.
+    expect(find.textContaining('from 14:15'), findsOneWidget);
+    await tester.tap(find.text('Edit'));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('from 14:15'), findsOneWidget);
+    await disposeApp(tester);
+  });
+
+  testWidgets('location picker lists a shared hub stop once', (tester) async {
+    await pumpApp(tester, weather: reportOf(sunny, now));
+    await tapTab(tester, 'Transit');
+    await tester.tap(find.text('Where to?'));
+    await tester.pumpAndSettle();
+    expect(find.text('Chyamasingh'), findsOneWidget);
+    await disposeApp(tester);
+  });
+
   testWidgets('live conditions: samples, confirm, and home counts', (tester) async {
     await pumpApp(tester, weather: reportOf(sunny, now));
     await tapTab(tester, 'Alerts');

@@ -28,7 +28,22 @@ class SearchScreen extends ConsumerStatefulWidget {
 }
 
 class _SearchScreenState extends ConsumerState<SearchScreen> {
+  final _controller = TextEditingController();
   String _q = '';
+
+  /// Shown before anything is typed, so the screen is never blank.
+  static const _suggestions = ['Boudha', 'Patan', 'Temple', 'Momo', 'Bhaktapur', 'Ratnapark', 'Guesthouse'];
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _search(String value) {
+    _controller.value = TextEditingValue(text: value, selection: TextSelection.collapsed(offset: value.length));
+    setState(() => _q = value);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +51,13 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     final q = _q.trim().toLowerCase();
     bool match(String s) => s.toLowerCase().contains(q);
 
-    final List<Place> places =
-        q.isEmpty ? const [] : [for (final p in ref.watch(placesProvider).value ?? const <Place>[]) if (match(p.name)) p];
+    // Names, plus category and city, so "temple" or "Bhaktapur" find places.
+    final List<Place> places = q.isEmpty
+        ? const []
+        : [
+            for (final p in ref.watch(placesProvider).value ?? const <Place>[])
+              if (match(p.name) || match(l10n.categoryName(p.category.name)) || match(l10n.cityName(p.city.name))) p,
+          ];
     final List<Stay> stays = q.isEmpty
         ? const []
         : [
@@ -61,15 +81,58 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     return Scaffold(
       appBar: AppBar(
         title: TextField(
+          controller: _controller,
           autofocus: true,
-          decoration: InputDecoration(hintText: l10n.searchHint, border: InputBorder.none),
+          textInputAction: TextInputAction.search,
+          decoration: InputDecoration(
+            hintText: l10n.searchHint,
+            border: InputBorder.none,
+            enabledBorder: InputBorder.none,
+            focusedBorder: InputBorder.none,
+            filled: false,
+            suffixIcon: _q.isEmpty
+                ? null
+                : IconButton(tooltip: l10n.clearSearch, icon: const Icon(Icons.close), onPressed: () => _search('')),
+          ),
           onChanged: (v) => setState(() => _q = v),
         ),
       ),
       body: ListView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         children: [
+          if (q.isEmpty) ...[
+            SectionLabel(l10n.searchTry),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  for (final s in _suggestions)
+                    ActionChip(avatar: const Icon(Icons.search, size: 16), label: Text(s), onPressed: () => _search(s)),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 20, 16, 0),
+              child: Text(l10n.searchIntro,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodySmall
+                      ?.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant)),
+            ),
+          ],
           if (q.isNotEmpty && places.isEmpty && stays.isEmpty && stops.isEmpty && routes.isEmpty)
-            Padding(padding: const EdgeInsets.all(24), child: Text(l10n.noResults)),
+            Padding(
+              padding: const EdgeInsets.all(32),
+              child: Column(
+                children: [
+                  Icon(Icons.search_off, size: 40, color: Theme.of(context).colorScheme.onSurfaceVariant),
+                  const SizedBox(height: 8),
+                  Text(l10n.noResults, textAlign: TextAlign.center),
+                ],
+              ),
+            ),
           if (places.isNotEmpty) SectionLabel(l10n.pickerPlaces),
           for (final p in places)
             ListTile(

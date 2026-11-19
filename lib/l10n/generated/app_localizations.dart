@@ -1899,6 +1899,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Any interests'**
   String get anyInterests;
+
+  /// No description provided for @freeTimeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Free from {time}. Add more places from Home or the map, or generate a new plan to fill the day.'**
+  String freeTimeHint(String time);
+
+  /// No description provided for @searchTry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try searching for'**
+  String get searchTry;
+
+  /// No description provided for @searchIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Places, stays, bus stops and routes across Kathmandu, Lalitpur and Bhaktapur. Category and city names work too, such as \"temple\" or \"Bhaktapur\".'**
+  String get searchIntro;
+
+  /// No description provided for @clearSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear search'**
+  String get clearSearch;
 }
 
 class _AppLocalizationsDelegate

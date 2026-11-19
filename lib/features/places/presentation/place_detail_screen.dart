@@ -30,8 +30,8 @@ class PlaceDetailScreen extends ConsumerWidget {
 
   final String placeId;
 
-  static Future<void> open(BuildContext context, String placeId) => Navigator.of(context)
-      .push(MaterialPageRoute<void>(builder: (_) => PlaceDetailScreen(placeId: placeId)));
+  static Future<void> open(BuildContext context, String placeId) =>
+      Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => PlaceDetailScreen(placeId: placeId)));
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -39,7 +39,10 @@ class PlaceDetailScreen extends ConsumerWidget {
     final scored = ref.watch(scoredPlaceProvider(placeId));
     final l10n = context.l10n;
     if (place == null) {
-      return Scaffold(appBar: AppBar(), body: Center(child: Text(l10n.errorLoading)));
+      return Scaffold(
+        appBar: AppBar(),
+        body: Center(child: Text(l10n.errorLoading)),
+      );
     }
 
     final savedItem = SavedItem(SavedKind.place, place.id);
@@ -67,7 +70,10 @@ class PlaceDetailScreen extends ConsumerWidget {
                 place.displayName(l10n.localeName),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(color: Colors.white, shadows: [Shadow(blurRadius: 6, color: Colors.black45)]),
+                style: const TextStyle(
+                  color: Colors.white,
+                  shadows: [Shadow(blurRadius: 6, color: Colors.black45)],
+                ),
               ),
               titlePadding: const EdgeInsetsDirectional.only(start: 56, bottom: 16, end: 16),
               background: _PhotoPlaceholder(place: place),
@@ -148,16 +154,24 @@ class PlaceDetailScreen extends ConsumerWidget {
     final messenger = ScaffoldMessenger.of(context);
     final navigator = Navigator.of(context);
     final result = await ref.read(itineraryControllerProvider.notifier).add(place);
-    messenger.showSnackBar(SnackBar(
-      content: Text(result == AddResult.added ? l10n.addedToItinerary : l10n.alreadyInItinerary),
-      action: SnackBarAction(
-        label: l10n.viewPlan,
-        onPressed: () {
-          ref.read(rootTabProvider.notifier).select(RootTab.plan);
-          navigator.popUntil((r) => r.isFirst);
-        },
-      ),
-    ));
+    messenger
+      ..hideCurrentSnackBar()
+      ..showSnackBar(
+        SnackBar(
+          // Snack bars with an action stay up until tapped by default; this one
+          // would otherwise follow the traveller across every screen.
+          persist: false,
+          duration: const Duration(seconds: 5),
+          content: Text(result == AddResult.added ? l10n.addedToItinerary : l10n.alreadyInItinerary),
+          action: SnackBarAction(
+            label: l10n.viewPlan,
+            onPressed: () {
+              ref.read(rootTabProvider.notifier).select(RootTab.plan);
+              navigator.popUntil((r) => r.isFirst);
+            },
+          ),
+        ),
+      );
   }
 }
 
@@ -207,9 +221,9 @@ class _SectionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.only(bottom: 8),
-        child: Text(text, style: Theme.of(context).textTheme.titleMedium),
-      );
+    padding: const EdgeInsets.only(bottom: 8),
+    child: Text(text, style: Theme.of(context).textTheme.titleMedium),
+  );
 }
 
 class _SuitabilityCard extends StatelessWidget {
@@ -271,9 +285,14 @@ class _InfoSection extends ConsumerWidget {
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(hours.alwaysOpen
-                      ? l10n.openAllDay
-                      : l10n.hoursRange(l10n.minuteOfDayTime(hours.openMinute), l10n.minuteOfDayTime(hours.closeMinute))),
+                  Text(
+                    hours.alwaysOpen
+                        ? l10n.openAllDay
+                        : l10n.hoursRange(
+                            l10n.minuteOfDayTime(hours.openMinute),
+                            l10n.minuteOfDayTime(hours.closeMinute),
+                          ),
+                  ),
                   if (hours.closedWeekdays.isNotEmpty) Text(l10n.closedOnDays(l10n.weekdays(hours.closedWeekdays))),
                   Text(
                     statusText,

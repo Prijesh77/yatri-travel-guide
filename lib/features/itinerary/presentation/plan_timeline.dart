@@ -58,6 +58,8 @@ class PlanTimeline extends ConsumerWidget {
             ScaffoldMessenger.of(context)
               ..hideCurrentSnackBar()
               ..showSnackBar(SnackBar(
+                persist: false,
+                duration: const Duration(seconds: 5),
                 content: Text(l10n.stopRemoved(stop.place.name)),
                 action: SnackBarAction(label: l10n.undo, onPressed: () => controller.insertAt(i, stop.place)),
               ));
@@ -116,6 +118,25 @@ class _Summary extends ConsumerWidget {
               '${l10n.travelTime(l10n.duration(itinerary.totalTravelMinutes))} · '
               '${l10n.itineraryCosts(l10n.fare(itinerary.transportCost), l10n.fee(itinerary.entryFees(visitor)))}',
               style: theme.textTheme.bodySmall,
+            ),
+          if (!itinerary.isEmpty && r.endTime.difference(itinerary.endTime).inMinutes >= 90)
+            Container(
+              margin: const EdgeInsets.only(top: 8),
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: theme.colorScheme.surfaceContainer,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Icon(Icons.hourglass_bottom, size: 16, color: theme.colorScheme.onSurfaceVariant),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(l10n.freeTimeHint(l10n.time(itinerary.endTime)), style: theme.textTheme.bodySmall),
+                  ),
+                ],
+              ),
             ),
           if (day != null)
             Text(l10n.dayForecast(l10n.weatherCondition(day.condition.name), day.minC.round(), day.maxC.round()),

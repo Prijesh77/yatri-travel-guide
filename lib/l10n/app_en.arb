@@ -1057,5 +1057,16 @@
   "planEmptyStep3": "Get a timed route with transport for each leg",
   "tripDetails": "Trip details",
   "editPlan": "Edit",
-  "anyInterests": "Any interests"
+  "anyInterests": "Any interests",
+  "freeTimeHint": "Free from {time}. Add more places from Home or the map, or generate a new plan to fill the day.",
+  "@freeTimeHint": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "searchTry": "Try searching for",
+  "searchIntro": "Places, stays, bus stops and routes across Kathmandu, Lalitpur and Bhaktapur. Category and city names work too, such as \"temple\" or \"Bhaktapur\".",
+  "clearSearch": "Clear search"
 }
