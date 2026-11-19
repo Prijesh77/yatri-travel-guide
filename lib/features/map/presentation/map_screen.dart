@@ -51,6 +51,8 @@ class MapScreen extends ConsumerStatefulWidget {
 }
 
 class _MapScreenState extends ConsumerState<MapScreen> {
+  /// One per map screen; the TileLayer disposes it when the screen closes.
+  late final TileProvider _tileProvider = ref.read(mapTileProviderFactoryProvider)();
   final _map = MapController();
   PlaceCategory? _category;
 
@@ -65,10 +67,18 @@ class _MapScreenState extends ConsumerState<MapScreen> {
       points.addAll(path.map((s) => _ll(s.location)));
     }
     if (widget.to != null) points.add(_ll(widget.to!));
-    return points;
+    return _withoutRepeats(points);
   }
 
-  void _fitInitial() {
+  /// Drops consecutive duplicate points, e.g. a destination at the bus stop,
+  /// so the route line has no zero-length segments.
+  static List<LatLng> _withoutRepeats(List<LatLng> points) => [
+        for (var i = 0; i < points.length; i++)
+          if (i == 0 || points[i] != points[i - 1]) points[i],
+      ];
+
+  /// Points the first view should show: the focus, the journey, or the plan.
+  List<LatLng> _initialPoints() {
     final points = <LatLng>[
       ...widget.focus.map(_ll),
       ..._journeyPoints,
@@ -83,12 +93,27 @@ class _MapScreenState extends ConsumerState<MapScreen> {
           ..addAll(it.stops.map((s) => _ll(s.place.location)));
       }
     }
-    if (points.length == 1) {
-      _map.move(points.single, 15);
-    } else if (points.length > 1) {
-      _map.fitCamera(CameraFit.coordinates(coordinates: points, padding: const EdgeInsets.all(56)));
-    }
+    return points;
   }
+
+  /// The starting camera is passed to [MapOptions] instead of moving the map
+  /// in `onMapReady`: moving it there leaves flutter_map's tile layer showing
+  /// no tiles (the grey-map bug).
+  MapOptions _options() {
+    final points = _initialPoints();
+    return MapOptions(
+      crs: const _ValleyCrs(),
+      initialCenter: points.length == 1 ? points.single : _ll(ValleyBounds.center),
+      initialZoom: points.length == 1 ? 15 : 12,
+      initialCameraFit: points.length > 1
+          ? CameraFit.coordinates(coordinates: points, padding: const EdgeInsets.all(56), maxZoom: 16)
+          : null,
+      minZoom: 9,
+      maxZoom: 18,
+    );
+  }
+
+  late final MapOptions _mapOptions = _options();
 
   @override
   Widget build(BuildContext context) {
@@ -104,12 +129,12 @@ class _MapScreenState extends ConsumerState<MapScreen> {
       for (final s in ranked)
         if ((_category == null || s.place.hasCategory(_category!)) && !planIds.contains(s.place.id)) s,
     ];
-    final planPoints = [
+    final planPoints = _withoutRepeats([
       if (itinerary != null && !itinerary.isEmpty) ...[
         _ll(itinerary.request.start.location),
         for (final s in itinerary.stops) _ll(s.place.location),
       ],
-    ];
+    ]);
     final journeyPoints = _journeyPoints;
 
     return Scaffold(
@@ -118,18 +143,12 @@ class _MapScreenState extends ConsumerState<MapScreen> {
         children: [
           FlutterMap(
             mapController: _map,
-            options: MapOptions(
-              initialCenter: _ll(ValleyBounds.center),
-              initialZoom: 12,
-              minZoom: 9,
-              maxZoom: 18,
-              onMapReady: _fitInitial,
-            ),
+            options: _mapOptions,
             children: [
               TileLayer(
                 urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                 userAgentPackageName: 'np.yatri.yatri',
-                tileProvider: ref.watch(mapTileProviderProvider),
+                tileProvider: _tileProvider,
               ),
               CircleLayer(circles: [
                 for (final a in alerts)
@@ -366,4 +385,15 @@ class _EndDot extends StatelessWidget {
 /// Opens the map centred on an alert.
 void openAlertOnMap(BuildContext context, ConditionAlert alert) {
   if (alert.location != null) MapScreen.open(context, focus: [alert.location!]);
+}
+
+/// Web Mercator (what OpenStreetMap tiles use) without repeating the world
+/// sideways. Yatri only shows the Kathmandu Valley, and with world copies on,
+/// flutter_map 8's polyline painter can throw "Infinite loop going beyond 30"
+/// while drawing a route.
+class _ValleyCrs extends Epsg3857 {
+  const _ValleyCrs();
+
+  @override
+  bool get replicatesWorldLongitude => false;
 }

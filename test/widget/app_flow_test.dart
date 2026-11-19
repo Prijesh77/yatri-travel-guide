@@ -50,6 +50,19 @@ class _FakeLocation implements LocationService {
 
 /// Serves blank tiles without touching the network or disk.
 class _NoTiles extends TileProvider {
+  static final created = <_NoTiles>[];
+  _NoTiles() {
+    created.add(this);
+  }
+
+  bool disposed = false;
+
+  @override
+  void dispose() {
+    disposed = true;
+    super.dispose();
+  }
+
   @override
   ImageProvider getImage(TileCoordinates coordinates, TileLayer options) => MemoryImage(_transparentPng);
 }
@@ -87,7 +100,7 @@ void main() {
         clockProvider.overrideWithValue(FixedClock(now)),
         weatherRepositoryProvider.overrideWithValue(_FakeWeather(weather)),
         locationServiceProvider.overrideWithValue(_FakeLocation(thamel)),
-        mapTileProviderProvider.overrideWithValue(_NoTiles()),
+        mapTileProviderFactoryProvider.overrideWithValue(_NoTiles.new),
         aiConfigProvider.overrideWithValue(const AiConfig(apiKey: '', model: 'test')),
       ],
       child: const YatriApp(),
@@ -207,6 +220,27 @@ void main() {
     expect(find.byType(JourneyCard), findsWidgets);
     expect(find.textContaining('Board at'), findsWidgets);
     expect(find.text('Other ways to go'), findsOneWidget);
+    await disposeApp(tester);
+  });
+
+  testWidgets('each map screen gets its own tile source (reopening the map still loads tiles)', (tester) async {
+    _NoTiles.created.clear();
+    await pumpApp(tester, weather: reportOf(sunny, now));
+    await tapTab(tester, 'Transit');
+    await tester.tap(find.text('Lagankhel Bus Park'));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Map'));
+    await tester.pumpAndSettle();
+    expect(_NoTiles.created, hasLength(1));
+    await tester.pageBack();
+    await tester.pumpAndSettle();
+    expect(_NoTiles.created.single.disposed, isTrue);
+
+    await tester.tap(find.text('Map'));
+    await tester.pumpAndSettle();
+    expect(_NoTiles.created, hasLength(2));
+    expect(_NoTiles.created.last.disposed, isFalse);
     await disposeApp(tester);
   });
 
